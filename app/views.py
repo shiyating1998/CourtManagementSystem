@@ -6,7 +6,7 @@ from django.utils import timezone
 from datetime import datetime, timedelta, date, time
 from decimal import Decimal
 from .forms import BookingForm
-
+import json
 
 def get_price(selected_date, slot):
     # Define time slots and prices
@@ -125,7 +125,7 @@ def book_slot(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
-            selected_slots = form.cleaned_data['selected_slots']
+            selected_slots = json.loads(form.cleaned_data['selected_slots'])
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
@@ -136,29 +136,33 @@ def book_slot(request):
                 defaults={'first_name': first_name, 'last_name': last_name, 'phone': phone}
             )
 
+            print("selected_slots:", selected_slots)
             for slot in selected_slots:
-                start_time, court_name, booking_date, price = slot
-                court = ItemCourt.objects.get(name=court_name)
-                start_time_obj = datetime.strptime(start_time.split('-')[0], "%H:%M").time()
-                end_time_obj = (datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)).time()
-                booking_date_obj = datetime.strptime(booking_date, "%Y-%m-%d").date()
-
-                item_time, created = ItemTime.objects.get_or_create(
-                    item_court=court,
-                    start_time=start_time_obj,
-                    end_time=end_time_obj
-                )
-
-                ItemOrder.objects.create(
-                    item_time=item_time,
-                    user=user,
-                    money=Decimal(price),
-                    flag=1,  # Booked
-                    date=booking_date_obj,
-                    status=True  # Open
-                )
-
-            return redirect(reverse('booking_schedule'))
+                print("slot", slot)
+            # for slot in selected_slots:
+            #     print("slot", slot)
+            #     start_time, court_name, booking_date, price = slot
+            #     court = ItemCourt.objects.get(name=court_name)
+            #     start_time_obj = datetime.strptime(start_time.split('-')[0], "%H:%M").time()
+            #     end_time_obj = (datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)).time()
+            #     booking_date_obj = datetime.strptime(booking_date, "%Y-%m-%d").date()
+            #
+            #     item_time, created = ItemTime.objects.get_or_create(
+            #         item_court=court,
+            #         start_time=start_time_obj,
+            #         end_time=end_time_obj
+            #     )
+            #
+            #     ItemOrder.objects.create(
+            #         item_time=item_time,
+            #         user=user,
+            #         money=Decimal(price),
+            #         flag=1,  # Booked
+            #         date=booking_date_obj,
+            #         status=True  # Open
+            #     )
+            #
+            # return redirect(reverse('booking_schedule'))
     else:
         form = BookingForm()
 
