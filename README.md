@@ -1,2 +1,2 @@
-pip install Django
-python manage.py runserver
+## pip install Django
+## python manage.py runserver
