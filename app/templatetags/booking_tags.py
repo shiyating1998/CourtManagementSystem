@@ -24,8 +24,8 @@ def get_order(date, start_time, end_time, court):
         item_time__end_time=end_time,
         item_time__item_court__name=court
     )
-    for order in item_orders:
-        print(order)
+    #for order in item_orders:
+        # print(order)
     return item_orders
 
 

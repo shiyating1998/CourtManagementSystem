@@ -85,12 +85,23 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'court-management-system',
-        'USER': 'root',
-        'PASSWORD': '1234',
-        'HOST': '127.0.0.1',   # Set to '127.0.0.1' if using localhost
+        'USER': 'admin',
+        'PASSWORD': '12345678',
+        'HOST': 'db.ck5j8uchwbfr.us-east-1.rds.amazonaws.com',   # Set to '127.0.0.1' if using localhost
         'PORT': '3306',        # Default port for MySQL
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'court-management-system',
+#         'USER': 'root',
+#         'PASSWORD': '1234',
+#         'HOST': '127.0.0.1',   # Set to '127.0.0.1' if using localhost
+#         'PORT': '3306',        # Default port for MySQL
+#     }
+# }
 
 
 # Password validation
