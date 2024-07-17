@@ -1,13 +1,12 @@
-from django.shortcuts import render, redirect
-from django.http import JsonResponse
-from django.urls import reverse
-from .models import ItemCourt, ItemTime, ItemOrder, User
-from django.utils import timezone
-from datetime import datetime, timedelta, date, time
-from decimal import Decimal
-from .forms import BookingForm
 import json
-
+from decimal import Decimal
+from datetime import datetime, date, timedelta, time
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.utils import timezone
+from .models import User, Item, ItemCourt, ItemTime, ItemOrder
+from .forms import BookingForm
 def get_price(selected_date, slot):
     # Define time slots and prices
     weekday_prices = [
@@ -121,7 +120,7 @@ def booking_schedule(request):
     return render(request, 'booking/schedule.html', context)
 
 
-def book_slot(request):
+def book_slot2(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
@@ -135,34 +134,132 @@ def book_slot(request):
                 email=email,
                 defaults={'first_name': first_name, 'last_name': last_name, 'phone': phone}
             )
+            print("user: ", user)
 
-            print("selected_slots:", selected_slots)
+            # TODO fixed the hard code
+            for slot in selected_slots:
+                 print("slot", slot)
+                 start_time, court_name, booking_date, price = slot
+                 print("start:", start_time)
+                 print("court: ", court_name)
+                 print("booking_date:", booking_date)
+                 print("price:", price)
+            #     court = ItemCourt.objects.get(name=court_name)
+                 start_time_obj = datetime.strptime(start_time.split('-')[0], "%H:%M").time()
+                 end_time_obj = (datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)).time()
+                 print("start_time:",start_time_obj )
+                 print("end_time:", end_time_obj)
+                 booking_date_obj = datetime.strptime(booking_date, "%Y-%m-%d").date()
+                 print("booking_date_obj:", booking_date_obj)
+
+                 item = Item.objects.get(
+                     id = 1
+                 )
+                 print("item: ", item)
+
+                 item_court = ItemCourt.objects.get(
+                     name = court_name,
+                     item = item
+                 )
+                 print("item_court:", item_court)
+
+                 item_time = ItemTime.objects.get(
+                    item_court=item_court,
+                    start_time=start_time_obj,
+                    end_time=end_time_obj
+                 )
+                 print("item_time object:", item_time)
+
+                 item_order, created = ItemOrder.objects.update_or_create(
+                    item_time=item_time,
+                    date=booking_date_obj,
+                    defaults={
+                        'user': user,
+                        'money': Decimal(price),
+                        'flag': 1,  # Booked
+                        'status': False,  # Open
+                        'modification_time': timezone.now()  # Update the modification time
+                    }
+                 )
+                 print("order booked:", item_order)
+            return redirect(reverse('booking_schedule'))
+    else:
+        form = BookingForm()
+
+    return render(request, 'booking/book.html', {'form': form})
+
+
+
+def send_booking_confirmation(email, first_name, last_name, booking_details):
+    subject = 'Booking Confirmation'
+    message = f"Dear {first_name} {last_name},\n\nYour booking has been confirmed. Here are the details:\n\n{booking_details}\n\nThank you for booking with us."
+    from_email = 'shiyating1998@gmail.com'  # Replace with your actual sender email
+    recipient_list = [email]
+    send_mail(subject, message, from_email, recipient_list)
+
+def book_slot(request):
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            selected_slots = json.loads(form.cleaned_data['selected_slots'])
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+
+            user, created = User.objects.get_or_create(
+                email=email,
+                defaults={'first_name': first_name, 'last_name': last_name, 'phone': phone,
+                          'username': first_name+'_'+last_name}
+            )
+            print("user: ", user)
+
+            booking_details = []
+
             for slot in selected_slots:
                 print("slot", slot)
-            # for slot in selected_slots:
-            #     print("slot", slot)
-            #     start_time, court_name, booking_date, price = slot
-            #     court = ItemCourt.objects.get(name=court_name)
-            #     start_time_obj = datetime.strptime(start_time.split('-')[0], "%H:%M").time()
-            #     end_time_obj = (datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)).time()
-            #     booking_date_obj = datetime.strptime(booking_date, "%Y-%m-%d").date()
-            #
-            #     item_time, created = ItemTime.objects.get_or_create(
-            #         item_court=court,
-            #         start_time=start_time_obj,
-            #         end_time=end_time_obj
-            #     )
-            #
-            #     ItemOrder.objects.create(
-            #         item_time=item_time,
-            #         user=user,
-            #         money=Decimal(price),
-            #         flag=1,  # Booked
-            #         date=booking_date_obj,
-            #         status=True  # Open
-            #     )
-            #
-            # return redirect(reverse('booking_schedule'))
+                start_time, court_name, booking_date, price = slot
+                print("start:", start_time)
+                print("court: ", court_name)
+                print("booking_date:", booking_date)
+                print("price:", price)
+
+                start_time_obj = datetime.strptime(start_time.split('-')[0], "%H:%M").time()
+                end_time_obj = (datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)).time()
+                print("start_time:", start_time_obj)
+                print("end_time:", end_time_obj)
+                booking_date_obj = datetime.strptime(booking_date, "%Y-%m-%d").date()
+                print("booking_date_obj:", booking_date_obj)
+
+                item = Item.objects.get(id=1)
+                print("item: ", item)
+
+                item_court = ItemCourt.objects.get(name=court_name, item=item)
+                print("item_court:", item_court)
+
+                item_time = ItemTime.objects.get(item_court=item_court, start_time=start_time_obj, end_time=end_time_obj)
+                print("item_time object:", item_time)
+
+                item_order, created = ItemOrder.objects.update_or_create(
+                    item_time=item_time,
+                    date=booking_date_obj,
+                    defaults={
+                        'user': user,
+                        'money': Decimal(price),
+                        'flag': 1,  # Booked
+                        'status': False,  # Booked
+                        'modification_time': timezone.now()  # Update the modification time
+                    }
+                )
+                print("order booked:", item_order)
+
+                booking_details.append(f"{court_name}, {booking_date}, {start_time_obj} - "
+                                       f"{end_time_obj}, ${price}")
+
+            booking_details_str = "\n".join(booking_details)
+            send_booking_confirmation(email, first_name, last_name, booking_details_str)
+
+            return redirect(reverse('temp'))
     else:
         form = BookingForm()
 
