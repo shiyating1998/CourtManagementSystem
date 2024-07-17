@@ -48,3 +48,10 @@ class ItemOrder(models.Model):
     flag = models.IntegerField()  # Assuming 0 for available, 1 for booked, 2 for locked
     date = models.DateField()
     status = models.BooleanField()  # Assuming True for open, False for closed
+
+    def __str__(self):
+        status_str = "Open" if self.status else "Closed"
+        return (f"{self.date} - {self.item_time.start_time} - {self.item_time.end_time} -"
+                f" {self.user.username if self.user else 'N/A'} - {self.money} -"
+                f" {status_str} -"
+                f" {self.item_time.item_court.name}")

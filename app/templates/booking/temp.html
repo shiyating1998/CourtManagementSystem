@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+{% load static %}
+{% load booking_tags %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule</title>
+    <!-- Include your CSS files -->
+</head>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .booked {
+        background-color: #ffcccc;
+        /* Light red */
+    }
+
+    .selected {
+        background-color: #ccffcc;
+        /* Light green */
+    }
+
+    .form-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        /* Center vertically */
+        left: 50%;
+        /* Center horizontally */
+        transform: translate(-50%, -50%);
+        border: 3px solid #f1f1f1;
+        z-index: 9;
+        background-color: white;
+        padding: 20px;
+        max-width: 90%;
+        /* Adjust maximum width as needed */
+        max-height: 90%;
+        /* Adjust maximum height as needed */
+        overflow: auto;
+        /* Enable scrolling if content exceeds pop-up size */
+    }
+</style>
+
+<!-- Include the schedule.js script -->
+<!--<script src="{% static 'scripts/schedule.js' %}"></script>-->
+
+<script>
+
+    var selectedCells = [];
+
+    function toggleSelect(cell, slot, court, date, isBooked, price) {
+        console.log("clicked")
+        var today = new Date().toISOString().split('T')[0];
+        if (date < today) {
+            console.log("date:", date)
+            console.log("today:", today)
+            return;
+        }
+
+        if (isBooked) {
+            return;
+        }
+
+        var cellKey = `${slot}_${court}_${date}_${price}`;
+        if (selectedCells.includes(cellKey)) {
+            selectedCells = selectedCells.filter(c => c !== cellKey);
+            cell.classList.remove('selected');
+        } else {
+            selectedCells.push(cellKey);
+            cell.classList.add('selected');
+        }
+
+        console.log(selectedCells)
+    }
+
+    function openForm() {
+        if (selectedCells.length === 0) {
+            alert("Please select at least one slot.");
+            return;
+        }
+
+        var slots = selectedCells.map(c => c.split('_'));
+        var details = slots.map(s => `${s[1]}, ${s[0]}, ${s[2]}`).join('<br>');
+
+        document.getElementById("selected_slots").value = JSON.stringify(slots);
+        document.getElementById("bookingDetails").innerHTML = details;
+        document.getElementById("bookingForm").style.display = "block";
+        console.log('Selected Slots for Booking:', slots);
+    }
+
+    function closeForm() {
+        document.getElementById("bookingForm").style.display = "none";
+    }
+
+
+
+    function showSchedule(date) {
+        window.location.href = "?date=" + date;
+    }
+</script>
+
+<body>
+
+
+    <h1>Lions Badminton Center</h1>
+    <!-- Display date buttons -->
+    <div>
+        {% for date in dates %}
+        {# Extract the date part (YYYY-MM-DD) for the id attribute #}
+        {% with date|slice:"4:14" as date_id %}
+        <button id="dateButton_{{ date_id }}" onclick="showSchedule('{{ date_id }}')">
+            {% if date == today %}
+            Today
+            {% else %}
+            {{ date }}
+            {% endif %}
+        </button>
+        {% endwith %}
+        {% endfor %}
+    </div>
+
+
+
+    <table>
+        <tr>
+            <th>Time Slot</th>
+            {% for court in courts %}
+            <th>{{ court }}</th>
+            {% endfor %}
+        </tr>
+        {% for slot in time_slots %}
+        <tr>
+            <td>{{ slot }}</td>
+            {% for court in courts %}
+            {% with time_range=slot|split_time_range %}
+            {% get_order selected_date time_range.start_time time_range.end_time court as orders %}
+            {% for order in orders %}
+            <td class="{% if order.user %} booked {% endif %}"
+                onclick="toggleSelect(this, '{{ slot }}', '{{ court }}', '{{ selected_date }}',  {% if order.user %} true {% else %} false {% endif %}, {{order.money}})">
+                <!--                    <p>{{ order }}</p>-->
+                <!--                    Item Time: {{ order.item_time.start_time }} - {{ order.item_time.end_time }}<br>-->
+                <!--            User: {% if order.user %}{{ order.user.username }}{% else %}N/A{% endif %}<br>-->
+                {% if order.user %}
+                {{ order.user.username }}
+                {% else %}
+                ${{ order.money }}
+                {% endif %}
+                <!--            Status: {% if order.status %} "Open" {% else %} "Closed" {% endif %}<br>-->
+                <!--            Court: {{order.item_time.item_court.name}}<br>-->
+
+            </td>
+            {% empty %}
+            <td>N/A</td>
+            {% endfor %}
+            {% endwith %}
+            {% endfor %}
+
+        </tr>
+        {% endfor %}
+    </table>
+
+    <button type="button" id="bookButton" onclick="openForm()">Book Selected</button>
+
+ <div class="form-popup" id="bookingForm" >
+        <form  method="post" action="{% url 'book_slot' %}">
+            {% csrf_token %}
+            <h2 id="bookingHeader">Book Courts</h2>
+            <p id="bookingDetails"></p>
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" required><br>
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" required><br>
+            <label for="email">Email:</label>
+            <input type="email" name="email" required><br>
+            <label for="phone">Cell Phone Number:</label>
+            <input type="text" name="phone" required><br>
+            <input type="hidden" name="selected_slots" id="selected_slots" value=""><br>
+            <button type="submit">Book</button>
+            <button type="button" onclick="closeForm()">Cancel</button>
+        </form>
+    </div>
+</body>
+
+</html>

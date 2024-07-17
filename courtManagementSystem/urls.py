@@ -17,12 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('players/', views.player_list, name='player_list'),
-    path('players/<int:pk>/', views.player_detail, name='player_detail'),
-    path('players/new/', views.player_new, name='player_new'),
-    path('players/<int:pk>/edit/', views.player_edit, name='player_edit'),
+    #path('', views.booking_schedule, name='booking_schedule'), ##TODO
+    path('', views.temp, name='temp'),
+    path('book/', views.book_slot, name='book_slot'),
 ]
-
-

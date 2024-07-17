@@ -7,6 +7,9 @@ class Command(BaseCommand):
     help = 'Populate ItemOrder with predefined prices based on time slots'
 
     def handle(self, *args, **kwargs):
+        # DANGER the below code removes all entries from ItemOrder
+        # ItemOrder.objects.all().delete()
+
         # Define time slots and prices
         weekday_prices = [
             (time(15, 0), time(18, 0), Decimal('26.00')),
@@ -32,7 +35,9 @@ class Command(BaseCommand):
         item_orders = []
 
         while current_date <= end_date:
-            if current_date.weekday() < 5:  # Monday to Friday
+            if self.is_holiday(current_date):  # Check if current date is a holiday
+                item_orders.extend(self.create_item_orders(item_courts, current_date, time(0, 0), time(23, 0), holiday_price))
+            elif current_date.weekday() < 5:  # Monday to Friday
                 for start, end, price in weekday_prices:
                     item_orders.extend(self.create_item_orders(item_courts, current_date, start, end, price))
             else:  # Saturday and Sunday
@@ -56,6 +61,8 @@ class Command(BaseCommand):
                     start_time=current_time,
                     end_time=next_time
                 )
+                if created:
+                    item_time.save()
                 item_orders.append(ItemOrder(
                     item_time=item_time,
                     date=current_date,
@@ -65,3 +72,8 @@ class Command(BaseCommand):
                 ))
             current_time = next_time
         return item_orders
+
+    def is_holiday(self, check_date):
+        # Implement logic to check if the given date is a holiday
+        # For now, let's assume it's a placeholder that returns False
+        return False

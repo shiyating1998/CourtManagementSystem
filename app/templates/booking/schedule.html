@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lions Badminton Center</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .booked {
+            background-color: #ffcccc;
+        }
+        .selected {
+            background-color: #ccffcc;
+        }
+        .form-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+            background-color: white;
+            padding: 20px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lions Badminton Center</h1>
+    <div>
+        {% for date in dates %}
+        {% with date_parts=date.split ' ' %}
+        <button id="dateButton_{{ date_parts.1 }}" onclick="showSchedule('{{ date_parts.1 }}')">{{ 'Today' if date_parts.1 == today else date }}</button>
+        {% endwith %}
+        {% endfor %}
+    </div>
+    <table>
+        <tr>
+            <th>Time Slot</th>
+            {% for court in courts %}
+            <th>{{ court.name }}</th>
+            {% endfor %}
+        </tr>
+        {% for slot in time_slots %}
+        <tr>
+            <td>{{ slot }}</td>
+            {% for court in courts %}
+            {% with booking=bookings.get((slot, court.name, selected_date)) %}
+            <td class="{{ 'booked' if booking else '' }}"
+                onclick="toggleSelect(this, '{{ slot }}', '{{ court.name }}', '{{ selected_date }}', {{ 'true' if booking else 'false' }}, '{{ get_price(selected_date, slot) }}')">
+                {% if booking %}
+                {{ booking.first_name }} {{ booking.last_name }}
+                {% else %}
+                {% if selected_date >= today %}
+                {% with price=get_price(selected_date, slot) %}
+                {% if price %}
+                ${{ "%.2f" % price }}
+                {% else %}
+                Unavailable
+                {% endif %}
+                {% endwith %}
+                {% endif %}
+                {% endif %}
+            </td>
+            {% endwith %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <button type="button" id="bookButton" onclick="openForm()">Book Selected</button>
+
+    <div class="form-popup" id="bookingForm">
+        <form action="{% url 'book_slot' %}" method="POST">
+            {% csrf_token %}
+            <h2 id="bookingHeader">Book Courts</h2>
+            <p id="bookingDetails"></p>
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" required><br>
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" required><br>
+            <label for="email">Email:</label>
+            <input type="email" name="email" required><br>
+            <label for="phone">Cell Phone Number:</label>
+            <input type="text" name="phone" required><br>
+            <input type="hidden" name="selected_slots" id="selected_slots" value=""><br>
+            <button type="submit">Book</button>
+            <button type="button" onclick="closeForm()">Cancel</button>
+        </form>
+    </div>
+
+    <script src="../scripts/schedule.js"></script>
+</body>
+</html>
