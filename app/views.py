@@ -197,6 +197,8 @@ def send_booking_confirmation(email, first_name, last_name, booking_details):
     recipient_list = [email]
     send_mail(subject, message, from_email, recipient_list)
 
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
 def book_slot(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
@@ -254,7 +256,7 @@ def book_slot(request):
                 print("order booked:", item_order)
 
                 booking_details.append(f"{court_name}, {booking_date}, {start_time_obj} - "
-                                       f"{end_time_obj}, ${price}")
+                                       f"{end_time_obj}, ${price} \n")
 
             booking_details_str = "\n".join(booking_details)
             send_booking_confirmation(email, first_name, last_name, booking_details_str)

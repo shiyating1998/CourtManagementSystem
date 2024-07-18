@@ -37,17 +37,24 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'
+    'app',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://a962-162-221-125-72.ngrok-free.app",
+    # Add any other origins that you want to allow here
 ]
 
 ROOT_URLCONF = 'courtManagementSystem.urls'
@@ -81,27 +88,29 @@ WSGI_APPLICATION = 'courtManagementSystem.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'court-management-system',
-        'USER': 'admin',
-        'PASSWORD': '12345678',
-        'HOST': 'db.ck5j8uchwbfr.us-east-1.rds.amazonaws.com',   # Set to '127.0.0.1' if using localhost
-        'PORT': '3306',        # Default port for MySQL
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'court-management-system',
-#         'USER': 'root',
-#         'PASSWORD': '1234',
-#         'HOST': '127.0.0.1',   # Set to '127.0.0.1' if using localhost
+#         'USER': 'admin',
+#         'PASSWORD': '12345678',
+#         'HOST': 'db.ck5j8uchwbfr.us-east-1.rds.amazonaws.com',   # Set to '127.0.0.1' if using localhost
 #         'PORT': '3306',        # Default port for MySQL
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'court-management-system',
+        'USER': 'root',
+        'PASSWORD': '1234',
+        'HOST': '127.0.0.1',   # Set to '127.0.0.1' if using localhost
+        'PORT': '3306',        # Default port for MySQL
+    }
+}
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.35', 'a962-162-221-125-72.ngrok-free.app']
 
 
 # Password validation
@@ -163,19 +172,19 @@ EMAIL_HOST_PASSWORD = 'lccv cica wvzm zxtl'
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Optional: Add logging to see detailed email sending process
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#         },
+#     },
+# }
