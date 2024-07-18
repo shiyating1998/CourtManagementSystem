@@ -5,6 +5,8 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.http import urlencode
+
 from .models import User, Item, ItemCourt, ItemTime, ItemOrder
 from .forms import BookingForm
 def get_price(selected_date, slot):
@@ -261,7 +263,10 @@ def book_slot(request):
             booking_details_str = "\n".join(booking_details)
             send_booking_confirmation(email, first_name, last_name, booking_details_str)
 
-            return redirect(reverse('temp'))
+            url = reverse('temp')
+            query_params = {'date': booking_date}  # Using the booking_date from the loop above
+            url_with_query = f"{url}?{urlencode(query_params)}"
+            return redirect(url_with_query)
     else:
         form = BookingForm()
 

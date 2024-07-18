@@ -12,52 +12,157 @@
     <!-- Include your CSS files -->
 </head>
 <style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+    html {
+    font-family: helvetica;
+    color: #1b252f;
+    background-color: #f9fafb;
+}
 
-    th,
-    td {
-        border: 1px solid black;
-        padding: 10px;
-        text-align: center;
-    }
+table {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 5px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0px;
+    box-shadow: 0px 0px 4px 2px #ddd;
+    margin-bottom: 15px;
+}
 
-    th {
-        background-color: #f2f2f2;
-    }
+th, td {
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+}
 
-    .booked {
-        background-color: #ffcccc;
-        /* Light red */
-    }
+th {
+    background-color: #f2f2f2;
+    border
+}
 
-    .selected {
-        background-color: #ccffcc;
-        /* Light green */
-    }
+td:hover {
+    filter: brightness(0.8);
+    cursor: pointer;
+}
 
-    .form-popup {
-        display: none;
-        position: fixed;
-        top: 50%;
-        /* Center vertically */
-        left: 50%;
-        /* Center horizontally */
-        transform: translate(-50%, -50%);
-        border: 3px solid #f1f1f1;
-        z-index: 9;
-        background-color: white;
-        padding: 20px;
-        max-width: 90%;
-        /* Adjust maximum width as needed */
-        max-height: 90%;
-        /* Adjust maximum height as needed */
-        overflow: auto;
-        /* Enable scrolling if content exceeds pop-up size */
-    }
+a {
+    text-decoration: none;
+}
+
+h2 {
+    margin: 0px;
+}
+
+.booked {
+    background-color: #ffcccc;  /* Light red */
+}
+
+.selected {
+    background-color: #ccffcc;  /* Light green */
+}
+
+.form-popup {
+    display: none;
+    position: fixed;
+    top: 35%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(0,0,0,0.25);
+    z-index: 9;
+    background-color: white;
+    padding: 20px;
+    min-width: 20%;
+    max-width: 90%; /* Adjust maximum width as needed */
+    max-height: 90%; /* Adjust maximum height as needed */
+    overflow: auto; /* Enable scrolling if content exceeds pop-up size */
+    box-shadow: 0px 0px 4px 2px #ddd;
+}
+
+#header {
+    display: flex;
+}
+
+#bookButton {
+    margin-left: auto;
+    background-color: #ffa302;
+    color: #fff;
+    border: none;
+    padding: 5px 15px;
+    padding-top: 3px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#bookButton:hover {
+    filter: brightness(0.8);
+    cursor: pointer;
+}
+
+#arrow {
+    color: #ffa302;
+    margin-right: 15px;
+
+}
+
+#separator {
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+#dates {
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0px 0px 4px 2px #ddd;
+    margin-bottom: 15px;
+}
+
+#dates button {
+    border: none;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 4px 10px;
+}
+
+#dates button:hover {
+    cursor: pointer;
+    background-color: #ffa302;
+    color: #fff;
+}
+
+#center {
+    max-width: 80vw;
+    margin: 0 auto;
+}
+
+#bookingForm button {
+    background-color: #ffa302;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    float: right;
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+#bookingForm button:hover {
+    cursor: pointer;
+    filter: brightness(0.8);
+}
+
+#inputs {
+    display: grid;
+    margin-bottom: 15px;
+}
+
+#bookingForm input {
+    margin-bottom: 5px;
+}
 </style>
+
+
 
 <!-- Include the schedule.js script -->
 <!--<script src="{% static 'scripts/schedule.js' %}"></script>-->
@@ -120,9 +225,14 @@
 <body>
 
 
-    <h1>Lions Badminton Center</h1>
+    <div id="center">
+		<div id="header">
+	    <h2><a href="https://www.lionsbadminton.com/"><span id="arrow">&#129120;</span></a> Lions Badminton Center</h2>
+	    <button type="button" id="bookButton" onclick="openForm()">Book Selected &#129122</button>
+		</div>
+	    <div id="separator"></div>
     <!-- Display date buttons -->
-    <div>
+    <div id="dates">
         {% for date in dates %}
         {# Extract the date part (YYYY-MM-DD) for the id attribute #}
         {% with date|slice:"4:14" as date_id %}
@@ -177,7 +287,7 @@
         {% endfor %}
     </table>
 
-    <button type="button" id="bookButton" onclick="openForm()">Book Selected</button>
+<!--    <button type="button" id="bookButton" onclick="openForm()">Book Selected</button>-->
 
  <div class="form-popup" id="bookingForm" >
         <form  method="post" action="{% url 'book_slot' %}">
@@ -197,6 +307,7 @@
             <button type="button" onclick="closeForm()">Cancel</button>
         </form>
     </div>
+        </div>
 </body>
 
 </html>
