@@ -1,0 +1,209 @@
+html {
+        font-family: helvetica;
+        color: #1b252f;
+        background-color: #f9fafb;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    #center {
+        max-width: 80vw;
+        margin: 0 auto;
+        padding: 10px;
+    }
+
+    table {
+        width: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        overflow: hidden;
+        border-collapse: separate;
+        border-spacing: 0;
+        box-shadow: 0px 0px 4px 2px #ddd;
+        margin-bottom: 15px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: center;
+        background-color: #fff;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    td:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+    .booked {
+        background-color: #ffcccc;
+        /* Light red */
+    }
+
+    .selected {
+        background-color: #ccffcc;
+        /* Light green */
+    }
+
+    .form-popup {
+        display: none;
+        position: fixed;
+        top: 35%;
+        /* Center vertically */
+        left: 50%;
+        /* Center horizontally */
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        z-index: 9;
+        background-color: white;
+        padding: 20px;
+        min-width: 20%;
+        max-width: 90%;
+        /* Adjust maximum width as needed */
+        max-height: 90%;
+        /* Adjust maximum height as needed */
+        overflow: auto;
+        /* Enable scrolling if content exceeds pop-up size */
+        box-shadow: 0px 0px 4px 2px #ddd;
+    }
+
+    #header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #bookButton {
+        background-color: #ffa302;
+        color: #fff;
+        border: none;
+        padding: 5px 15px;
+        padding-top: 3px;
+        font-weight: bold;
+        font-size: 15px;
+        margin: 10px 0;
+    }
+
+    #bookButton:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+    }
+
+    #arrow {
+        color: #ffa302;
+        margin-right: 15px;
+    }
+
+    #separator {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+        margin-top: 5px;
+        margin-bottom: 15px;
+    }
+
+    #dates {
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        background-color: #fff;
+        padding: 10px;
+        box-shadow: 0px 0px 4px 2px #ddd;
+        margin-bottom: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #dates button {
+        border: none;
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 4px 10px;
+        margin: 5px;
+    }
+
+    #dates button:hover {
+        cursor: pointer;
+        background-color: #ffa302;
+        color: #fff;
+    }
+
+    #bookingForm button {
+        background-color: #ffa302;
+        color: #fff;
+        border: none;
+        padding: 6px 12px;
+        font-size: 15px;
+        margin: 5px;
+    }
+
+    #bookingForm button:hover {
+        cursor: pointer;
+        filter: brightness(0.8);
+    }
+
+    #inputs {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    #bookingForm input {
+        margin-bottom: 5px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Media Queries for responsiveness */
+    /*
+    @media (max-width: 768px) {
+        #center {
+            max-width: 100%;
+            padding: 5px;
+        }
+
+        table,
+        th,
+        td {
+            font-size: 14px;
+        }
+
+        #dates {
+            flex-direction: column;
+        }
+
+        #header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #bookButton {
+            align-self: center;
+        }
+
+        th,
+        td {
+            padding: 8px;
+        }
+    } */

@@ -20,7 +20,6 @@ from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', views.booking_schedule, name='booking_schedule'), ##TODO
-    path('', views.temp, name='temp'),
+    path('', views.booking_schedule, name='booking_schedule'),
     path('book/', views.book_slot, name='book_slot'),
 ]
