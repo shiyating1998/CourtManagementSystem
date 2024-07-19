@@ -32,7 +32,11 @@ var selectedCells = [];
         }
 
         var slots = selectedCells.map(c => c.split('_'));
-        var details = slots.map(s => `${s[1]}, ${s[0]}, ${s[2]}`).join('<br>');
+
+        var details = slots[0][2] + '<br>'
+        details = details + slots.map(s => `${s[1]}, ${s[0]}, $${s[3]}`).join('<br>');
+        var total = slots.map(s => parseFloat(s[3])).reduce((sum, value) => sum + value, 0);
+        details = details + '<br> Total: $' + total;
 
         document.getElementById("selected_slots").value = JSON.stringify(slots);
         document.getElementById("bookingDetails").innerHTML = details;
