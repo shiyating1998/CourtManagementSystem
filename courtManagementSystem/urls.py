@@ -22,4 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.booking_schedule, name='booking_schedule'),
     path('book/', views.book_slot, name='book_slot'),
+    path('payment_form/', views.payment_form, name='payment_form'),
+    path('process_payment/', views.process_payment, name='process_payment'),
+    path('payment_success/', views.payment_success, name='payment_success'),  # Add a success page view
 ]

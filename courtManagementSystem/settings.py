@@ -53,7 +53,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://a962-162-221-125-72.ngrok-free.app",
+    "https://driven-moderately-gator.ngrok-free.app",
     # Add any other origins that you want to allow here
 ]
 
@@ -110,7 +110,7 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.35', 'a962-162-221-125-72.ngrok-free.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.35', 'driven-moderately-gator.ngrok-free.app']
 
 
 # Password validation
@@ -165,8 +165,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com' # Replace with your SMTP server
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'shiyating1998@gmail.com'
-EMAIL_HOST_PASSWORD = 'lccv cica wvzm zxtl'
+EMAIL_HOST_USER = 'jlxxily@gmail.com'
+EMAIL_HOST_PASSWORD = 'trpb yqxp dlvk gurv'
 
 # Enable email debugging
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -55,7 +55,7 @@ def booking_schedule(request):
 def send_booking_confirmation(email, first_name, last_name, booking_details):
     subject = 'Booking Confirmation'
     message = f"Dear {first_name} {last_name},\n\nYour booking has been confirmed. Here are the details:\n\n{booking_details}\n\nThank you for booking with us."
-    from_email = 'shiyating1998@gmail.com'  # Replace with your actual sender email
+    from_email = 'jlxxily@gmail.com'  # Replace with your actual sender email
     recipient_list = [email]
     send_mail(subject, message, from_email, recipient_list)
 
@@ -78,7 +78,9 @@ def book_slot(request):
             )
             print("user: ", user)
 
-            booking_details = []
+            # TODO null checking
+            booking_details = [selected_slots[0][2]]
+            total = 0
 
             for slot in selected_slots:
                 print("slot", slot)
@@ -117,17 +119,52 @@ def book_slot(request):
                 )
                 print("order booked:", item_order)
 
-                booking_details.append(f"{court_name}, {booking_date}, {start_time_obj} - "
-                                       f"{end_time_obj}, ${price} \n")
-
+                booking_details.append(f"{court_name},  {start_time_obj} - "
+                                       f"{end_time_obj}, ${price} ")
+                total = total + float(price)
             booking_details_str = "\n".join(booking_details)
+            booking_details_str = booking_details_str + '\nTotal: $' + str(total)
             send_booking_confirmation(email, first_name, last_name, booking_details_str)
+
+            # TODO only after payment we confirm booking and send email
+            # Redirect to payment form
+            # return redirect(reverse('payment_form') ) #+ f'?booking_id={booking.id}')
 
             url = reverse('booking_schedule')
             query_params = {'date': booking_date}  # Using the booking_date from the loop above
             url_with_query = f"{url}?{urlencode(query_params)}"
+
             return redirect(url_with_query)
 
 
     print("got here")
     return booking_schedule(request)
+@csrf_exempt #TODO
+def payment_form(request):
+    # booking_id = request.GET.get('booking_id')
+    # return render(request, 'payment_form.html', {'booking_id': booking_id})
+
+    return render(request, 'booking/payment_form.html')
+@csrf_exempt #TODO
+def process_payment(request):
+    print("processing payment...")
+    if request.method == 'POST':
+        booking_id = request.POST['booking_id']
+        card_number = request.POST['card_number']
+        expiry_date = request.POST['expiry_date']
+        cvv = request.POST['cvv']
+        billing_address = request.POST['billing_address'] # Optional
+
+        print("booking_id: ", booking_id)
+        print("card_number: ", card_number)
+        print("expiry_date: ", expiry_date)
+        print("cvv: ", cvv)
+        print("billing_address: ", billing_address)
+        # TODO Ning: Process payment (implement your payment gateway logic here)
+        # If successful, update booking status
+
+        return redirect('payment_success')  # Redirect to a success page
+    return render(request, 'booking/payment_form.html')
+@csrf_exempt #TODO
+def payment_success(request):
+    return render(request, 'booking/payment_success.html')
