@@ -85,34 +85,38 @@
         <div class="form-popup" id="bookingForm">
             <!--            <form method="post" action="{% url 'book_slot' %}">-->
             <form id="payment-form">
-                {% csrf_token %}
                 <h2 id="bookingHeader">Book Courts</h2>
-                <p id="bookingDetails"></p>
-                <label for="first_name">First Name:</label>
-                <input type="text" name="first_name" required><br>
-                <label for="last_name">Last Name:</label>
-                <input type="text" name="last_name" required><br>
-                <label for="email">Email:</label>
-                <input type="email" name="email" required><br>
-                <label for="phone">Cell Phone Number:</label>
-                <input type="text" name="phone" required><br>
-                <input type="hidden" name="selected_slots" id="selected_slots" value=""><br>
-                <section>
-                    <div id="payment-element">
-                        <!--Stripe.js injects the Payment Element-->
+                <div class="form-wrapper">
+                    <div class="form-column">
+                        <p id="bookingDetails"></p>
+                        <label for="first_name">First Name:</label>
+                        <input type="text" name="first_name" required><br>
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" name="last_name" required><br>
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" required><br>
+                        <label for="phone">Cell Phone Number:</label>
+                        <input type="text" name="phone" required><br>
+                        <input type="hidden" name="selected_slots" id="selected_slots" value=""><br>
                     </div>
-                    <button id="submit">
-                        <div class="spinner hidden" id="spinner"></div>
-                        <span id="button-text">Pay now</span>
-                    </button>
-                    <div id="payment-message" class="hidden"></div>
-                </section>
-                {% csrf_token %}
-                <button type="button" onclick="closeForm()">Cancel</button>
-                <!--                <button type="submit">Book</button>-->
+                    <div class="form-column">
+                        <section>
+                            <div id="payment-element">
+                                <!-- Stripe.js injects the Payment Element -->
+                            </div>
+                            <div class="button-group">
+                                <button id="submit">
+                                    <div class="spinner hidden" id="spinner"></div>
+                                    <span id="button-text">Pay now</span>
+                                </button>
+                                <button type="button" onclick="closeForm()"><span>Cancel</span></button>
+                            </div>
+                            <div id="payment-message" class="hidden"></div>
+                        </section>
+                        {% csrf_token %}
+                    </div>
+                </div>
             </form>
-
-
         </div>
     </div>
 </body>
