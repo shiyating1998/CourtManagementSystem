@@ -17,17 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import views
-from app.views import StripeIntentView, ProductLandingPageView
+from app.views import StripeIntentView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.booking_schedule, name='booking_schedule'), #TODO
     path('book/', views.book_slot, name='book_slot'),
-    path('payment_form/', views.payment_form, name='payment_form'),
-    path('process_payment/', views.process_payment, name='process_payment'),
     path('payment_success/', views.payment_success, name='payment_success'),  # Add a success page view
-    #path('checkout/', views.create_payment, name='create-payment-intent'),
-
-    path('checkout/', ProductLandingPageView.as_view(), name='checkout'),
     path('create-payment-intent/', StripeIntentView.as_view(), name='create-payment-intent')
 ]

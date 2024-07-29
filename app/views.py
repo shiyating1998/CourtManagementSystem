@@ -148,37 +148,6 @@ def book_slot(request):
     print("got here")
     return booking_schedule(request)
 
-
-@csrf_exempt  # TODO
-def payment_form(request):
-    # booking_id = request.GET.get('booking_id')
-    # return render(request, 'payment_form.html', {'booking_id': booking_id})
-
-    return render(request, 'booking/payment_form.html')
-
-
-@csrf_exempt  # TODO
-def process_payment(request):
-    print("processing payment...")
-    if request.method == 'POST':
-        booking_id = request.POST['booking_id']
-        card_number = request.POST['card_number']
-        expiry_date = request.POST['expiry_date']
-        cvv = request.POST['cvv']
-        billing_address = request.POST['billing_address']  # Optional
-
-        print("booking_id: ", booking_id)
-        print("card_number: ", card_number)
-        print("expiry_date: ", expiry_date)
-        print("cvv: ", cvv)
-        print("billing_address: ", billing_address)
-        # TODO Ning: Process payment (implement your payment gateway logic here)
-        # If successful, update booking status
-
-        return redirect('payment_success')  # Redirect to a success page
-    return render(request, 'booking/payment_form.html')
-
-
 @csrf_exempt  # TODO
 def payment_success(request):
     return render(request, 'booking/payment_success.html')
@@ -190,22 +159,6 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 def calculate_order_amount():
     # Replace this with your actual order amount calculation logic
     return 5000  # Example amount in cents
-
-
-class ProductLandingPageView(TemplateView):
-    template_name = "booking/checkout.html"
-
-    def get_context_data(self, **kwargs):
-        # product = Product.objects.get(name="Test Product")
-        context = super(ProductLandingPageView, self).get_context_data(**kwargs)
-        print("context:", context)
-        context.update({
-            # "product": product,
-            "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY
-        })
-        print("context:", context)
-        return context
-
 
 class StripeIntentView(View):
     def post(self, request, *args, **kwargs):
