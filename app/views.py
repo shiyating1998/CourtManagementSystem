@@ -1,14 +1,21 @@
 import json
 from decimal import Decimal
 from datetime import datetime, date, timedelta, time
+
+import stripe
 from django.core.mail import send_mail
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.http import urlencode
+from django.views import View
+from django.views.generic import TemplateView
 
+from courtManagementSystem import settings
 from .models import User, Item, ItemCourt, ItemTime, ItemOrder
 from .forms import BookingForm
+
 
 def booking_schedule(request):
     today = datetime.now().date()
@@ -26,8 +33,8 @@ def booking_schedule(request):
     item_orders = ItemOrder.objects.filter(date=selected_date)
 
     # Now item_orders contains all ItemOrder instances with date equal to specific_date
-    #for order in item_orders:
-        #print(order)  # This will print the string representation defined in the __str__ method
+    # for order in item_orders:
+    # print(order)  # This will print the string representation defined in the __str__ method
 
     # TODO get courts info from db
     courts = [f"Court {i}" for i in range(1, 10)]
@@ -38,18 +45,16 @@ def booking_schedule(request):
         "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00", "22:00-23:00"
     ]
 
-
     context = {
         "dates": dates,
         "selected_date": selected_date,
         "item_orders": item_orders,
         "today": today.strftime('%a %Y-%m-%d'),
-        "courts": courts, #TODO
-        "time_slots": time_slots #TODO
+        "courts": courts,  # TODO
+        "time_slots": time_slots  # TODO
     }
 
     return render(request, "booking/schedule.html", context)
-
 
 
 def send_booking_confirmation(email, first_name, last_name, booking_details):
@@ -59,8 +64,11 @@ def send_booking_confirmation(email, first_name, last_name, booking_details):
     recipient_list = [email]
     send_mail(subject, message, from_email, recipient_list)
 
+
 from django.views.decorators.csrf import csrf_exempt
-@csrf_exempt #TODO
+
+
+@csrf_exempt  # TODO
 def book_slot(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
@@ -74,7 +82,7 @@ def book_slot(request):
             user, created = User.objects.get_or_create(
                 email=email,
                 defaults={'first_name': first_name, 'last_name': last_name, 'phone': phone,
-                          'username': first_name+'_'+last_name}
+                          'username': first_name + '_' + last_name}
             )
             print("user: ", user)
 
@@ -103,7 +111,8 @@ def book_slot(request):
                 item_court = ItemCourt.objects.get(name=court_name, item=item)
                 print("item_court:", item_court)
 
-                item_time = ItemTime.objects.get(item_court=item_court, start_time=start_time_obj, end_time=end_time_obj)
+                item_time = ItemTime.objects.get(item_court=item_court, start_time=start_time_obj,
+                                                 end_time=end_time_obj)
                 print("item_time object:", item_time)
 
                 item_order, created = ItemOrder.objects.update_or_create(
@@ -136,16 +145,19 @@ def book_slot(request):
 
             return redirect(url_with_query)
 
-
     print("got here")
     return booking_schedule(request)
-@csrf_exempt #TODO
+
+
+@csrf_exempt  # TODO
 def payment_form(request):
     # booking_id = request.GET.get('booking_id')
     # return render(request, 'payment_form.html', {'booking_id': booking_id})
 
     return render(request, 'booking/payment_form.html')
-@csrf_exempt #TODO
+
+
+@csrf_exempt  # TODO
 def process_payment(request):
     print("processing payment...")
     if request.method == 'POST':
@@ -153,7 +165,7 @@ def process_payment(request):
         card_number = request.POST['card_number']
         expiry_date = request.POST['expiry_date']
         cvv = request.POST['cvv']
-        billing_address = request.POST['billing_address'] # Optional
+        billing_address = request.POST['billing_address']  # Optional
 
         print("booking_id: ", booking_id)
         print("card_number: ", card_number)
@@ -165,6 +177,53 @@ def process_payment(request):
 
         return redirect('payment_success')  # Redirect to a success page
     return render(request, 'booking/payment_form.html')
-@csrf_exempt #TODO
+
+
+@csrf_exempt  # TODO
 def payment_success(request):
     return render(request, 'booking/payment_success.html')
+
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+
+def calculate_order_amount():
+    # Replace this with your actual order amount calculation logic
+    return 5000  # Example amount in cents
+
+
+class ProductLandingPageView(TemplateView):
+    template_name = "booking/checkout.html"
+
+    def get_context_data(self, **kwargs):
+        # product = Product.objects.get(name="Test Product")
+        context = super(ProductLandingPageView, self).get_context_data(**kwargs)
+        print("context:", context)
+        context.update({
+            # "product": product,
+            "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY
+        })
+        print("context:", context)
+        return context
+
+
+class StripeIntentView(View):
+    def post(self, request, *args, **kwargs):
+        try:
+            req_json = json.loads(request.body)
+            # customer = stripe.Customer.create(email=req_json['email'])
+            # product_id = self.kwargs["pk"]
+            # product = Product.objects.get(id=product_id)
+            intent = stripe.PaymentIntent.create(
+                amount=500,
+                currency='cad',
+                # customer=customer['id'],
+                # metadata={
+                #     "product_id": product.id
+                # }
+            )
+            return JsonResponse({
+                'clientSecret': intent['client_secret']
+            })
+        except Exception as e:
+            return JsonResponse({'error': str(e)})

@@ -188,3 +188,7 @@ EMAIL_HOST_PASSWORD = 'trpb yqxp dlvk gurv'
 #         },
 #     },
 # }
+
+STRIPE_PUBLIC_KEY = "pk_test_51PfA0tRt3PcgmiF6YXj4ROeapnBMPBd7FqSIGJyGvvMoZrVESulq4n0kTbarADCXxDjQQShUD3GbsaKaustZJut400GUgtILbz"
+STRIPE_SECRET_KEY = "sk_test_51PfA0tRt3PcgmiF6E8mEDNQrL0UmX8hDNGesoT1xXQ9MWwOrjIibcL2DhQMCjzrAEfLJrCB8AbbQSdrUdLrqdjQS00GcZ8ptR4"
+STRIPE_WEBHOOK_SECRET = ""
