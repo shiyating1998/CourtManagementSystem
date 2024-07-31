@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'corsheaders'
+    'corsheaders',
+    'django_celery_results'
 ]
 
 MIDDLEWARE = [
@@ -189,6 +190,13 @@ EMAIL_HOST_PASSWORD = 'trpb yqxp dlvk gurv'
 #     },
 # }
 
+# Stripe config
 STRIPE_PUBLIC_KEY = "pk_test_51PfA0tRt3PcgmiF6YXj4ROeapnBMPBd7FqSIGJyGvvMoZrVESulq4n0kTbarADCXxDjQQShUD3GbsaKaustZJut400GUgtILbz"
 STRIPE_SECRET_KEY = "sk_test_51PfA0tRt3PcgmiF6E8mEDNQrL0UmX8hDNGesoT1xXQ9MWwOrjIibcL2DhQMCjzrAEfLJrCB8AbbQSdrUdLrqdjQS00GcZ8ptR4"
-STRIPE_WEBHOOK_SECRET = ""
+STRIPE_WEBHOOK_SECRET = 'whsec_69fda7e9e929aa89ada8ba49b4020c1f3932effef277fca147d5e8f877a13f31'
+
+
+# Celery Configuration
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'

@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import views
-from app.views import StripeIntentView
+from app.views import StripeIntentView, stripe_webhook
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.booking_schedule, name='booking_schedule'), #TODO
+    path('webhooks/stripe/', stripe_webhook, name='stripe-webhook'),
     path('book/', views.book_slot, name='book_slot'),
     path('payment_success/', views.payment_success, name='payment_success'),  # Add a success page view
     path('create-payment-intent/', StripeIntentView.as_view(), name='create-payment-intent')

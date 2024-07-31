@@ -4,7 +4,7 @@ from datetime import datetime, date, timedelta, time
 
 import stripe
 from django.core.mail import send_mail
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
@@ -13,10 +13,10 @@ from django.views import View
 from django.views.generic import TemplateView
 
 from courtManagementSystem import settings
-from .models import User, Item, ItemCourt, ItemTime, ItemOrder
+from .models import User, Item, ItemCourt, ItemTime, ItemOrder, ProcessedEvent
 from .forms import BookingForm
 
-
+from .tasks import process_event, simple_task
 def booking_schedule(request):
     today = datetime.now().date()
     selected_date = request.GET.get('date', today.strftime('%Y-%m-%d'))
@@ -154,7 +154,66 @@ def payment_success(request):
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+#stripe webhoook testing secret key
 
+@csrf_exempt
+def stripe_webhook2(request):
+
+    payload = request.body
+    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    event = None
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return HttpResponse(status=400)
+
+    # Handle the event
+    if event['type'] == 'payment_intent.succeeded':
+        payment_intent = event['data']['object']
+        # ... handle other event types
+        print("handled succesfully")
+    else:
+        print('Unhandled event type {}'.format(event['type']))
+
+    return HttpResponse(status=200)
+
+
+@csrf_exempt
+def stripe_webhook(request):
+    payload = request.body
+    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
+
+    try:
+        event = stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
+    except ValueError:
+        # Invalid payload
+        return JsonResponse({'success': False}, status=400)
+    except stripe.error.SignatureVerificationError:
+        # Invalid signature
+        return JsonResponse({'success': False}, status=400)
+
+    event_id = event['id']
+
+    # Check if the event has already been processed
+    if ProcessedEvent.objects.filter(event_id=event_id).exists():
+        return JsonResponse({'success': True})
+
+    # Log the event ID to prevent future duplicates
+    ProcessedEvent.objects.create(event_id=event_id)
+
+    #print("event:", event)
+    # Process the event asynchronously
+    process_event.delay(event)
+    #simple_task.delay()
+    #print("process....")
+    return JsonResponse({'success': True})
 
 def calculate_order_amount():
     # Replace this with your actual order amount calculation logic

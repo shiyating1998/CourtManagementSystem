@@ -69,3 +69,12 @@ class ItemOrder(models.Model):
         return (f"{self.date} - {self.item_time.start_time} - {self.item_time.end_time} -"
                 f" {self.user.username if self.user else 'N/A'} - {self.money} -"
                 f" {status_str} - {self.item_time.item_court.name}")
+
+
+# for processing payments (celery)
+class ProcessedEvent(models.Model):
+    event_id = models.CharField(max_length=255, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.event_id
