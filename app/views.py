@@ -154,36 +154,6 @@ def payment_success(request):
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
-#stripe webhoook testing secret key
-
-@csrf_exempt
-def stripe_webhook2(request):
-
-    payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-    event = None
-    try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, endpoint_secret
-        )
-    except ValueError as e:
-        # Invalid payload
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
-        return HttpResponse(status=400)
-
-    # Handle the event
-    if event['type'] == 'payment_intent.succeeded':
-        payment_intent = event['data']['object']
-        # ... handle other event types
-        print("handled succesfully")
-    else:
-        print('Unhandled event type {}'.format(event['type']))
-
-    return HttpResponse(status=200)
-
-
 @csrf_exempt
 def stripe_webhook(request):
     payload = request.body
@@ -208,11 +178,7 @@ def stripe_webhook(request):
     # Log the event ID to prevent future duplicates
     ProcessedEvent.objects.create(event_id=event_id)
 
-    #print("event:", event)
-    # Process the event asynchronously
     process_event.delay(event)
-    #simple_task.delay()
-    #print("process....")
     return JsonResponse({'success': True})
 
 def calculate_order_amount():
@@ -239,3 +205,32 @@ class StripeIntentView(View):
             })
         except Exception as e:
             return JsonResponse({'error': str(e)})
+
+@csrf_exempt
+def update_payment_intent(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        payment_intent_id = data['payment_intent_id']
+        selected_slots = data['selected_slots']
+        first_name = data['first_name']
+        last_name = data['last_name']
+        email = data['email']
+        phone = data['phone']
+
+        try:
+            intent = stripe.PaymentIntent.modify(
+                payment_intent_id,
+                metadata={
+                    'selected_slots': json.dumps(selected_slots),
+                    'first_name': first_name,
+                    'last_name': last_name,
+                    'email': email,
+                    'phone': phone
+                }
+            )
+            print("update successfully here")
+            return JsonResponse({'success': True})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+
+    return JsonResponse({'error': 'Invalid request'}, status=400)

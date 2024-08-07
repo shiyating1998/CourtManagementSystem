@@ -25,5 +25,6 @@ urlpatterns = [
     path('webhooks/stripe/', stripe_webhook, name='stripe-webhook'),
     path('book/', views.book_slot, name='book_slot'),
     path('payment_success/', views.payment_success, name='payment_success'),  # Add a success page view
-    path('create-payment-intent/', StripeIntentView.as_view(), name='create-payment-intent')
+    path('create-payment-intent/', StripeIntentView.as_view(), name='create-payment-intent'),
+    path('update_payment_intent/', views.update_payment_intent, name='update_payment_intent')
 ]
