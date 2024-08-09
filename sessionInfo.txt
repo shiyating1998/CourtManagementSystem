@@ -236,4 +236,797 @@
     "status": "succeeded",
     "transfer_data": null,
     "transfer_group": null
+}{
+    "id": "pi_3PlHrGRt3PcgmiF601WqGCbB",
+    "object": "payment_intent",
+    "amount": 500,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 500,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3PlHrGRt3PcgmiF601WqGCbB_secret_GBZE3Q1aaF8cRWLAzXy5TDpOu",
+    "confirmation_method": "automatic",
+    "created": 1723067846,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3PlHrGRt3PcgmiF60x2yGDRF",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "\"[[\\\"19:00-20:00\\\",\\\"Court 6\\\",\\\"2024-08-07\\\",\\\"30\\\"],[\\\"20:00-21:00\\\",\\\"Court 6\\\",\\\"2024-08-07\\\",\\\"30\\\"],[\\\"21:00-22:00\\\",\\\"Court 6\\\",\\\"2024-08-07\\\",\\\"30\\\"]]\"",
+        "email": "j77shi@uwaterloo.ca",
+        "phone": "4375511918",
+        "first_name": "JENNIFER",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PlHrPRt3PcgmiF6PP4mHZ4k",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3PlHrYRt3PcgmiF61dwgZAFo",
+    "object": "payment_intent",
+    "amount": 500,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 500,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3PlHrYRt3PcgmiF61dwgZAFo_secret_348olU5gVMVVeduPDUvXu3JSm",
+    "confirmation_method": "automatic",
+    "created": 1723067864,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3PlHrYRt3PcgmiF61k4CHIqe",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "\"[[\\\"18:00-19:00\\\",\\\"Court 6\\\",\\\"2024-08-07\\\",\\\"30\\\"],[\\\"19:00-20:00\\\",\\\"Court 6\\\",\\\"2024-08-07\\\",\\\"30\\\"],[\\\"18:00-19:00\\\",\\\"Court 7\\\",\\\"2024-08-07\\\",\\\"30\\\"],[\\\"19:00-20:00\\\",\\\"Court 7\\\",\\\"2024-08-07\\\",\\\"30\\\"]]\"",
+        "email": "j77shi@uwaterloo.ca",
+        "first_name": "JENNIFER",
+        "phone": "4375511918",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PlHtWRt3PcgmiF6exQSsg7F",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3PlHv3Rt3PcgmiF61jTECcCb",
+    "object": "payment_intent",
+    "amount": 500,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 500,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3PlHv3Rt3PcgmiF61jTECcCb_secret_V6Ut6Vp3PTs2dUEmHUfbmJqgF",
+    "confirmation_method": "automatic",
+    "created": 1723068081,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3PlHv3Rt3PcgmiF61qivfYWw",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "\"[[\\\"18:00-19:00\\\",\\\"Court 3\\\",\\\"2024-08-07\\\",\\\"30\\\"],[\\\"20:00-21:00\\\",\\\"Court 5\\\",\\\"2024-08-07\\\",\\\"30\\\"],[\\\"19:00-20:00\\\",\\\"Court 6\\\",\\\"2024-08-07\\\",\\\"30\\\"]]\"",
+        "email": "j77shi@uwaterloo.ca",
+        "first_name": "JENNIFER",
+        "phone": "4375511918",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PlHvCRt3PcgmiF6q85s1SeX",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3PlI0QRt3PcgmiF616OREnTt",
+    "object": "payment_intent",
+    "amount": 500,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 500,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3PlI0QRt3PcgmiF616OREnTt_secret_5bg725k3B7JpoWe3tF7qax3hK",
+    "confirmation_method": "automatic",
+    "created": 1723068414,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3PlI0QRt3PcgmiF61D2VhVPq",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "\"[[\\\"17:00-18:00\\\",\\\"Court 3\\\",\\\"2024-08-07\\\",\\\"26\\\"],[\\\"18:00-19:00\\\",\\\"Court 4\\\",\\\"2024-08-07\\\",\\\"30\\\"]]\"",
+        "email": "j77shi@uwaterloo.ca",
+        "first_name": "JENNIFER",
+        "phone": "4375511918",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PlI0dRt3PcgmiF6hhUSwkQN",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3PlI1lRt3PcgmiF606L3dea6",
+    "object": "payment_intent",
+    "amount": 500,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 500,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3PlI1lRt3PcgmiF606L3dea6_secret_m3IAvVaREWvk9M46vyH88f1Rf",
+    "confirmation_method": "automatic",
+    "created": 1723068497,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3PlI1lRt3PcgmiF60uBpcr0G",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "\"[[\\\"16:00-17:00\\\",\\\"Court 2\\\",\\\"2024-08-07\\\",\\\"26\\\"],[\\\"17:00-18:00\\\",\\\"Court 2\\\",\\\"2024-08-07\\\",\\\"26\\\"]]\"",
+        "email": "j77shi@uwaterloo.ca",
+        "first_name": "JENNIFER",
+        "phone": "4375511918",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PlI1uRt3PcgmiF6JswN9Eh8",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3PlI4BRt3PcgmiF61wAekSTp",
+    "object": "payment_intent",
+    "amount": 500,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 500,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3PlI4BRt3PcgmiF61wAekSTp_secret_lYz3ohgAeAgxtPQJ3LcVLuDgI",
+    "confirmation_method": "automatic",
+    "created": 1723068647,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3PlI4BRt3PcgmiF615qceHEh",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "\"\\\"[[\\\\\\\"17:00-18:00\\\\\\\",\\\\\\\"Court 7\\\\\\\",\\\\\\\"2024-08-07\\\\\\\",\\\\\\\"26\\\\\\\"],[\\\\\\\"19:00-20:00\\\\\\\",\\\\\\\"Court 6\\\\\\\",\\\\\\\"2024-08-07\\\\\\\",\\\\\\\"30\\\\\\\"]]\\\"\"",
+        "email": "j77shi@uwaterloo.ca",
+        "phone": "4375511918",
+        "first_name": "JENNIFER",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PlI4LRt3PcgmiF6FTkAKYrp",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3PlI5HRt3PcgmiF61WakPWrC",
+    "object": "payment_intent",
+    "amount": 500,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 500,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3PlI5HRt3PcgmiF61WakPWrC_secret_sDGQvcef36wOMChq5TVbaIdIx",
+    "confirmation_method": "automatic",
+    "created": 1723068715,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3PlI5HRt3PcgmiF61Sc9Ju00",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "\"\\\"[[\\\\\\\"16:00-17:00\\\\\\\",\\\\\\\"Court 3\\\\\\\",\\\\\\\"2024-08-07\\\\\\\",\\\\\\\"26\\\\\\\"],[\\\\\\\"15:00-16:00\\\\\\\",\\\\\\\"Court 3\\\\\\\",\\\\\\\"2024-08-07\\\\\\\",\\\\\\\"26\\\\\\\"]]\\\"\"",
+        "email": "j77shi@uwaterloo.ca",
+        "first_name": "JENNIFER",
+        "phone": "4375511918",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PlI5SRt3PcgmiF6Ib8bGMR8",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3PlI8hRt3PcgmiF600Ty3Cts",
+    "object": "payment_intent",
+    "amount": 500,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 500,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3PlI8hRt3PcgmiF600Ty3Cts_secret_KZeKtF8P3UZAGA7HxM9QwSkmT",
+    "confirmation_method": "automatic",
+    "created": 1723068927,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3PlI8hRt3PcgmiF60nZfildl",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "\"[[\\\"19:00-20:00\\\",\\\"Court 5\\\",\\\"2024-08-07\\\",\\\"30\\\"],[\\\"18:00-19:00\\\",\\\"Court 6\\\",\\\"2024-08-07\\\",\\\"30\\\"],[\\\"19:00-20:00\\\",\\\"Court 7\\\",\\\"2024-08-07\\\",\\\"30\\\"]]\"",
+        "email": "j77shi@uwaterloo.ca",
+        "phone": "4375511918",
+        "first_name": "JENNIFER",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PlI90Rt3PcgmiF6wfLUTH5q",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3PlvlFRt3PcgmiF60Xdk9xPR",
+    "object": "payment_intent",
+    "amount": 500,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 500,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3PlvlFRt3PcgmiF60Xdk9xPR_secret_LlL4iewgvM1c9RXpywP78EOPw",
+    "confirmation_method": "automatic",
+    "created": 1723221233,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3PlvlFRt3PcgmiF60w7pEQMc",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "\"[[\\\"18:00-19:00\\\",\\\"Court 4\\\",\\\"2024-08-09\\\",\\\"30\\\"]]\"",
+        "email": "j77shi@uwaterloo.ca",
+        "first_name": "JENNIFER",
+        "phone": "4375511918",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PlvlURt3PcgmiF6HWszA0r3",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3Plvw8Rt3PcgmiF61uShZvQv",
+    "object": "payment_intent",
+    "amount": 500,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 500,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3Plvw8Rt3PcgmiF61uShZvQv_secret_Q7IQR5TTxzVoapab2v3YiIZQV",
+    "confirmation_method": "automatic",
+    "created": 1723221908,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3Plvw8Rt3PcgmiF61FkUAXlo",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "[[\"17:00-18:00\", \"Court 5\", \"2024-08-09\", \"26\"], [\"18:00-19:00\", \"Court 5\", \"2024-08-09\", \"30\"]]",
+        "email": "j77shi@uwaterloo.ca",
+        "first_name": "JENNIFER",
+        "phone": "4375511918",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PlvwLRt3PcgmiF60S5zzXsP",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3Plvy7Rt3PcgmiF60zNsYKC3",
+    "object": "payment_intent",
+    "amount": 500,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 500,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3Plvy7Rt3PcgmiF60zNsYKC3_secret_fV1N4OgAZe5A5y2mxwu0SIQp4",
+    "confirmation_method": "automatic",
+    "created": 1723222031,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3Plvy7Rt3PcgmiF60hDzpcCW",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "[[\"19:00-20:00\", \"Court 4\", \"2024-08-09\", \"30\"], [\"18:00-19:00\", \"Court 4\", \"2024-08-09\", \"30\"], [\"18:00-19:00\", \"Court 5\", \"2024-08-09\", \"30\"]]",
+        "email": "j77shi@uwaterloo.ca",
+        "first_name": "JENNIFER",
+        "phone": "4375511918",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PlvyIRt3PcgmiF62BhMN5jq",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3PlvzWRt3PcgmiF6128DJUK6",
+    "object": "payment_intent",
+    "amount": 500,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 500,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3PlvzWRt3PcgmiF6128DJUK6_secret_mz7YbEZ4v1oMcNS8Cn7cWxDN6",
+    "confirmation_method": "automatic",
+    "created": 1723222118,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3PlvzWRt3PcgmiF617cPgsQF",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "[[\"17:00-18:00\", \"Court 7\", \"2024-08-09\", \"26\"], [\"16:00-17:00\", \"Court 7\", \"2024-08-09\", \"26\"]]",
+        "email": "j77shi@uwaterloo.ca",
+        "phone": "4375511918",
+        "first_name": "JENNIFER",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PlvzvRt3PcgmiF6LhJoKTR9",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3Plw0YRt3PcgmiF61VG6Fs1t",
+    "object": "payment_intent",
+    "amount": 500,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 500,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3Plw0YRt3PcgmiF61VG6Fs1t_secret_KvMxbDGXEPSe6vPrYEjQzOnnT",
+    "confirmation_method": "automatic",
+    "created": 1723222182,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3Plw0YRt3PcgmiF611eyI4PA",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "[[\"16:00-17:00\", \"Court 5\", \"2024-08-10\", \"30\"], [\"15:00-16:00\", \"Court 5\", \"2024-08-10\", \"30\"], [\"15:00-16:00\", \"Court 4\", \"2024-08-10\", \"30\"], [\"16:00-17:00\", \"Court 4\", \"2024-08-10\", \"30\"]]",
+        "email": "j77shi@uwaterloo.ca",
+        "first_name": "JENNIFER",
+        "phone": "4375511918",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1Plw0qRt3PcgmiF69OV4rful",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
 }

@@ -109,13 +109,14 @@ async function handleSubmit(e) {
     e.preventDefault();
     //initialize();
 
-    const selectedSlots = document.getElementById("selected_slots").value;  // Collect selected slot data
+     // Collect selected slot data
+    var slots = selectedCells.map(c => c.split('_'));
     const firstName = document.getElementById('first_name').value;
     const lastName = document.getElementById('last_name').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
 
-    console.log("[handleSubmit] selectedSlots: ", selectedSlots)
+    console.log("[handleSubmit] selectedSlots: ", slots)
     console.log("[handleSubmit] firstName: ", firstName)
     console.log("[handleSubmit] lastName: ", lastName)
     console.log("[handleSubmit] email: ", email)
@@ -132,7 +133,7 @@ async function handleSubmit(e) {
         },
         body: JSON.stringify({
             payment_intent_id: clientSecret.split('_secret')[0], // Extract payment intent ID from client secret
-            selected_slots: selectedSlots,
+            selected_slots: slots,
             first_name: firstName,
             last_name: lastName,
             email: email,
