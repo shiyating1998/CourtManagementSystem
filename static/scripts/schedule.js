@@ -13,7 +13,8 @@ function toggleSelect(cell, slot, court, date, isBooked, price) {
         return;
     }
 
-    var cellKey = `${slot}_${court}_${date}_${price}`;
+    var formattedPrice = parseFloat(price).toFixed(2);
+    var cellKey = `${slot}_${court}_${date}_${formattedPrice}`;
     if (selectedCells.includes(cellKey)) {
         selectedCells = selectedCells.filter(c => c !== cellKey);
         cell.classList.remove('selected');
@@ -36,13 +37,13 @@ function openForm() {
     var details = slots[0][2] + '<br>'
     details = details + slots.map(s => `${s[1]}, ${s[0]}, $${s[3]}`).join('<br>');
     var total = slots.map(s => parseFloat(s[3])).reduce((sum, value) => sum + value, 0);
+    total = parseFloat(total).toFixed(2);
     details = details + '<br> Total: $' + total;
 
     document.getElementById("selected_slots").value = JSON.stringify(slots);
     document.getElementById("bookingDetails").innerHTML = details;
     document.getElementById("bookingForm").style.display = "block";
     console.log('Selected Slots for Booking:', slots);
-    // TODO can we do something here to store the booking info??
 }
 
 function closeForm() {
@@ -115,12 +116,15 @@ async function handleSubmit(e) {
     const lastName = document.getElementById('last_name').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
+    var total = slots.map(s => parseFloat(s[3])).reduce((sum, value) => sum + value, 0);
+
 
     console.log("[handleSubmit] selectedSlots: ", slots)
     console.log("[handleSubmit] firstName: ", firstName)
     console.log("[handleSubmit] lastName: ", lastName)
     console.log("[handleSubmit] email: ", email)
     console.log("[handleSubmit] phone: ", phone)
+    console.log("[handleSubmit] total: ", total)
 
     setLoading(true);
 
@@ -137,7 +141,8 @@ async function handleSubmit(e) {
             first_name: firstName,
             last_name: lastName,
             email: email,
-            phone: phone
+            phone: phone,
+            total: total
         })
     });
 

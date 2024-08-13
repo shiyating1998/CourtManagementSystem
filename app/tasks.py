@@ -23,8 +23,6 @@ def process_event(event):
         # Fulfill the purchase...
         metadata = session['metadata']
         print(f'J metadata: {metadata}')
-        # TODO 1 send an email
-        # TODO 2 update db
         print(f'Payment for {session["amount"]} succeeded!')
 
         metadata = session['metadata']
@@ -42,6 +40,8 @@ def process_event(event):
         last_name = metadata['last_name']
         email = metadata['email']
         phone = metadata['phone']
+        total = metadata['total']
+        total = "{:.2f}".format(float(total))
 
         user, created = User.objects.get_or_create(
             email=email,
@@ -51,7 +51,7 @@ def process_event(event):
         print(f"user: {user}")
 
         booking_details = [selected_slots[0][2]]
-        total = 0
+
 
         for slot in selected_slots:
             print(f"slot {slot}")
@@ -93,7 +93,7 @@ def process_event(event):
 
             booking_details.append(f"{court_name},  {start_time_obj} - "
                                    f"{end_time_obj}, ${price} ")
-            total = total + float(price)
+            #total = total + float(price)
         booking_details_str = "\n".join(booking_details)
         booking_details_str = booking_details_str + '\nTotal: $' + str(total)
         send_booking_confirmation(email, first_name, last_name, booking_details_str)

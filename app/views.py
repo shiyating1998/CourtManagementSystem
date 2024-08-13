@@ -17,6 +17,8 @@ from .models import User, Item, ItemCourt, ItemTime, ItemOrder, ProcessedEvent
 from .forms import BookingForm
 
 from .tasks import process_event, simple_task
+
+
 def booking_schedule(request):
     today = datetime.now().date()
     selected_date = request.GET.get('date', today.strftime('%Y-%m-%d'))
@@ -57,10 +59,8 @@ def booking_schedule(request):
     return render(request, "booking/schedule.html", context)
 
 
-
-
-
 from django.views.decorators.csrf import csrf_exempt
+
 
 @csrf_exempt  # TODO
 def payment_success(request):
@@ -68,6 +68,8 @@ def payment_success(request):
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
+
 @csrf_exempt
 def stripe_webhook(request):
     payload = request.body
@@ -95,10 +97,6 @@ def stripe_webhook(request):
     process_event.delay(event)
     return JsonResponse({'success': True})
 
-def calculate_order_amount():
-    # Replace this with your actual order amount calculation logic
-    return 5000  # Example amount in cents
-
 class StripeIntentView(View):
     def post(self, request, *args, **kwargs):
         try:
@@ -114,11 +112,14 @@ class StripeIntentView(View):
                 #     "product_id": product.id
                 # }
             )
+            print("called here...")
             return JsonResponse({
                 'clientSecret': intent['client_secret']
             })
         except Exception as e:
+            print("error here...")
             return JsonResponse({'error': str(e)})
+
 
 @csrf_exempt
 def update_payment_intent(request):
@@ -130,16 +131,19 @@ def update_payment_intent(request):
         last_name = data['last_name']
         email = data['email']
         phone = data['phone']
-
+        total = data['total']
+        print(f"total $ {total}")
         try:
             intent = stripe.PaymentIntent.modify(
                 payment_intent_id,
+                amount=int(float(total) * 100), # amount is in cents
                 metadata={
                     'selected_slots': json.dumps(selected_slots),
                     'first_name': first_name,
                     'last_name': last_name,
                     'email': email,
-                    'phone': phone
+                    'phone': phone,
+                    'total': float(total)
                 }
             )
             print("update successfully here")

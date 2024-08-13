@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
         # Define time slots and prices
         weekday_prices = [
-            (time(15, 0), time(18, 0), Decimal('26.00')),
+            (time(15, 0), time(18, 0), Decimal('26.75')),
             (time(18, 0), time(22, 0), Decimal('30.00')),
             (time(22, 0), time(23, 0), Decimal('28.00')),
         ]
@@ -22,7 +22,7 @@ class Command(BaseCommand):
             (time(9, 0), time(23, 0), Decimal('30.00')),
         ]
 
-        holiday_price = Decimal('30.00')
+        holiday_price = Decimal('30.25')
 
         # Define date range for the next month
         today = date.today()
