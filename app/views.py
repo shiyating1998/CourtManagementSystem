@@ -1,9 +1,7 @@
 import json
 from decimal import Decimal
 from datetime import datetime, date, timedelta, time
-
 import stripe
-
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -11,13 +9,13 @@ from django.utils import timezone
 from django.utils.http import urlencode
 from django.views import View
 from django.views.generic import TemplateView
-
 from courtManagementSystem import settings
 from .models import User, Item, ItemCourt, ItemTime, ItemOrder, ProcessedEvent
 from .forms import BookingForm
-
 from .tasks import process_event, simple_task
+from django.views.decorators.csrf import csrf_exempt
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def booking_schedule(request):
     today = datetime.now().date()
@@ -58,17 +56,9 @@ def booking_schedule(request):
 
     return render(request, "booking/schedule.html", context)
 
-
-from django.views.decorators.csrf import csrf_exempt
-
-
 @csrf_exempt  # TODO
 def payment_success(request):
     return render(request, 'booking/payment_success.html')
-
-
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
 
 @csrf_exempt
 def stripe_webhook(request):
@@ -94,30 +84,22 @@ def stripe_webhook(request):
     # Log the event ID to prevent future duplicates
     ProcessedEvent.objects.create(event_id=event_id)
 
+    # add to celery queue
     process_event.delay(event)
     return JsonResponse({'success': True})
+
 
 class StripeIntentView(View):
     def post(self, request, *args, **kwargs):
         try:
-            req_json = json.loads(request.body)
-            # customer = stripe.Customer.create(email=req_json['email'])
-            # product_id = self.kwargs["pk"]
-            # product = Product.objects.get(id=product_id)
             intent = stripe.PaymentIntent.create(
-                amount=500,
+                amount=500,  # dummy value, will be updated in the UpdatePaymentIntent
                 currency='cad',
-                # customer=customer['id'],
-                # metadata={
-                #     "product_id": product.id
-                # }
             )
-            print("called here...")
             return JsonResponse({
                 'clientSecret': intent['client_secret']
             })
         except Exception as e:
-            print("error here...")
             return JsonResponse({'error': str(e)})
 
 
@@ -132,11 +114,11 @@ def update_payment_intent(request):
         email = data['email']
         phone = data['phone']
         total = data['total']
-        print(f"total $ {total}")
+        # print(f"total $ {total}")
         try:
             intent = stripe.PaymentIntent.modify(
                 payment_intent_id,
-                amount=int(float(total) * 100), # amount is in cents
+                amount=int(float(total) * 100),  # amount is in cents
                 metadata={
                     'selected_slots': json.dumps(selected_slots),
                     'first_name': first_name,
@@ -146,7 +128,7 @@ def update_payment_intent(request):
                     'total': float(total)
                 }
             )
-            print("update successfully here")
+            # print("update successfully here")
             return JsonResponse({'success': True})
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)

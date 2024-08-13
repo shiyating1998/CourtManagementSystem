@@ -1832,4 +1832,190 @@
     "status": "succeeded",
     "transfer_data": null,
     "transfer_group": null
+}{
+    "id": "pi_3PnO1RRt3PcgmiF60cOoQVBc",
+    "object": "payment_intent",
+    "amount": 10700,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 10700,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3PnO1RRt3PcgmiF60cOoQVBc_secret_F68zEnwKVGmIAxCtZSffjRUJw",
+    "confirmation_method": "automatic",
+    "created": 1723568197,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3PnO1RRt3PcgmiF601LSgNeL",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "[[\"17:00-18:00\", \"Court 3\", \"2024-08-13\", \"26.75\"], [\"17:00-18:00\", \"Court 4\", \"2024-08-13\", \"26.75\"], [\"16:00-17:00\", \"Court 8\", \"2024-08-13\", \"26.75\"], [\"15:00-16:00\", \"Court 8\", \"2024-08-13\", \"26.75\"]]",
+        "email": "shiyating1998@gmail.com",
+        "total": "107.0",
+        "first_name": "Manraj",
+        "phone": "4375511918",
+        "last_name": "G"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PnO5YRt3PcgmiF6vBhqDDMA",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "shiyating1998@gmail.com",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3PnO6cRt3PcgmiF610YnYJRI",
+    "object": "payment_intent",
+    "amount": 5350,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 5350,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3PnO6cRt3PcgmiF610YnYJRI_secret_BoWYd7mpj2qmZgH9Y9TETKEOC",
+    "confirmation_method": "automatic",
+    "created": 1723568518,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3PnO6cRt3PcgmiF61YlfWmO2",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "[[\"16:00-17:00\", \"Court 2\", \"2024-08-13\", \"26.75\"], [\"15:00-16:00\", \"Court 2\", \"2024-08-13\", \"26.75\"]]",
+        "total": "53.5",
+        "email": "j77shi@uwaterloo.ca",
+        "phone": "4375511918",
+        "first_name": "JENNIFER",
+        "last_name": "SHI"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PnO70Rt3PcgmiF6NEr2LVJy",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "j77shi@uwaterloo.ca",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+}{
+    "id": "pi_3PnO9RRt3PcgmiF60EBQtZOC",
+    "object": "payment_intent",
+    "amount": 8800,
+    "amount_capturable": 0,
+    "amount_details": {
+        "tip": {}
+    },
+    "amount_received": 8800,
+    "application": null,
+    "application_fee_amount": null,
+    "automatic_payment_methods": {
+        "allow_redirects": "always",
+        "enabled": true
+    },
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "client_secret": "pi_3PnO9RRt3PcgmiF60EBQtZOC_secret_KDz65aO1zKjIWK4vlROMKILDo",
+    "confirmation_method": "automatic",
+    "created": 1723568693,
+    "currency": "cad",
+    "customer": null,
+    "description": null,
+    "invoice": null,
+    "last_payment_error": null,
+    "latest_charge": "ch_3PnO9RRt3PcgmiF60pIbpbJ3",
+    "livemode": false,
+    "metadata": {
+        "selected_slots": "[[\"20:00-21:00\", \"Court 8\", \"2024-08-13\", \"30.00\"], [\"21:00-22:00\", \"Court 8\", \"2024-08-13\", \"30.00\"], [\"22:00-23:00\", \"Court 8\", \"2024-08-13\", \"28.00\"]]",
+        "email": "jennifer.shi@bmo.com",
+        "total": "88.0",
+        "phone": "6478968062",
+        "first_name": "Peter",
+        "last_name": "S"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1PnO9sRt3PcgmiF6tF3bre6r",
+    "payment_method_configuration_details": null,
+    "payment_method_options": {
+        "card": {
+            "installments": null,
+            "mandate_options": null,
+            "network": null,
+            "request_three_d_secure": "automatic"
+        }
+    },
+    "payment_method_types": [
+        "card"
+    ],
+    "processing": null,
+    "receipt_email": "jennifer.shi@bmo.com",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
 }
