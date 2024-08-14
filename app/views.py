@@ -11,11 +11,24 @@ from django.views import View
 from django.views.generic import TemplateView
 from courtManagementSystem import settings
 from .models import User, Item, ItemCourt, ItemTime, ItemOrder, ProcessedEvent
-from .forms import BookingForm
-from .tasks import process_event, simple_task
+from .tasks import process_event
 from django.views.decorators.csrf import csrf_exempt
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
+def my_view(request):
+    logger.debug("Debug message")
+    logger.info("Info message")
+    logger.warning("Warning message")
+    logger.error("Error message")
+    logger.critical("Critical message")
+    # Your view logic here
+    return render(request, "booking/schedule.html")
 
 def booking_schedule(request):
     today = datetime.now().date()

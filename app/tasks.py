@@ -102,7 +102,3 @@ def process_event(event):
     else:
         print('Unhandled event type {}'.format(event['type']))
 
-
-@shared_task
-def simple_task():
-    print("Task executed successfully")
