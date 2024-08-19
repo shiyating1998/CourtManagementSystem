@@ -27,4 +27,6 @@ urlpatterns = [
     path('create-payment-intent/', StripeIntentView.as_view(), name='create-payment-intent'),
     path('update_payment_intent/', views.update_payment_intent, name='update_payment_intent'),
     path('test/', views.my_view, name='test'),
+    path('book-slot/', views.book_slot, name='book_slot'),
+    path('admin-schedule/', views.admin_booking_schedule, name='admin_booking_schedule'),
 ]

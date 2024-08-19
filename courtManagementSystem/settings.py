@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import logging
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -173,12 +173,8 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {message}',
-            'style': '{',
-        },
         'simple': {
-            'format': '{levelname} {message}',
+            'format': '{levelname} {asctime} {message}',
             'style': '{',
         },
     },
@@ -187,29 +183,33 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': 'debug.log',
-            'formatter': 'verbose',
+            'formatter': 'simple',
+            # Only capture DEBUG messages
+            'filters': ['require_debug_true'],
         },
         'file_info': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': 'info.log',
-            'formatter': 'verbose',
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
             'formatter': 'simple',
+            # Capture INFO and above (INFO, WARNING, ERROR, CRITICAL)
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['file_debug', 'file_info', 'console'],
-            'level': 'DEBUG',
-            'propagate': True,
+            'handlers': ['file_debug', 'file_info'],
+            'level': 'INFO',
+            'propagate': False,  # Prevent logs from propagating to root logger
         },
-        # Add more custom loggers here if needed
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': lambda record: record.levelno == logging.DEBUG,
+        },
     },
 }
+
 
 
 

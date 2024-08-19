@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{% load static %}
+{% load booking_tags %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule</title>
+</head>
+
+<body>
+    <div id="center">
+        <div id="header">
+            <h2><a href="https://www.lionsbadminton.com/"><span id="arrow">&#129120;</span></a> Lions Badminton Center
+            </h2>
+            <!--	    <button type="button" id="bookButton2" onclick="openForm()">Book Selected &#129122</button>-->
+        </div>
+        <div id="separator"></div>
+        <!-- Display date buttons -->
+        <div id="dates">
+            {% for date in dates %}
+            {# Extract the date part (YYYY-MM-DD) for the id attribute #}
+            {% with date|slice:"4:14" as date_id %}
+            <button id="dateButton_{{ date_id }}" onclick="showSchedule('{{ date_id }}')">
+                {% if date == today %}
+                Today
+                {% else %}
+                {{ date }}
+                {% endif %}
+            </button>
+            {% endwith %}
+            {% endfor %}
+        </div>
+
+        <table>
+            <tr>
+                <th>Time Slot</th>
+                {% for court in courts %}
+                <th>{{ court }}</th>
+                {% endfor %}
+            </tr>
+            {% for slot in time_slots %}
+            <tr>
+                <td>{{ slot }}</td>
+                {% for court in courts %}
+                {% with time_range=slot|split_time_range %}
+                {% get_order selected_date time_range.start_time time_range.end_time court as orders %}
+                {% for order in orders %}
+                <td class="{% if order.user %} booked {% endif %}"
+                    onclick="toggleSelect(this, '{{ slot }}', '{{ court }}', '{{ selected_date }}',  {% if order.user %} true {% else %} false {% endif %}, {{order.money}})">
+                    <!--                    <p>{{ order }}</p>-->
+                    <!--                    Item Time: {{ order.item_time.start_time }} - {{ order.item_time.end_time }}<br>-->
+                    <!--            User: {% if order.user %}{{ order.user.username }}{% else %}N/A{% endif %}<br>-->
+                    {% if order.user %}
+                    {{ order.user.first_name}} {{order.user.last_name}}
+                    {% else %}
+                    ${{ order.money }}
+                    {% endif %}
+                    <!--            Status: {% if order.status %} "Open" {% else %} "Closed" {% endif %}<br>-->
+                    <!--            Court: {{order.item_time.item_court.name}}<br>-->
+
+                </td>
+                {% empty %}
+                <td class="booked">N/A</td>
+                {% endfor %}
+                {% endwith %}
+                {% endfor %}
+
+            </tr>
+            {% endfor %}
+        </table>
+        <button type="button" id="bookButton" onclick="openForm()">Book Selected &#129122</button>
+
+
+        <div class="form-popup" id="bookingForm">
+            <form method="post" action="{% url 'book_slot' %}">
+                {% csrf_token %}
+                <h2 id="bookingHeader">Book Courts</h2>
+                <p id="bookingDetails"></p>
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name" required><br>
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name" required><br>
+                <label for="email">Email:</label>
+                <input type="email" name="email" required><br>
+                <label for="phone">Cell Phone Number:</label>
+                <input type="text" name="phone" required><br>
+                <input type="hidden" name="selected_slots" id="selected_slots" value=""><br>
+                <button type="submit">Book</button>
+                <button type="button" onclick="closeForm()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+
+<!-- Include your CSS files -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin-schedule.css' %}">
+<script src="{% static 'scripts/admin-schedule.js' %}"></script>
+</html>

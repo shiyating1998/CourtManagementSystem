@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.http import urlencode
 from django.views import View
+from django.views.decorators.cache import cache_control
 from django.views.generic import TemplateView
 from courtManagementSystem import settings
 from .models import User, Item, ItemCourt, ItemTime, ItemOrder, ProcessedEvent
@@ -19,7 +20,8 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 import logging
 
 # Get an instance of a logger
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('django')
+
 
 def my_view(request):
     logger.debug("Debug message")
@@ -30,10 +32,12 @@ def my_view(request):
     # Your view logic here
     return render(request, "booking/schedule.html")
 
+
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def booking_schedule(request):
     today = datetime.now().date()
     selected_date = request.GET.get('date', today.strftime('%Y-%m-%d'))
-    print("selected date: ", selected_date)
+    logger.info(f"selected date: {selected_date}")
 
     dates = [(today + timedelta(days=i)).strftime('%a %Y-%m-%d') for i in range(8)]
 
@@ -69,9 +73,52 @@ def booking_schedule(request):
 
     return render(request, "booking/schedule.html", context)
 
+
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+def admin_booking_schedule(request):
+    today = datetime.now().date()
+    selected_date = request.GET.get('date', today.strftime('%Y-%m-%d'))
+    logger.info(f"selected date: {selected_date}")
+
+    dates = [(today + timedelta(days=i)).strftime('%a %Y-%m-%d') for i in range(30)]
+
+    # TODO: filter by venue, and filter by item (badminton), filter by date
+    #   hardcode to venue = lions
+    #   item = badminton
+    #   date = today for now
+
+    # Query all ItemOrder instances where the date matches selected_date
+    item_orders = ItemOrder.objects.filter(date=selected_date)
+
+    # Now item_orders contains all ItemOrder instances with date equal to specific_date
+    # for order in item_orders:
+    # print(order)  # This will print the string representation defined in the __str__ method
+
+    # TODO get courts info from db
+    courts = [f"Court {i}" for i in range(1, 10)]
+    # TODO get time slots from db
+    time_slots = [
+        "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00",
+        "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00",
+        "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00", "22:00-23:00"
+    ]
+
+    context = {
+        "dates": dates,
+        "selected_date": selected_date,
+        "item_orders": item_orders,
+        "today": today.strftime('%a %Y-%m-%d'),
+        "courts": courts,  # TODO
+        "time_slots": time_slots  # TODO
+    }
+
+    return render(request, "admin/admin-schedule.html", context)
+
+
 @csrf_exempt  # TODO
 def payment_success(request):
     return render(request, 'booking/payment_success.html')
+
 
 @csrf_exempt
 def stripe_webhook(request):
@@ -127,7 +174,7 @@ def update_payment_intent(request):
         email = data['email']
         phone = data['phone']
         total = data['total']
-        # print(f"total $ {total}")
+        # logger.info(f"total $ {total}")
         try:
             intent = stripe.PaymentIntent.modify(
                 payment_intent_id,
@@ -141,9 +188,85 @@ def update_payment_intent(request):
                     'total': float(total)
                 }
             )
-            # print("update successfully here")
+            # logger.info("update successfully here")
             return JsonResponse({'success': True})
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+from django.views.decorators.csrf import csrf_exempt
+
+
+def book_slot(request):
+    if request.method == 'POST':
+        # Retrieve data from the form
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        selected_slots = json.loads(request.POST.get('selected_slots'))
+
+        user, created = User.objects.get_or_create(
+            email=email,
+            defaults={'first_name': first_name, 'last_name': last_name, 'phone': phone,
+                      'username': first_name + '_' + last_name}
+        )
+        logger.info("user: {user} ")
+
+        booking_details = []
+        print(selected_slots)
+        for slot in selected_slots:
+            print(f"slot {slot}")
+        for slot in selected_slots:
+            logger.info(f"slot {slot}")
+            start_time, court_name, booking_date, price = slot
+            logger.info(f"start: {start_time}")
+            logger.info(f"court: {court_name}")
+            logger.info(f"booking_date: {booking_date}")
+            logger.info(f"price: {price}")
+
+            start_time_obj = datetime.strptime(start_time.split('-')[0], "%H:%M").time()
+            end_time_obj = (datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)).time()
+            logger.info(f"start_time: {start_time_obj}")
+            logger.info(f"end_time: {end_time_obj}")
+            booking_date_obj = datetime.strptime(booking_date, "%Y-%m-%d").date()
+            logger.info(f"booking_date_obj: {booking_date_obj}")
+
+            item = Item.objects.get(id=1)
+            logger.info(f"item: {item}")
+
+            item_court = ItemCourt.objects.get(name=court_name, item=item)
+            logger.info(f"item_court: {item_court}")
+
+            item_time = ItemTime.objects.get(item_court=item_court, start_time=start_time_obj,
+                                             end_time=end_time_obj)
+            logger.info(f"item_time object: {item_time}")
+
+            item_order, created = ItemOrder.objects.update_or_create(
+                item_time=item_time,
+                date=booking_date_obj,
+                defaults={
+                    'user': user,
+                    'money': Decimal(price),
+                    'flag': 1,  # Booked
+                    'status': False,  # Booked
+                    'modification_time': timezone.now()  # Update the modification time
+                }
+            )
+            logger.info(f"order booked: {item_order}")
+
+            booking_details.append(f"{court_name},  {start_time_obj} - "
+                                   f"{end_time_obj}, ${price} ")
+
+        booking_details_str = "\n".join(booking_details)
+        # send_booking_confirmation(email, first_name, last_name, booking_details_str)
+
+        url = reverse('admin_booking_schedule')
+        query_params = {'date': booking_date}  # Using the booking_date from the loop above
+        url_with_query = f"{url}?{urlencode(query_params)}"
+        return redirect(url_with_query)
+
+    print("got here")
+    return booking_schedule(request)
