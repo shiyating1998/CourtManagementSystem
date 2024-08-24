@@ -45,10 +45,16 @@ class User(models.Model):
     last_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=20)
-    username = models.CharField(max_length=255, unique=True)
+    username = models.CharField(max_length=255)
     password = models.CharField(max_length=255)  # TODO Ensure password is hashed
     creation_time = models.DateTimeField(auto_now_add=True)
     modification_time = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        # Convert first_name and last_name to lowercase before saving
+        self.first_name = self.first_name.lower()
+        self.last_name = self.last_name.lower()
+        super(User, self).save(*args, **kwargs)
 
     def __str__(self):
         return (f"{self.username} - {self.first_name} - {self.last_name} "

@@ -128,6 +128,11 @@ async function handleSubmit(e) {
 
     setLoading(true);
 
+    // TODO verify if email exists in db
+    // 1) exists: then verify if firstname and lastname match record
+    // if it doens't match, prompts an error msg
+    // 2) not exists: continue
+
     // Update PaymentIntent with metadata
     const updateResponse = await fetch('/update_payment_intent/', {
         method: 'POST',

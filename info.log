@@ -1,10 +1,159 @@
-INFO 2024-08-19 14:04:50,016 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py changed, reloading.
-INFO 2024-08-19 14:04:51,757 Watching for file changes with StatReloader
-INFO 2024-08-19 14:04:56,250 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py changed, reloading.
-INFO 2024-08-19 14:04:59,962 Watching for file changes with StatReloader
-INFO 2024-08-19 14:05:19,030 user: {user} 
-INFO 2024-08-19 14:05:19,031 slot "
-ERROR 2024-08-19 14:05:19,054 Internal Server Error: /book-slot/
+INFO 2024-08-20 20:56:09,250 user: {user} 
+INFO 2024-08-20 20:56:09,250 slot ['19:00-20:00', 'Court 7', '2024-08-29', '30']
+INFO 2024-08-20 20:56:09,250 start: 19:00-20:00
+INFO 2024-08-20 20:56:09,250 court: Court 7
+INFO 2024-08-20 20:56:09,252 booking_date: 2024-08-29
+INFO 2024-08-20 20:56:09,252 price: 30
+INFO 2024-08-20 20:56:09,252 start_time: 19:00:00
+INFO 2024-08-20 20:56:09,252 end_time: 20:00:00
+INFO 2024-08-20 20:56:09,252 booking_date_obj: 2024-08-29
+INFO 2024-08-20 20:56:09,253 item: Badminton at Lions
+INFO 2024-08-20 20:56:09,257 item_court: Court 7 (Indoor) of Badminton
+INFO 2024-08-20 20:56:09,257 item_time object: 19:00:00 - 20:00:00 - Court 7
+INFO 2024-08-20 20:56:09,273 order booked: 2024-08-29 - 19:00:00 - 20:00:00 - Ladder A_ - 30 - Closed - Court 7
+INFO 2024-08-20 20:56:09,273 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-20 20:56:09,273 selected date: 2024-08-29
+INFO 2024-08-20 20:56:09,859 "GET /admin-schedule/?date=2024-08-29 HTTP/1.1" 200 68723
+INFO 2024-08-20 20:56:30,923 user: {user} 
+INFO 2024-08-20 20:56:30,923 slot ['18:00-19:00', 'Court 8', '2024-08-29', '30']
+INFO 2024-08-20 20:56:30,923 start: 18:00-19:00
+INFO 2024-08-20 20:56:30,923 court: Court 8
+INFO 2024-08-20 20:56:30,923 booking_date: 2024-08-29
+INFO 2024-08-20 20:56:30,923 price: 30
+INFO 2024-08-20 20:56:30,923 start_time: 18:00:00
+INFO 2024-08-20 20:56:30,923 end_time: 19:00:00
+INFO 2024-08-20 20:56:30,923 booking_date_obj: 2024-08-29
+INFO 2024-08-20 20:56:30,926 item: Badminton at Lions
+INFO 2024-08-20 20:56:30,931 item_court: Court 8 (Indoor) of Badminton
+INFO 2024-08-20 20:56:30,933 item_time object: 18:00:00 - 19:00:00 - Court 8
+INFO 2024-08-20 20:56:30,942 order booked: 2024-08-29 - 18:00:00 - 19:00:00 - Ladder A_ - 30 - Closed - Court 8
+INFO 2024-08-20 20:56:30,942 slot ['19:00-20:00', 'Court 8', '2024-08-29', '30']
+INFO 2024-08-20 20:56:30,942 start: 19:00-20:00
+INFO 2024-08-20 20:56:30,942 court: Court 8
+INFO 2024-08-20 20:56:30,942 booking_date: 2024-08-29
+INFO 2024-08-20 20:56:30,942 price: 30
+INFO 2024-08-20 20:56:30,947 start_time: 19:00:00
+INFO 2024-08-20 20:56:30,947 end_time: 20:00:00
+INFO 2024-08-20 20:56:30,947 booking_date_obj: 2024-08-29
+INFO 2024-08-20 20:56:30,948 item: Badminton at Lions
+INFO 2024-08-20 20:56:30,949 item_court: Court 8 (Indoor) of Badminton
+INFO 2024-08-20 20:56:30,949 item_time object: 19:00:00 - 20:00:00 - Court 8
+INFO 2024-08-20 20:56:30,964 order booked: 2024-08-29 - 19:00:00 - 20:00:00 - Ladder A_ - 30 - Closed - Court 8
+INFO 2024-08-20 20:56:30,964 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-20 20:56:30,968 selected date: 2024-08-29
+INFO 2024-08-20 20:56:31,496 "GET /admin-schedule/?date=2024-08-29 HTTP/1.1" 200 68775
+INFO 2024-08-20 20:57:36,579 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py changed, reloading.
+INFO 2024-08-20 20:57:37,699 Watching for file changes with StatReloader
+INFO 2024-08-20 20:57:44,696 user: Ladder A_ - Ladder A -  -  -  
+INFO 2024-08-20 20:57:44,696 slot ['19:00-20:00', 'Court 9', '2024-08-29', '30']
+INFO 2024-08-20 20:57:44,696 start: 19:00-20:00
+INFO 2024-08-20 20:57:44,696 court: Court 9
+INFO 2024-08-20 20:57:44,696 booking_date: 2024-08-29
+INFO 2024-08-20 20:57:44,696 price: 30
+INFO 2024-08-20 20:57:44,696 start_time: 19:00:00
+INFO 2024-08-20 20:57:44,696 end_time: 20:00:00
+INFO 2024-08-20 20:57:44,704 booking_date_obj: 2024-08-29
+INFO 2024-08-20 20:57:44,707 item: Badminton at Lions
+INFO 2024-08-20 20:57:44,707 item_court: Court 9 (Indoor) of Badminton
+INFO 2024-08-20 20:57:44,707 item_time object: 19:00:00 - 20:00:00 - Court 9
+INFO 2024-08-20 20:57:44,723 order booked: 2024-08-29 - 19:00:00 - 20:00:00 - Ladder A_ - 30 - Closed - Court 9
+INFO 2024-08-20 20:57:44,723 slot ['18:00-19:00', 'Court 9', '2024-08-29', '30']
+INFO 2024-08-20 20:57:44,723 start: 18:00-19:00
+INFO 2024-08-20 20:57:44,723 court: Court 9
+INFO 2024-08-20 20:57:44,723 booking_date: 2024-08-29
+INFO 2024-08-20 20:57:44,723 price: 30
+INFO 2024-08-20 20:57:44,723 start_time: 18:00:00
+INFO 2024-08-20 20:57:44,723 end_time: 19:00:00
+INFO 2024-08-20 20:57:44,723 booking_date_obj: 2024-08-29
+INFO 2024-08-20 20:57:44,723 item: Badminton at Lions
+INFO 2024-08-20 20:57:44,736 item_court: Court 9 (Indoor) of Badminton
+INFO 2024-08-20 20:57:44,739 item_time object: 18:00:00 - 19:00:00 - Court 9
+INFO 2024-08-20 20:57:44,741 order booked: 2024-08-29 - 18:00:00 - 19:00:00 - Ladder A_ - 30 - Closed - Court 9
+INFO 2024-08-20 20:57:44,757 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-20 20:57:44,766 selected date: 2024-08-29
+INFO 2024-08-20 20:57:45,330 "GET /admin-schedule/?date=2024-08-29 HTTP/1.1" 200 68827
+INFO 2024-08-20 21:13:58,461 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py changed, reloading.
+INFO 2024-08-20 21:13:59,777 Watching for file changes with StatReloader
+INFO 2024-08-21 22:44:24,214 Watching for file changes with StatReloader
+INFO 2024-08-21 22:44:50,103 selected date: 2024-08-21
+INFO 2024-08-21 22:44:50,491 "GET / HTTP/1.1" 200 65237
+INFO 2024-08-21 22:44:50,580 "GET /static/scripts/schedule.js HTTP/1.1" 200 7990
+INFO 2024-08-21 22:44:50,587 "GET /static/css/schedule.css HTTP/1.1" 200 3747
+WARNING 2024-08-21 22:44:51,209 Not Found: /favicon.ico
+WARNING 2024-08-21 22:44:51,210 "GET /favicon.ico HTTP/1.1" 404 3225
+INFO 2024-08-21 22:44:51,387 "POST /create-payment-intent/ HTTP/1.1" 200 80
+INFO 2024-08-21 22:44:52,132 "POST /webhooks/stripe/ HTTP/1.1" 200 17
+INFO 2024-08-21 22:44:52,155 "GET /admin-schedule HTTP/1.1" 301 0
+INFO 2024-08-21 22:44:52,159 selected date: 2024-08-21
+INFO 2024-08-21 22:44:52,718 "GET /admin-schedule/ HTTP/1.1" 200 68671
+INFO 2024-08-21 22:44:52,759 "GET /static/scripts/admin-schedule.js HTTP/1.1" 304 0
+INFO 2024-08-21 22:44:56,850 selected date: 2024-08-22
+INFO 2024-08-21 22:44:57,178 "GET /admin-schedule/?date=2024-08-22 HTTP/1.1" 200 68671
+ERROR 2024-08-21 22:45:08,519 Internal Server Error: /book-slot/
+Traceback (most recent call last):
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\middleware\clickjacking.py", line 27, in process_response
+    if response.get("X-Frame-Options") is not None:
+       ^^^^^^^^^^^^
+AttributeError: 'bool' object has no attribute 'get'
+ERROR 2024-08-21 22:45:08,522 "POST /book-slot/ HTTP/1.1" 500 69364
+INFO 2024-08-21 22:45:36,300 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py changed, reloading.
+INFO 2024-08-21 22:45:37,227 Watching for file changes with StatReloader
+INFO 2024-08-21 22:45:39,750 selected date: 2024-08-22
+INFO 2024-08-21 22:45:40,035 "GET /admin-schedule/?date=2024-08-22 HTTP/1.1" 200 68671
+INFO 2024-08-21 22:45:41,695 selected date: 2024-08-22
+INFO 2024-08-21 22:45:42,001 "GET /admin-schedule/?date=2024-08-22 HTTP/1.1" 200 68671
+ERROR 2024-08-21 22:45:46,364 Internal Server Error: /book-slot/
+Traceback (most recent call last):
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\middleware\clickjacking.py", line 27, in process_response
+    if response.get("X-Frame-Options") is not None:
+       ^^^^^^^^^^^^
+AttributeError: 'bool' object has no attribute 'get'
+ERROR 2024-08-21 22:45:46,367 "POST /book-slot/ HTTP/1.1" 500 69361
+INFO 2024-08-21 22:45:51,151 selected date: 2024-08-22
+INFO 2024-08-21 22:45:51,475 "GET /admin-schedule/?date=2024-08-22 HTTP/1.1" 200 68671
+INFO 2024-08-21 22:45:52,295 selected date: 2024-09-08
+INFO 2024-08-21 22:45:52,690 "GET /admin-schedule/?date=2024-09-08 HTTP/1.1" 200 98425
+INFO 2024-08-21 22:46:00,381 user: JENNIFER_SHI - JENNIFER - SHI - shiyating1998@gmail.com - 6478968062 
+INFO 2024-08-21 22:46:00,382 slot ['16:00-17:00', 'Court 6', '2024-09-08', '30']
+INFO 2024-08-21 22:46:00,382 start: 16:00-17:00
+INFO 2024-08-21 22:46:00,382 court: Court 6
+INFO 2024-08-21 22:46:00,382 booking_date: 2024-09-08
+INFO 2024-08-21 22:46:00,382 price: 30
+INFO 2024-08-21 22:46:00,385 start_time: 16:00:00
+INFO 2024-08-21 22:46:00,385 end_time: 17:00:00
+INFO 2024-08-21 22:46:00,387 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:46:00,389 item: Badminton at Lions
+INFO 2024-08-21 22:46:00,391 item_court: Court 6 (Indoor) of Badminton
+INFO 2024-08-21 22:46:00,393 item_time object: 16:00:00 - 17:00:00 - Court 6
+INFO 2024-08-21 22:46:00,400 order booked: 2024-09-08 - 16:00:00 - 17:00:00 - JENNIFER_SHI - 30 - Closed - Court 6
+INFO 2024-08-21 22:46:00,400 slot ['17:00-18:00', 'Court 6', '2024-09-08', '30']
+INFO 2024-08-21 22:46:00,400 start: 17:00-18:00
+INFO 2024-08-21 22:46:00,400 court: Court 6
+INFO 2024-08-21 22:46:00,400 booking_date: 2024-09-08
+INFO 2024-08-21 22:46:00,400 price: 30
+INFO 2024-08-21 22:46:00,400 start_time: 17:00:00
+INFO 2024-08-21 22:46:00,400 end_time: 18:00:00
+INFO 2024-08-21 22:46:00,400 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:46:00,401 item: Badminton at Lions
+INFO 2024-08-21 22:46:00,403 item_court: Court 6 (Indoor) of Badminton
+INFO 2024-08-21 22:46:00,405 item_time object: 17:00:00 - 18:00:00 - Court 6
+INFO 2024-08-21 22:46:00,411 order booked: 2024-09-08 - 17:00:00 - 18:00:00 - JENNIFER_SHI - 30 - Closed - Court 6
+INFO 2024-08-21 22:46:00,412 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-21 22:46:00,414 selected date: 2024-09-08
+INFO 2024-08-21 22:46:00,750 "GET /admin-schedule/?date=2024-09-08 HTTP/1.1" 200 98495
+ERROR 2024-08-21 22:46:11,854 Internal Server Error: /book-slot/
 Traceback (most recent call last):
   File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
     response = get_response(request)
@@ -12,22 +161,273 @@ Traceback (most recent call last):
   File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py", line 222, in book_slot
-    start_time, court_name, booking_date, price = slot
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: not enough values to unpack (expected 4, got 1)
-ERROR 2024-08-19 14:05:19,055 "POST /book-slot/ HTTP/1.1" 500 71647
-INFO 2024-08-19 14:06:14,341 selected date: 2024-08-19
-INFO 2024-08-19 14:06:14,627 "GET /admin-schedule/ HTTP/1.1" 200 64034
-INFO 2024-08-19 14:06:19,444 selected date: 2024-08-19
-INFO 2024-08-19 14:06:19,754 "GET /admin-schedule/ HTTP/1.1" 200 64034
-INFO 2024-08-19 14:06:19,836 "GET /static/css/admin-schedule.css HTTP/1.1" 200 3747
-INFO 2024-08-19 14:06:19,837 "GET /static/scripts/admin-schedule.js HTTP/1.1" 200 1512
-WARNING 2024-08-19 14:06:19,863 Not Found: /favicon.ico
-WARNING 2024-08-19 14:06:19,863 "GET /favicon.ico HTTP/1.1" 404 3225
-INFO 2024-08-19 14:06:25,159 user: {user} 
-INFO 2024-08-19 14:06:25,159 slot "
-ERROR 2024-08-19 14:06:25,180 Internal Server Error: /book-slot/
+  File "C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py", line 235, in book_slot
+    if not valid:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'valid' where it is not associated with a value
+ERROR 2024-08-21 22:46:11,855 "POST /book-slot/ HTTP/1.1" 500 70904
+INFO 2024-08-21 22:46:34,798 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py changed, reloading.
+INFO 2024-08-21 22:46:35,819 Watching for file changes with StatReloader
+INFO 2024-08-21 22:46:45,550 selected date: 2024-09-08
+INFO 2024-08-21 22:46:45,928 "GET /admin-schedule/?date=2024-09-08 HTTP/1.1" 200 98495
+INFO 2024-08-21 22:46:48,796 user: test_ - test -  - test_@dummy.com -  
+INFO 2024-08-21 22:46:48,796 slot ['17:00-18:00', 'Court 7', '2024-09-08', '30']
+INFO 2024-08-21 22:46:48,796 start: 17:00-18:00
+INFO 2024-08-21 22:46:48,796 court: Court 7
+INFO 2024-08-21 22:46:48,796 booking_date: 2024-09-08
+INFO 2024-08-21 22:46:48,796 price: 30
+INFO 2024-08-21 22:46:48,798 start_time: 17:00:00
+INFO 2024-08-21 22:46:48,798 end_time: 18:00:00
+INFO 2024-08-21 22:46:48,799 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:46:48,801 item: Badminton at Lions
+INFO 2024-08-21 22:46:48,803 item_court: Court 7 (Indoor) of Badminton
+INFO 2024-08-21 22:46:48,805 item_time object: 17:00:00 - 18:00:00 - Court 7
+INFO 2024-08-21 22:46:48,813 order booked: 2024-09-08 - 17:00:00 - 18:00:00 - test_ - 30 - Closed - Court 7
+INFO 2024-08-21 22:46:48,813 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-21 22:46:48,817 selected date: 2024-09-08
+INFO 2024-08-21 22:46:49,238 "GET /admin-schedule/?date=2024-09-08 HTTP/1.1" 200 98509
+INFO 2024-08-21 22:46:54,742 user: Ladder A_ - Ladder A -  - Ladder A_@dummy.com -  
+INFO 2024-08-21 22:46:54,742 slot ['17:00-18:00', 'Court 5', '2024-09-08', '30']
+INFO 2024-08-21 22:46:54,742 start: 17:00-18:00
+INFO 2024-08-21 22:46:54,742 court: Court 5
+INFO 2024-08-21 22:46:54,742 booking_date: 2024-09-08
+INFO 2024-08-21 22:46:54,742 price: 30
+INFO 2024-08-21 22:46:54,742 start_time: 17:00:00
+INFO 2024-08-21 22:46:54,742 end_time: 18:00:00
+INFO 2024-08-21 22:46:54,742 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:46:54,745 item: Badminton at Lions
+INFO 2024-08-21 22:46:54,747 item_court: Court 5 (Indoor) of Badminton
+INFO 2024-08-21 22:46:54,748 item_time object: 17:00:00 - 18:00:00 - Court 5
+INFO 2024-08-21 22:46:54,754 order booked: 2024-09-08 - 17:00:00 - 18:00:00 - Ladder A_ - 30 - Closed - Court 5
+INFO 2024-08-21 22:46:54,754 slot ['16:00-17:00', 'Court 5', '2024-09-08', '30']
+INFO 2024-08-21 22:46:54,754 start: 16:00-17:00
+INFO 2024-08-21 22:46:54,754 court: Court 5
+INFO 2024-08-21 22:46:54,754 booking_date: 2024-09-08
+INFO 2024-08-21 22:46:54,754 price: 30
+INFO 2024-08-21 22:46:54,754 start_time: 16:00:00
+INFO 2024-08-21 22:46:54,754 end_time: 17:00:00
+INFO 2024-08-21 22:46:54,754 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:46:54,755 item: Badminton at Lions
+INFO 2024-08-21 22:46:54,757 item_court: Court 5 (Indoor) of Badminton
+INFO 2024-08-21 22:46:54,758 item_time object: 16:00:00 - 17:00:00 - Court 5
+INFO 2024-08-21 22:46:54,764 order booked: 2024-09-08 - 16:00:00 - 17:00:00 - Ladder A_ - 30 - Closed - Court 5
+INFO 2024-08-21 22:46:54,764 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-21 22:46:54,766 selected date: 2024-09-08
+INFO 2024-08-21 22:46:55,299 "GET /admin-schedule/?date=2024-09-08 HTTP/1.1" 200 98561
+INFO 2024-08-21 22:47:02,072 user: arbitrary name_ - arbitrary name -  - arbitrary name_@dummy.com -  
+INFO 2024-08-21 22:47:02,072 slot ['15:00-16:00', 'Court 3', '2024-09-08', '30']
+INFO 2024-08-21 22:47:02,074 start: 15:00-16:00
+INFO 2024-08-21 22:47:02,074 court: Court 3
+INFO 2024-08-21 22:47:02,074 booking_date: 2024-09-08
+INFO 2024-08-21 22:47:02,074 price: 30
+INFO 2024-08-21 22:47:02,074 start_time: 15:00:00
+INFO 2024-08-21 22:47:02,074 end_time: 16:00:00
+INFO 2024-08-21 22:47:02,074 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:47:02,076 item: Badminton at Lions
+INFO 2024-08-21 22:47:02,078 item_court: Court 3 (Unknown) of Badminton
+INFO 2024-08-21 22:47:02,080 item_time object: 15:00:00 - 16:00:00 - Court 3
+INFO 2024-08-21 22:47:02,086 order booked: 2024-09-08 - 15:00:00 - 16:00:00 - arbitrary name_ - 30 - Closed - Court 3
+INFO 2024-08-21 22:47:02,086 slot ['17:00-18:00', 'Court 3', '2024-09-08', '30']
+INFO 2024-08-21 22:47:02,086 start: 17:00-18:00
+INFO 2024-08-21 22:47:02,086 court: Court 3
+INFO 2024-08-21 22:47:02,086 booking_date: 2024-09-08
+INFO 2024-08-21 22:47:02,086 price: 30
+INFO 2024-08-21 22:47:02,086 start_time: 17:00:00
+INFO 2024-08-21 22:47:02,086 end_time: 18:00:00
+INFO 2024-08-21 22:47:02,086 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:47:02,088 item: Badminton at Lions
+INFO 2024-08-21 22:47:02,089 item_court: Court 3 (Unknown) of Badminton
+INFO 2024-08-21 22:47:02,090 item_time object: 17:00:00 - 18:00:00 - Court 3
+INFO 2024-08-21 22:47:02,096 order booked: 2024-09-08 - 17:00:00 - 18:00:00 - arbitrary name_ - 30 - Closed - Court 3
+INFO 2024-08-21 22:47:02,096 slot ['17:00-18:00', 'Court 4', '2024-09-08', '30']
+INFO 2024-08-21 22:47:02,096 start: 17:00-18:00
+INFO 2024-08-21 22:47:02,096 court: Court 4
+INFO 2024-08-21 22:47:02,096 booking_date: 2024-09-08
+INFO 2024-08-21 22:47:02,096 price: 30
+INFO 2024-08-21 22:47:02,096 start_time: 17:00:00
+INFO 2024-08-21 22:47:02,096 end_time: 18:00:00
+INFO 2024-08-21 22:47:02,097 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:47:02,098 item: Badminton at Lions
+INFO 2024-08-21 22:47:02,099 item_court: Court 4 (Indoor) of Badminton
+INFO 2024-08-21 22:47:02,101 item_time object: 17:00:00 - 18:00:00 - Court 4
+INFO 2024-08-21 22:47:02,106 order booked: 2024-09-08 - 17:00:00 - 18:00:00 - arbitrary name_ - 30 - Closed - Court 4
+INFO 2024-08-21 22:47:02,106 slot ['16:00-17:00', 'Court 4', '2024-09-08', '30']
+INFO 2024-08-21 22:47:02,106 start: 16:00-17:00
+INFO 2024-08-21 22:47:02,107 court: Court 4
+INFO 2024-08-21 22:47:02,107 booking_date: 2024-09-08
+INFO 2024-08-21 22:47:02,107 price: 30
+INFO 2024-08-21 22:47:02,108 start_time: 16:00:00
+INFO 2024-08-21 22:47:02,108 end_time: 17:00:00
+INFO 2024-08-21 22:47:02,108 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:47:02,109 item: Badminton at Lions
+INFO 2024-08-21 22:47:02,111 item_court: Court 4 (Indoor) of Badminton
+INFO 2024-08-21 22:47:02,112 item_time object: 16:00:00 - 17:00:00 - Court 4
+INFO 2024-08-21 22:47:02,119 order booked: 2024-09-08 - 16:00:00 - 17:00:00 - arbitrary name_ - 30 - Closed - Court 4
+INFO 2024-08-21 22:47:02,120 slot ['15:00-16:00', 'Court 4', '2024-09-08', '30']
+INFO 2024-08-21 22:47:02,120 start: 15:00-16:00
+INFO 2024-08-21 22:47:02,120 court: Court 4
+INFO 2024-08-21 22:47:02,120 booking_date: 2024-09-08
+INFO 2024-08-21 22:47:02,120 price: 30
+INFO 2024-08-21 22:47:02,120 start_time: 15:00:00
+INFO 2024-08-21 22:47:02,120 end_time: 16:00:00
+INFO 2024-08-21 22:47:02,120 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:47:02,122 item: Badminton at Lions
+INFO 2024-08-21 22:47:02,123 item_court: Court 4 (Indoor) of Badminton
+INFO 2024-08-21 22:47:02,125 item_time object: 15:00:00 - 16:00:00 - Court 4
+INFO 2024-08-21 22:47:02,129 order booked: 2024-09-08 - 15:00:00 - 16:00:00 - arbitrary name_ - 30 - Closed - Court 4
+INFO 2024-08-21 22:47:02,130 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-21 22:47:02,132 selected date: 2024-09-08
+INFO 2024-08-21 22:47:02,638 "GET /admin-schedule/?date=2024-09-08 HTTP/1.1" 200 98781
+INFO 2024-08-21 22:47:14,950 user: error_error - error - error - test@gmail.com -  
+INFO 2024-08-21 22:47:14,950 slot ['21:00-22:00', 'Court 5', '2024-09-08', '30']
+INFO 2024-08-21 22:47:14,950 start: 21:00-22:00
+INFO 2024-08-21 22:47:14,951 court: Court 5
+INFO 2024-08-21 22:47:14,951 booking_date: 2024-09-08
+INFO 2024-08-21 22:47:14,951 price: 30
+INFO 2024-08-21 22:47:14,951 start_time: 21:00:00
+INFO 2024-08-21 22:47:14,951 end_time: 22:00:00
+INFO 2024-08-21 22:47:14,951 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:47:14,953 item: Badminton at Lions
+INFO 2024-08-21 22:47:14,956 item_court: Court 5 (Indoor) of Badminton
+INFO 2024-08-21 22:47:14,957 item_time object: 21:00:00 - 22:00:00 - Court 5
+INFO 2024-08-21 22:47:14,963 order booked: 2024-09-08 - 21:00:00 - 22:00:00 - error_error - 30 - Closed - Court 5
+INFO 2024-08-21 22:47:14,964 slot ['20:00-21:00', 'Court 5', '2024-09-08', '30']
+INFO 2024-08-21 22:47:14,964 start: 20:00-21:00
+INFO 2024-08-21 22:47:14,964 court: Court 5
+INFO 2024-08-21 22:47:14,964 booking_date: 2024-09-08
+INFO 2024-08-21 22:47:14,964 price: 30
+INFO 2024-08-21 22:47:14,964 start_time: 20:00:00
+INFO 2024-08-21 22:47:14,964 end_time: 21:00:00
+INFO 2024-08-21 22:47:14,964 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:47:14,965 item: Badminton at Lions
+INFO 2024-08-21 22:47:14,967 item_court: Court 5 (Indoor) of Badminton
+INFO 2024-08-21 22:47:14,969 item_time object: 20:00:00 - 21:00:00 - Court 5
+INFO 2024-08-21 22:47:14,978 order booked: 2024-09-08 - 20:00:00 - 21:00:00 - error_error - 30 - Closed - Court 5
+INFO 2024-08-21 22:47:14,978 slot ['21:00-22:00', 'Court 4', '2024-09-08', '30']
+INFO 2024-08-21 22:47:14,978 start: 21:00-22:00
+INFO 2024-08-21 22:47:14,978 court: Court 4
+INFO 2024-08-21 22:47:14,978 booking_date: 2024-09-08
+INFO 2024-08-21 22:47:14,978 price: 30
+INFO 2024-08-21 22:47:14,979 start_time: 21:00:00
+INFO 2024-08-21 22:47:14,979 end_time: 22:00:00
+INFO 2024-08-21 22:47:14,979 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:47:14,982 item: Badminton at Lions
+INFO 2024-08-21 22:47:14,983 item_court: Court 4 (Indoor) of Badminton
+INFO 2024-08-21 22:47:14,985 item_time object: 21:00:00 - 22:00:00 - Court 4
+INFO 2024-08-21 22:47:14,992 order booked: 2024-09-08 - 21:00:00 - 22:00:00 - error_error - 30 - Closed - Court 4
+INFO 2024-08-21 22:47:14,992 slot ['20:00-21:00', 'Court 4', '2024-09-08', '30']
+INFO 2024-08-21 22:47:14,992 start: 20:00-21:00
+INFO 2024-08-21 22:47:14,992 court: Court 4
+INFO 2024-08-21 22:47:14,993 booking_date: 2024-09-08
+INFO 2024-08-21 22:47:14,993 price: 30
+INFO 2024-08-21 22:47:14,993 start_time: 20:00:00
+INFO 2024-08-21 22:47:14,993 end_time: 21:00:00
+INFO 2024-08-21 22:47:14,993 booking_date_obj: 2024-09-08
+INFO 2024-08-21 22:47:14,995 item: Badminton at Lions
+INFO 2024-08-21 22:47:14,998 item_court: Court 4 (Indoor) of Badminton
+INFO 2024-08-21 22:47:15,001 item_time object: 20:00:00 - 21:00:00 - Court 4
+INFO 2024-08-21 22:47:15,010 order booked: 2024-09-08 - 20:00:00 - 21:00:00 - error_error - 30 - Closed - Court 4
+INFO 2024-08-21 22:47:15,011 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-21 22:47:15,015 selected date: 2024-09-08
+INFO 2024-08-21 22:47:15,499 "GET /admin-schedule/?date=2024-09-08 HTTP/1.1" 200 98909
+ERROR 2024-08-21 22:47:21,216 Internal Server Error: /book-slot/
+Traceback (most recent call last):
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\middleware\clickjacking.py", line 27, in process_response
+    if response.get("X-Frame-Options") is not None:
+       ^^^^^^^^^^^^
+AttributeError: 'bool' object has no attribute 'get'
+ERROR 2024-08-21 22:47:21,218 "POST /book-slot/ HTTP/1.1" 500 69445
+INFO 2024-08-21 22:47:27,440 selected date: 2024-09-08
+INFO 2024-08-21 22:47:27,937 "GET /admin-schedule/?date=2024-09-08 HTTP/1.1" 200 98909
+ERROR 2024-08-21 22:47:34,759 Internal Server Error: /book-slot/
+Traceback (most recent call last):
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\middleware\clickjacking.py", line 27, in process_response
+    if response.get("X-Frame-Options") is not None:
+       ^^^^^^^^^^^^
+AttributeError: 'bool' object has no attribute 'get'
+ERROR 2024-08-21 22:47:34,760 "POST /book-slot/ HTTP/1.1" 500 69361
+INFO 2024-08-21 22:49:13,866 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\models.py changed, reloading.
+INFO 2024-08-21 22:49:14,838 Watching for file changes with StatReloader
+INFO 2024-08-21 22:49:30,927 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\models.py changed, reloading.
+INFO 2024-08-21 22:49:31,983 Watching for file changes with StatReloader
+INFO 2024-08-21 22:50:18,051 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py changed, reloading.
+INFO 2024-08-21 22:50:18,931 Watching for file changes with StatReloader
+INFO 2024-08-23 23:50:29,916 Watching for file changes with StatReloader
+INFO 2024-08-23 23:51:02,642 selected date: 2024-08-23
+INFO 2024-08-23 23:51:03,065 "GET / HTTP/1.1" 200 65296
+INFO 2024-08-23 23:51:03,177 "GET /static/css/schedule.css HTTP/1.1" 200 3747
+INFO 2024-08-23 23:51:03,198 "GET /static/scripts/schedule.js HTTP/1.1" 200 7990
+WARNING 2024-08-23 23:51:04,048 Not Found: /favicon.ico
+WARNING 2024-08-23 23:51:04,048 "GET /favicon.ico HTTP/1.1" 404 3225
+INFO 2024-08-23 23:51:04,104 "POST /create-payment-intent/ HTTP/1.1" 200 80
+INFO 2024-08-23 23:51:04,923 "POST /webhooks/stripe/ HTTP/1.1" 200 17
+INFO 2024-08-23 23:51:06,443 selected date: 2024-08-24
+INFO 2024-08-23 23:51:06,842 "GET /?date=2024-08-24 HTTP/1.1" 200 95375
+INFO 2024-08-23 23:51:07,147 "POST /create-payment-intent/ HTTP/1.1" 200 80
+INFO 2024-08-23 23:51:07,433 "POST /webhooks/stripe/ HTTP/1.1" 200 17
+INFO 2024-08-23 23:51:54,536 "POST /update_payment_intent/ HTTP/1.1" 200 17
+INFO 2024-08-23 23:51:55,940 "GET /payment_success?payment_intent=pi_3PrB0JRt3PcgmiF61OiLbcbJ&payment_intent_client_secret=pi_3PrB0JRt3PcgmiF61OiLbcbJ_secret_UY011Q0TY1xS8Zo1AhYhJwdhc&redirect_status=succeeded HTTP/1.1" 301 0
+INFO 2024-08-23 23:51:55,959 "GET /payment_success/?payment_intent=pi_3PrB0JRt3PcgmiF61OiLbcbJ&payment_intent_client_secret=pi_3PrB0JRt3PcgmiF61OiLbcbJ_secret_UY011Q0TY1xS8Zo1AhYhJwdhc&redirect_status=succeeded HTTP/1.1" 200 406
+INFO 2024-08-23 23:51:55,964 "POST /webhooks/stripe/ HTTP/1.1" 200 17
+WARNING 2024-08-23 23:51:56,028 Not Found: /favicon.ico
+WARNING 2024-08-23 23:51:56,029 "GET /favicon.ico HTTP/1.1" 404 3225
+INFO 2024-08-23 23:51:56,991 "POST /webhooks/stripe/ HTTP/1.1" 200 17
+INFO 2024-08-23 23:52:01,910 selected date: 2024-08-24
+INFO 2024-08-23 23:52:02,669 "GET /?date=2024-08-24 HTTP/1.1" 200 95375
+INFO 2024-08-23 23:52:03,112 "POST /create-payment-intent/ HTTP/1.1" 200 80
+INFO 2024-08-23 23:52:03,433 "POST /webhooks/stripe/ HTTP/1.1" 200 17
+INFO 2024-08-23 23:52:06,512 selected date: 2024-08-24
+INFO 2024-08-23 23:52:06,895 "GET /?date=2024-08-24 HTTP/1.1" 200 95375
+INFO 2024-08-23 23:52:07,211 "POST /create-payment-intent/ HTTP/1.1" 200 80
+INFO 2024-08-23 23:52:07,448 "POST /webhooks/stripe/ HTTP/1.1" 200 17
+INFO 2024-08-23 23:53:07,080 "GET /admin-schedule HTTP/1.1" 301 0
+INFO 2024-08-23 23:53:07,090 selected date: 2024-08-23
+INFO 2024-08-23 23:53:07,388 "GET /admin-schedule/ HTTP/1.1" 200 68692
+INFO 2024-08-23 23:53:07,420 "GET /static/css/admin-schedule.css HTTP/1.1" 304 0
+INFO 2024-08-23 23:53:07,420 "GET /static/scripts/admin-schedule.js HTTP/1.1" 304 0
+INFO 2024-08-23 23:53:11,109 selected date: 2024-09-01
+INFO 2024-08-23 23:53:11,796 "GET /admin-schedule/?date=2024-09-01 HTTP/1.1" 200 98425
+ERROR 2024-08-23 23:53:19,839 Internal Server Error: /book-slot/
+Traceback (most recent call last):
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 948, in get_or_create
+    return self.get(**kwargs), False
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 649, in get
+    raise self.model.DoesNotExist(
+app.models.User.DoesNotExist: User matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\MySQLdb\connections.py", line 261, in query
+    _mysql.connection.query(self, query)
+MySQLdb.IntegrityError: (1062, "Duplicate entry 'Test_test' for key 'app_user.username'")
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
     response = get_response(request)
@@ -35,18 +435,181 @@ Traceback (most recent call last):
   File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py", line 222, in book_slot
-    start_time, court_name, booking_date, price = slot
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: not enough values to unpack (expected 4, got 1)
-ERROR 2024-08-19 14:06:25,180 "POST /book-slot/ HTTP/1.1" 500 71610
-INFO 2024-08-19 14:08:00,836 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py changed, reloading.
-INFO 2024-08-19 14:08:01,837 Watching for file changes with StatReloader
-INFO 2024-08-19 14:08:04,762 selected date: 2024-08-19
-INFO 2024-08-19 14:08:05,042 "GET /admin-schedule/ HTTP/1.1" 200 64034
-INFO 2024-08-19 14:08:08,622 user: {user} 
-INFO 2024-08-19 14:08:08,638 slot "
-ERROR 2024-08-19 14:08:08,671 Internal Server Error: /book-slot/
+  File "C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py", line 243, in book_slot
+    user, created = User.objects.get_or_create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 955, in get_or_create
+    return self.create(**params), True
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\models.py", line 57, in save
+    super(User, self).save(*args, **kwargs)
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 822, in save
+    self.save_base(
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 909, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1071, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1112, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\MySQLdb\connections.py", line 261, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry 'Test_test' for key 'app_user.username'")
+ERROR 2024-08-23 23:53:19,853 "POST /book-slot/ HTTP/1.1" 500 216755
+INFO 2024-08-23 23:53:29,099 selected date: 2024-09-01
+INFO 2024-08-23 23:53:29,789 "GET /admin-schedule/?date=2024-09-01 HTTP/1.1" 200 98425
+INFO 2024-08-23 23:53:36,590 user: Test_testasd - test - testasd - Test_testasd@dummy.com -  
+INFO 2024-08-23 23:53:36,590 slot ['18:00-19:00', 'Court 3', '2024-09-01', '30']
+INFO 2024-08-23 23:53:36,590 start: 18:00-19:00
+INFO 2024-08-23 23:53:36,590 court: Court 3
+INFO 2024-08-23 23:53:36,590 booking_date: 2024-09-01
+INFO 2024-08-23 23:53:36,590 price: 30
+INFO 2024-08-23 23:53:36,590 start_time: 18:00:00
+INFO 2024-08-23 23:53:36,590 end_time: 19:00:00
+INFO 2024-08-23 23:53:36,599 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:53:36,599 item: Badminton at Lions
+INFO 2024-08-23 23:53:36,607 item_court: Court 3 (Unknown) of Badminton
+INFO 2024-08-23 23:53:36,609 item_time object: 18:00:00 - 19:00:00 - Court 3
+INFO 2024-08-23 23:53:36,619 order booked: 2024-09-01 - 18:00:00 - 19:00:00 - Test_testasd - 30 - Closed - Court 3
+INFO 2024-08-23 23:53:36,619 slot ['17:00-18:00', 'Court 3', '2024-09-01', '30']
+INFO 2024-08-23 23:53:36,622 start: 17:00-18:00
+INFO 2024-08-23 23:53:36,622 court: Court 3
+INFO 2024-08-23 23:53:36,622 booking_date: 2024-09-01
+INFO 2024-08-23 23:53:36,622 price: 30
+INFO 2024-08-23 23:53:36,622 start_time: 17:00:00
+INFO 2024-08-23 23:53:36,622 end_time: 18:00:00
+INFO 2024-08-23 23:53:36,622 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:53:36,624 item: Badminton at Lions
+INFO 2024-08-23 23:53:36,624 item_court: Court 3 (Unknown) of Badminton
+INFO 2024-08-23 23:53:36,629 item_time object: 17:00:00 - 18:00:00 - Court 3
+INFO 2024-08-23 23:53:36,640 order booked: 2024-09-01 - 17:00:00 - 18:00:00 - Test_testasd - 30 - Closed - Court 3
+INFO 2024-08-23 23:53:36,640 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-23 23:53:36,640 selected date: 2024-09-01
+INFO 2024-08-23 23:53:37,340 "GET /admin-schedule/?date=2024-09-01 HTTP/1.1" 200 98495
+INFO 2024-08-23 23:53:43,269 user: abc_abc - abc - abc - abc_abc@dummy.com -  
+INFO 2024-08-23 23:53:43,269 slot ['17:00-18:00', 'Court 4', '2024-09-01', '30']
+INFO 2024-08-23 23:53:43,269 start: 17:00-18:00
+INFO 2024-08-23 23:53:43,269 court: Court 4
+INFO 2024-08-23 23:53:43,271 booking_date: 2024-09-01
+INFO 2024-08-23 23:53:43,271 price: 30
+INFO 2024-08-23 23:53:43,271 start_time: 17:00:00
+INFO 2024-08-23 23:53:43,271 end_time: 18:00:00
+INFO 2024-08-23 23:53:43,271 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:53:43,271 item: Badminton at Lions
+INFO 2024-08-23 23:53:43,279 item_court: Court 4 (Indoor) of Badminton
+INFO 2024-08-23 23:53:43,284 item_time object: 17:00:00 - 18:00:00 - Court 4
+INFO 2024-08-23 23:53:43,296 order booked: 2024-09-01 - 17:00:00 - 18:00:00 - abc_abc - 30 - Closed - Court 4
+INFO 2024-08-23 23:53:43,299 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-23 23:53:43,299 selected date: 2024-09-01
+INFO 2024-08-23 23:53:44,071 "GET /admin-schedule/?date=2024-09-01 HTTP/1.1" 200 98515
+INFO 2024-08-23 23:53:53,731 user: abc_abc - abc - abc - abc_abc@dummy.com -  
+INFO 2024-08-23 23:53:53,731 slot ['17:00-18:00', 'Court 5', '2024-09-01', '30']
+INFO 2024-08-23 23:53:53,731 start: 17:00-18:00
+INFO 2024-08-23 23:53:53,731 court: Court 5
+INFO 2024-08-23 23:53:53,731 booking_date: 2024-09-01
+INFO 2024-08-23 23:53:53,731 price: 30
+INFO 2024-08-23 23:53:53,731 start_time: 17:00:00
+INFO 2024-08-23 23:53:53,731 end_time: 18:00:00
+INFO 2024-08-23 23:53:53,731 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:53:53,739 item: Badminton at Lions
+INFO 2024-08-23 23:53:53,739 item_court: Court 5 (Indoor) of Badminton
+INFO 2024-08-23 23:53:53,749 item_time object: 17:00:00 - 18:00:00 - Court 5
+INFO 2024-08-23 23:53:53,759 order booked: 2024-09-01 - 17:00:00 - 18:00:00 - abc_abc - 30 - Closed - Court 5
+INFO 2024-08-23 23:53:53,759 slot ['16:00-17:00', 'Court 5', '2024-09-01', '30']
+INFO 2024-08-23 23:53:53,759 start: 16:00-17:00
+INFO 2024-08-23 23:53:53,759 court: Court 5
+INFO 2024-08-23 23:53:53,759 booking_date: 2024-09-01
+INFO 2024-08-23 23:53:53,759 price: 30
+INFO 2024-08-23 23:53:53,759 start_time: 16:00:00
+INFO 2024-08-23 23:53:53,759 end_time: 17:00:00
+INFO 2024-08-23 23:53:53,759 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:53:53,764 item: Badminton at Lions
+INFO 2024-08-23 23:53:53,769 item_court: Court 5 (Indoor) of Badminton
+INFO 2024-08-23 23:53:53,773 item_time object: 16:00:00 - 17:00:00 - Court 5
+INFO 2024-08-23 23:53:53,782 order booked: 2024-09-01 - 16:00:00 - 17:00:00 - abc_abc - 30 - Closed - Court 5
+INFO 2024-08-23 23:53:53,782 slot ['15:00-16:00', 'Court 5', '2024-09-01', '30']
+INFO 2024-08-23 23:53:53,782 start: 15:00-16:00
+INFO 2024-08-23 23:53:53,782 court: Court 5
+INFO 2024-08-23 23:53:53,782 booking_date: 2024-09-01
+INFO 2024-08-23 23:53:53,782 price: 30
+INFO 2024-08-23 23:53:53,782 start_time: 15:00:00
+INFO 2024-08-23 23:53:53,782 end_time: 16:00:00
+INFO 2024-08-23 23:53:53,782 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:53:53,789 item: Badminton at Lions
+INFO 2024-08-23 23:53:53,790 item_court: Court 5 (Indoor) of Badminton
+INFO 2024-08-23 23:53:53,790 item_time object: 15:00:00 - 16:00:00 - Court 5
+INFO 2024-08-23 23:53:53,806 order booked: 2024-09-01 - 15:00:00 - 16:00:00 - abc_abc - 30 - Closed - Court 5
+INFO 2024-08-23 23:53:53,809 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-23 23:53:53,809 selected date: 2024-09-01
+INFO 2024-08-23 23:53:54,522 "GET /admin-schedule/?date=2024-09-01 HTTP/1.1" 200 98575
+ERROR 2024-08-23 23:54:11,539 Internal Server Error: /book-slot/
+Traceback (most recent call last):
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 948, in get_or_create
+    return self.get(**kwargs), False
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 649, in get
+    raise self.model.DoesNotExist(
+app.models.User.DoesNotExist: User matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\MySQLdb\connections.py", line 261, in query
+    _mysql.connection.query(self, query)
+MySQLdb.IntegrityError: (1062, "Duplicate entry 'ABC_ABC' for key 'app_user.username'")
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
     response = get_response(request)
@@ -54,240 +617,65 @@ Traceback (most recent call last):
   File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py", line 223, in book_slot
-    start_time, court_name, booking_date, price = slot
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: not enough values to unpack (expected 4, got 1)
-ERROR 2024-08-19 14:08:08,672 "POST /book-slot/ HTTP/1.1" 500 72313
-INFO 2024-08-19 14:08:26,151 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py changed, reloading.
-INFO 2024-08-19 14:08:27,024 Watching for file changes with StatReloader
-INFO 2024-08-19 14:08:32,917 selected date: 2024-08-19
-INFO 2024-08-19 14:08:33,242 "GET /admin-schedule/ HTTP/1.1" 200 64034
-INFO 2024-08-19 14:08:35,213 user: {user} 
-INFO 2024-08-19 14:08:35,217 slot "
-ERROR 2024-08-19 14:08:35,250 Internal Server Error: /book-slot/
-Traceback (most recent call last):
-  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-               ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py", line 224, in book_slot
-    start_time, court_name, booking_date, price = slot
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: not enough values to unpack (expected 4, got 1)
-ERROR 2024-08-19 14:08:35,251 "POST /book-slot/ HTTP/1.1" 500 71656
-INFO 2024-08-19 14:10:13,012 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py changed, reloading.
-INFO 2024-08-19 14:10:14,289 Watching for file changes with StatReloader
-INFO 2024-08-19 14:10:18,075 selected date: 2024-08-19
-INFO 2024-08-19 14:10:18,363 "GET /admin-schedule/ HTTP/1.1" 200 64034
-INFO 2024-08-19 14:10:20,508 user: {user} 
-INFO 2024-08-19 14:10:20,508 slot ['21:00-22:00', 'Court 7', '2024-08-19', '30']
-INFO 2024-08-19 14:10:20,508 start: 21:00-22:00
-INFO 2024-08-19 14:10:20,508 court: Court 7
-INFO 2024-08-19 14:10:20,508 booking_date: 2024-08-19
-INFO 2024-08-19 14:10:20,508 price: 30
-INFO 2024-08-19 14:10:20,512 start_time: 21:00:00
-INFO 2024-08-19 14:10:20,512 end_time: 22:00:00
-INFO 2024-08-19 14:10:20,512 booking_date_obj: 2024-08-19
-INFO 2024-08-19 14:10:20,515 item: Badminton at Lions
-INFO 2024-08-19 14:10:20,518 item_court: Court 7 (Indoor) of Badminton
-INFO 2024-08-19 14:10:20,519 item_time object: 21:00:00 - 22:00:00 - Court 7
-INFO 2024-08-19 14:10:20,526 order booked: 2024-08-19 - 21:00:00 - 22:00:00 - jshi09 - 30 - Closed - Court 7
-INFO 2024-08-19 14:10:20,527 "POST /book-slot/ HTTP/1.1" 302 0
-INFO 2024-08-19 14:10:20,530 selected date: 2024-08-19
-INFO 2024-08-19 14:10:20,857 "GET /?date=2024-08-19 HTTP/1.1" 200 65300
-INFO 2024-08-19 14:10:20,931 "GET /static/css/schedule.css HTTP/1.1" 200 3747
-INFO 2024-08-19 14:10:20,956 "GET /static/scripts/schedule.js HTTP/1.1" 200 7794
-INFO 2024-08-19 14:10:21,774 "POST /create-payment-intent/ HTTP/1.1" 200 80
-INFO 2024-08-19 14:10:22,475 "POST /webhooks/stripe/ HTTP/1.1" 200 17
-INFO 2024-08-19 14:10:22,479 celery processing event...
-INFO 2024-08-19 14:10:22,480 Unhandled event type payment_intent.created
-INFO 2024-08-19 14:10:42,738 "GET /admin-schedule HTTP/1.1" 301 0
-INFO 2024-08-19 14:10:42,741 selected date: 2024-08-19
-INFO 2024-08-19 14:10:43,070 "GET /admin-schedule/ HTTP/1.1" 200 64055
-INFO 2024-08-19 14:11:04,099 user: {user} 
-INFO 2024-08-19 14:11:04,101 slot ['19:00-20:00', 'Court 6', '2024-08-19', '30']
-INFO 2024-08-19 14:11:04,101 start: 19:00-20:00
-INFO 2024-08-19 14:11:04,101 court: Court 6
-INFO 2024-08-19 14:11:04,101 booking_date: 2024-08-19
-INFO 2024-08-19 14:11:04,101 price: 30
-INFO 2024-08-19 14:11:04,101 start_time: 19:00:00
-INFO 2024-08-19 14:11:04,101 end_time: 20:00:00
-INFO 2024-08-19 14:11:04,101 booking_date_obj: 2024-08-19
-INFO 2024-08-19 14:11:04,104 item: Badminton at Lions
-INFO 2024-08-19 14:11:04,105 item_court: Court 6 (Indoor) of Badminton
-INFO 2024-08-19 14:11:04,107 item_time object: 19:00:00 - 20:00:00 - Court 6
-INFO 2024-08-19 14:11:04,113 order booked: 2024-08-19 - 19:00:00 - 20:00:00 - lions-badminton_Shi - 30 - Closed - Court 6
-INFO 2024-08-19 14:11:04,114 slot ['18:00-19:00', 'Court 6', '2024-08-19', '30']
-INFO 2024-08-19 14:11:04,114 start: 18:00-19:00
-INFO 2024-08-19 14:11:04,114 court: Court 6
-INFO 2024-08-19 14:11:04,114 booking_date: 2024-08-19
-INFO 2024-08-19 14:11:04,114 price: 30
-INFO 2024-08-19 14:11:04,114 start_time: 18:00:00
-INFO 2024-08-19 14:11:04,114 end_time: 19:00:00
-INFO 2024-08-19 14:11:04,114 booking_date_obj: 2024-08-19
-INFO 2024-08-19 14:11:04,115 item: Badminton at Lions
-INFO 2024-08-19 14:11:04,117 item_court: Court 6 (Indoor) of Badminton
-INFO 2024-08-19 14:11:04,118 item_time object: 18:00:00 - 19:00:00 - Court 6
-INFO 2024-08-19 14:11:04,118 order booked: 2024-08-19 - 18:00:00 - 19:00:00 - lions-badminton_Shi - 30 - Closed - Court 6
-INFO 2024-08-19 14:11:04,118 slot ['18:00-19:00', 'Court 7', '2024-08-19', '30']
-INFO 2024-08-19 14:11:04,118 start: 18:00-19:00
-INFO 2024-08-19 14:11:04,118 court: Court 7
-INFO 2024-08-19 14:11:04,118 booking_date: 2024-08-19
-INFO 2024-08-19 14:11:04,118 price: 30
-INFO 2024-08-19 14:11:04,118 start_time: 18:00:00
-INFO 2024-08-19 14:11:04,118 end_time: 19:00:00
-INFO 2024-08-19 14:11:04,118 booking_date_obj: 2024-08-19
-INFO 2024-08-19 14:11:04,118 item: Badminton at Lions
-INFO 2024-08-19 14:11:04,118 item_court: Court 7 (Indoor) of Badminton
-INFO 2024-08-19 14:11:04,118 item_time object: 18:00:00 - 19:00:00 - Court 7
-INFO 2024-08-19 14:11:04,135 order booked: 2024-08-19 - 18:00:00 - 19:00:00 - lions-badminton_Shi - 30 - Closed - Court 7
-INFO 2024-08-19 14:11:04,135 slot ['19:00-20:00', 'Court 7', '2024-08-19', '30']
-INFO 2024-08-19 14:11:04,135 start: 19:00-20:00
-INFO 2024-08-19 14:11:04,135 court: Court 7
-INFO 2024-08-19 14:11:04,135 booking_date: 2024-08-19
-INFO 2024-08-19 14:11:04,135 price: 30
-INFO 2024-08-19 14:11:04,135 start_time: 19:00:00
-INFO 2024-08-19 14:11:04,135 end_time: 20:00:00
-INFO 2024-08-19 14:11:04,135 booking_date_obj: 2024-08-19
-INFO 2024-08-19 14:11:04,135 item: Badminton at Lions
-INFO 2024-08-19 14:11:04,135 item_court: Court 7 (Indoor) of Badminton
-INFO 2024-08-19 14:11:04,135 item_time object: 19:00:00 - 20:00:00 - Court 7
-INFO 2024-08-19 14:11:04,152 order booked: 2024-08-19 - 19:00:00 - 20:00:00 - lions-badminton_Shi - 30 - Closed - Court 7
-INFO 2024-08-19 14:11:04,152 slot ['20:00-21:00', 'Court 7', '2024-08-19', '30']
-INFO 2024-08-19 14:11:04,152 start: 20:00-21:00
-INFO 2024-08-19 14:11:04,152 court: Court 7
-INFO 2024-08-19 14:11:04,152 booking_date: 2024-08-19
-INFO 2024-08-19 14:11:04,152 price: 30
-INFO 2024-08-19 14:11:04,152 start_time: 20:00:00
-INFO 2024-08-19 14:11:04,152 end_time: 21:00:00
-INFO 2024-08-19 14:11:04,152 booking_date_obj: 2024-08-19
-INFO 2024-08-19 14:11:04,152 item: Badminton at Lions
-INFO 2024-08-19 14:11:04,152 item_court: Court 7 (Indoor) of Badminton
-INFO 2024-08-19 14:11:04,152 item_time object: 20:00:00 - 21:00:00 - Court 7
-INFO 2024-08-19 14:11:04,152 order booked: 2024-08-19 - 20:00:00 - 21:00:00 - lions-badminton_Shi - 30 - Closed - Court 7
-INFO 2024-08-19 14:11:04,152 slot ['20:00-21:00', 'Court 6', '2024-08-19', '30']
-INFO 2024-08-19 14:11:04,152 start: 20:00-21:00
-INFO 2024-08-19 14:11:04,152 court: Court 6
-INFO 2024-08-19 14:11:04,152 booking_date: 2024-08-19
-INFO 2024-08-19 14:11:04,152 price: 30
-INFO 2024-08-19 14:11:04,152 start_time: 20:00:00
-INFO 2024-08-19 14:11:04,152 end_time: 21:00:00
-INFO 2024-08-19 14:11:04,152 booking_date_obj: 2024-08-19
-INFO 2024-08-19 14:11:04,169 item: Badminton at Lions
-INFO 2024-08-19 14:11:04,169 item_court: Court 6 (Indoor) of Badminton
-INFO 2024-08-19 14:11:04,169 item_time object: 20:00:00 - 21:00:00 - Court 6
-INFO 2024-08-19 14:11:04,169 order booked: 2024-08-19 - 20:00:00 - 21:00:00 - lions-badminton_Shi - 30 - Closed - Court 6
-INFO 2024-08-19 14:11:04,169 "POST /book-slot/ HTTP/1.1" 302 0
-INFO 2024-08-19 14:11:04,169 selected date: 2024-08-19
-INFO 2024-08-19 14:11:04,592 "GET /?date=2024-08-19 HTTP/1.1" 200 65636
-INFO 2024-08-19 14:11:05,431 "POST /create-payment-intent/ HTTP/1.1" 200 80
-INFO 2024-08-19 14:11:05,589 "POST /webhooks/stripe/ HTTP/1.1" 200 17
-INFO 2024-08-19 14:11:05,590 celery processing event...
-INFO 2024-08-19 14:11:05,590 Unhandled event type payment_intent.created
-INFO 2024-08-19 14:11:22,104 selected date: 2024-08-19
-INFO 2024-08-19 14:11:22,499 "GET /admin-schedule/ HTTP/1.1" 200 64391
-INFO 2024-08-19 14:11:23,714 selected date: 2024-08-24
-INFO 2024-08-19 14:11:24,264 "GET /admin-schedule/?date=2024-08-24 HTTP/1.1" 200 93746
-INFO 2024-08-19 14:13:08,472 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py changed, reloading.
-INFO 2024-08-19 14:13:09,428 Watching for file changes with StatReloader
-INFO 2024-08-19 14:13:31,386 user: {user} 
-INFO 2024-08-19 14:13:31,387 slot ['18:00-19:00', 'Court 4', '2024-08-24', '30']
-INFO 2024-08-19 14:13:31,387 start: 18:00-19:00
-INFO 2024-08-19 14:13:31,387 court: Court 4
-INFO 2024-08-19 14:13:31,387 booking_date: 2024-08-24
-INFO 2024-08-19 14:13:31,387 price: 30
-INFO 2024-08-19 14:13:31,387 start_time: 18:00:00
-INFO 2024-08-19 14:13:31,387 end_time: 19:00:00
-INFO 2024-08-19 14:13:31,387 booking_date_obj: 2024-08-24
-INFO 2024-08-19 14:13:31,387 item: Badminton at Lions
-INFO 2024-08-19 14:13:31,387 item_court: Court 4 (Indoor) of Badminton
-INFO 2024-08-19 14:13:31,387 item_time object: 18:00:00 - 19:00:00 - Court 4
-INFO 2024-08-19 14:13:31,387 order booked: 2024-08-24 - 18:00:00 - 19:00:00 - check_out - 30 - Closed - Court 4
-INFO 2024-08-19 14:13:31,387 slot ['16:00-17:00', 'Court 4', '2024-08-24', '30']
-INFO 2024-08-19 14:13:31,387 start: 16:00-17:00
-INFO 2024-08-19 14:13:31,387 court: Court 4
-INFO 2024-08-19 14:13:31,387 booking_date: 2024-08-24
-INFO 2024-08-19 14:13:31,387 price: 30
-INFO 2024-08-19 14:13:31,387 start_time: 16:00:00
-INFO 2024-08-19 14:13:31,387 end_time: 17:00:00
-INFO 2024-08-19 14:13:31,387 booking_date_obj: 2024-08-24
-INFO 2024-08-19 14:13:31,403 item: Badminton at Lions
-INFO 2024-08-19 14:13:31,404 item_court: Court 4 (Indoor) of Badminton
-INFO 2024-08-19 14:13:31,404 item_time object: 16:00:00 - 17:00:00 - Court 4
-INFO 2024-08-19 14:13:31,404 order booked: 2024-08-24 - 16:00:00 - 17:00:00 - check_out - 30 - Closed - Court 4
-INFO 2024-08-19 14:13:31,404 slot ['16:00-17:00', 'Court 5', '2024-08-24', '30']
-INFO 2024-08-19 14:13:31,404 start: 16:00-17:00
-INFO 2024-08-19 14:13:31,404 court: Court 5
-INFO 2024-08-19 14:13:31,404 booking_date: 2024-08-24
-INFO 2024-08-19 14:13:31,404 price: 30
-INFO 2024-08-19 14:13:31,404 start_time: 16:00:00
-INFO 2024-08-19 14:13:31,404 end_time: 17:00:00
-INFO 2024-08-19 14:13:31,404 booking_date_obj: 2024-08-24
-INFO 2024-08-19 14:13:31,404 item: Badminton at Lions
-INFO 2024-08-19 14:13:31,404 item_court: Court 5 (Indoor) of Badminton
-INFO 2024-08-19 14:13:31,404 item_time object: 16:00:00 - 17:00:00 - Court 5
-INFO 2024-08-19 14:13:31,421 order booked: 2024-08-24 - 16:00:00 - 17:00:00 - check_out - 30 - Closed - Court 5
-INFO 2024-08-19 14:13:31,421 slot ['18:00-19:00', 'Court 6', '2024-08-24', '30']
-INFO 2024-08-19 14:13:31,421 start: 18:00-19:00
-INFO 2024-08-19 14:13:31,421 court: Court 6
-INFO 2024-08-19 14:13:31,421 booking_date: 2024-08-24
-INFO 2024-08-19 14:13:31,421 price: 30
-INFO 2024-08-19 14:13:31,421 start_time: 18:00:00
-INFO 2024-08-19 14:13:31,421 end_time: 19:00:00
-INFO 2024-08-19 14:13:31,421 booking_date_obj: 2024-08-24
-INFO 2024-08-19 14:13:31,421 item: Badminton at Lions
-INFO 2024-08-19 14:13:31,421 item_court: Court 6 (Indoor) of Badminton
-INFO 2024-08-19 14:13:31,421 item_time object: 18:00:00 - 19:00:00 - Court 6
-INFO 2024-08-19 14:13:31,421 order booked: 2024-08-24 - 18:00:00 - 19:00:00 - check_out - 30 - Closed - Court 6
-INFO 2024-08-19 14:13:31,421 slot ['17:00-18:00', 'Court 6', '2024-08-24', '30']
-INFO 2024-08-19 14:13:31,421 start: 17:00-18:00
-INFO 2024-08-19 14:13:31,421 court: Court 6
-INFO 2024-08-19 14:13:31,421 booking_date: 2024-08-24
-INFO 2024-08-19 14:13:31,421 price: 30
-INFO 2024-08-19 14:13:31,421 start_time: 17:00:00
-INFO 2024-08-19 14:13:31,421 end_time: 18:00:00
-INFO 2024-08-19 14:13:31,421 booking_date_obj: 2024-08-24
-INFO 2024-08-19 14:13:31,421 item: Badminton at Lions
-INFO 2024-08-19 14:13:31,436 item_court: Court 6 (Indoor) of Badminton
-INFO 2024-08-19 14:13:31,437 item_time object: 17:00:00 - 18:00:00 - Court 6
-INFO 2024-08-19 14:13:31,437 order booked: 2024-08-24 - 17:00:00 - 18:00:00 - check_out - 30 - Closed - Court 6
-INFO 2024-08-19 14:13:31,437 slot ['16:00-17:00', 'Court 6', '2024-08-24', '30']
-INFO 2024-08-19 14:13:31,437 start: 16:00-17:00
-INFO 2024-08-19 14:13:31,437 court: Court 6
-INFO 2024-08-19 14:13:31,437 booking_date: 2024-08-24
-INFO 2024-08-19 14:13:31,437 price: 30
-INFO 2024-08-19 14:13:31,437 start_time: 16:00:00
-INFO 2024-08-19 14:13:31,437 end_time: 17:00:00
-INFO 2024-08-19 14:13:31,437 booking_date_obj: 2024-08-24
-INFO 2024-08-19 14:13:31,437 item: Badminton at Lions
-INFO 2024-08-19 14:13:31,437 item_court: Court 6 (Indoor) of Badminton
-INFO 2024-08-19 14:13:31,437 item_time object: 16:00:00 - 17:00:00 - Court 6
-INFO 2024-08-19 14:13:31,454 order booked: 2024-08-24 - 16:00:00 - 17:00:00 - check_out - 30 - Closed - Court 6
-INFO 2024-08-19 14:13:31,454 "POST /book-slot/ HTTP/1.1" 302 0
-INFO 2024-08-19 14:13:31,454 selected date: 2024-08-24
-INFO 2024-08-19 14:13:31,820 "GET /admin-schedule/?date=2024-08-24 HTTP/1.1" 200 93902
-INFO 2024-08-19 14:13:36,112 selected date: 2024-08-19
-INFO 2024-08-19 14:13:36,387 "GET /admin-schedule/?date=2024-08-19 HTTP/1.1" 200 64391
-INFO 2024-08-19 14:13:42,450 selected date: 2024-08-22
-INFO 2024-08-19 14:13:42,744 "GET /admin-schedule/?date=2024-08-22 HTTP/1.1" 200 63992
-INFO 2024-08-19 14:18:11,916 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py changed, reloading.
-INFO 2024-08-19 14:18:12,778 Watching for file changes with StatReloader
-INFO 2024-08-19 14:18:16,423 selected date: 2024-08-22
-INFO 2024-08-19 14:18:16,714 "GET /admin-schedule/?date=2024-08-22 HTTP/1.1" 200 68920
-INFO 2024-08-19 14:18:18,330 selected date: 2024-09-17
-INFO 2024-08-19 14:18:18,560 "GET /admin-schedule/?date=2024-09-17 HTTP/1.1" 200 29221
-INFO 2024-08-19 14:18:20,754 selected date: 2024-09-10
-INFO 2024-08-19 14:18:21,153 "GET /admin-schedule/?date=2024-09-10 HTTP/1.1" 200 68920
-INFO 2024-08-19 14:18:22,157 selected date: 2024-09-12
-INFO 2024-08-19 14:18:22,398 "GET /admin-schedule/?date=2024-09-12 HTTP/1.1" 200 29221
-INFO 2024-08-19 14:18:23,100 selected date: 2024-09-14
-INFO 2024-08-19 14:18:23,327 "GET /admin-schedule/?date=2024-09-14 HTTP/1.1" 200 29221
-INFO 2024-08-19 14:18:23,664 selected date: 2024-09-15
-INFO 2024-08-19 14:18:23,872 "GET /admin-schedule/?date=2024-09-15 HTTP/1.1" 200 29221
-INFO 2024-08-19 14:18:24,059 selected date: 2024-09-16
-INFO 2024-08-19 14:18:24,308 "GET /admin-schedule/?date=2024-09-16 HTTP/1.1" 200 29221
-INFO 2024-08-19 14:18:25,875 selected date: 2024-09-17
-INFO 2024-08-19 14:18:26,075 "GET /admin-schedule/?date=2024-09-17 HTTP/1.1" 200 29221
+  File "C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\views.py", line 243, in book_slot
+    user, created = User.objects.get_or_create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 955, in get_or_create
+    return self.create(**params), True
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\models.py", line 57, in save
+    super(User, self).save(*args, **kwargs)
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 822, in save
+    self.save_base(
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 909, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1071, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1112, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\shiya\AppData\Local\Programs\Python\Python312\Lib\site-packages\MySQLdb\connections.py", line 261, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry 'ABC_ABC' for key 'app_user.username'")
+ERROR 2024-08-23 23:54:11,549 "POST /book-slot/ HTTP/1.1" 500 216179
+INFO 2024-08-23 23:54:43,446 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\models.py changed, reloading.
+INFO 2024-08-23 23:54:44,826 Watching for file changes with StatReloader

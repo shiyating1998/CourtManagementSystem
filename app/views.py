@@ -2,6 +2,7 @@ import json
 from decimal import Decimal
 from datetime import datetime, date, timedelta, time
 import stripe
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -39,6 +40,7 @@ def booking_schedule(request):
     selected_date = request.GET.get('date', today.strftime('%Y-%m-%d'))
     logger.info(f"selected date: {selected_date}")
 
+    # TODO make it configuarable
     dates = [(today + timedelta(days=i)).strftime('%a %Y-%m-%d') for i in range(8)]
 
     # TODO: filter by venue, and filter by item (badminton), filter by date
@@ -80,7 +82,8 @@ def admin_booking_schedule(request):
     selected_date = request.GET.get('date', today.strftime('%Y-%m-%d'))
     logger.info(f"selected date: {selected_date}")
 
-    dates = [(today + timedelta(days=i)).strftime('%a %Y-%m-%d') for i in range(30)]
+    # TODO make it configuarable
+    dates = [(today + timedelta(days=i)).strftime('%a %Y-%m-%d') for i in range(-7, 22)]
 
     # TODO: filter by venue, and filter by item (badminton), filter by date
     #   hardcode to venue = lions
@@ -199,6 +202,19 @@ def update_payment_intent(request):
 from django.views.decorators.csrf import csrf_exempt
 
 
+def user_exists(email):
+    return User.objects.filter(email=email).exists()
+
+def validate_user(email, first_name, last_name):
+    # Convert first_name and last_name to lowercase for comparison
+    first_name = first_name.lower()
+    last_name = last_name.lower()
+    try:
+        User.objects.get(email=email, first_name=first_name, last_name=last_name)
+        return True  # User exists and matches the details
+    except ObjectDoesNotExist:
+        return False  # No matching user found
+
 def book_slot(request):
     if request.method == 'POST':
         # Retrieve data from the form
@@ -208,12 +224,28 @@ def book_slot(request):
         phone = request.POST.get('phone')
         selected_slots = json.loads(request.POST.get('selected_slots'))
 
+        # if email entered check email exists in db and matches firstname and lastname
+        # if not match, return error
+        # if email not entered
+        # create dummy email firstname_lastname@dummy.com
+        # get the user if it already exists, otherwise create new
+        if not email:
+            email = f"{first_name}_{last_name}@dummy.com"
+
+        valid = True
+        if user_exists(email):
+            valid = validate_user(email, first_name, last_name)
+
+        if not valid:
+            print("not valid oh")
+            # return Error to the front-end
+            return False
         user, created = User.objects.get_or_create(
             email=email,
             defaults={'first_name': first_name, 'last_name': last_name, 'phone': phone,
                       'username': first_name + '_' + last_name}
         )
-        logger.info("user: {user} ")
+        logger.info(f"user: {user} ")
 
         booking_details = []
         print(selected_slots)
