@@ -56,7 +56,7 @@
                     <!--                    Item Time: {{ order.item_time.start_time }} - {{ order.item_time.end_time }}<br>-->
                     <!--            User: {% if order.user %}{{ order.user.username }}{% else %}N/A{% endif %}<br>-->
                     {% if order.user %}
-                    {{ order.user.first_name}} {{order.user.last_name}}
+                    {{ order.user.first_name|capfirst }} {{ order.user.last_name|capfirst }}
                     {% else %}
                     ${{ order.money }}
                     {% endif %}

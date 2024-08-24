@@ -679,3 +679,317 @@ django.db.utils.IntegrityError: (1062, "Duplicate entry 'ABC_ABC' for key 'app_u
 ERROR 2024-08-23 23:54:11,549 "POST /book-slot/ HTTP/1.1" 500 216179
 INFO 2024-08-23 23:54:43,446 C:\Users\shiya\PycharmProjects\CourtManagementSystem\app\models.py changed, reloading.
 INFO 2024-08-23 23:54:44,826 Watching for file changes with StatReloader
+INFO 2024-08-23 23:55:14,350 selected date: 2024-09-01
+INFO 2024-08-23 23:55:14,756 "GET /admin-schedule/?date=2024-09-01 HTTP/1.1" 200 98575
+INFO 2024-08-23 23:55:19,132 user: ABC_ABC - abc - abc - asd@asd.com -  
+INFO 2024-08-23 23:55:19,132 slot ['17:00-18:00', 'Court 6', '2024-09-01', '30']
+INFO 2024-08-23 23:55:19,132 start: 17:00-18:00
+INFO 2024-08-23 23:55:19,132 court: Court 6
+INFO 2024-08-23 23:55:19,132 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:19,132 price: 30
+INFO 2024-08-23 23:55:19,140 start_time: 17:00:00
+INFO 2024-08-23 23:55:19,140 end_time: 18:00:00
+INFO 2024-08-23 23:55:19,140 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:19,140 item: Badminton at Lions
+INFO 2024-08-23 23:55:19,149 item_court: Court 6 (Indoor) of Badminton
+INFO 2024-08-23 23:55:19,149 item_time object: 17:00:00 - 18:00:00 - Court 6
+INFO 2024-08-23 23:55:19,165 order booked: 2024-09-01 - 17:00:00 - 18:00:00 - ABC_ABC - 30 - Closed - Court 6
+INFO 2024-08-23 23:55:19,165 slot ['16:00-17:00', 'Court 6', '2024-09-01', '30']
+INFO 2024-08-23 23:55:19,165 start: 16:00-17:00
+INFO 2024-08-23 23:55:19,165 court: Court 6
+INFO 2024-08-23 23:55:19,165 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:19,165 price: 30
+INFO 2024-08-23 23:55:19,165 start_time: 16:00:00
+INFO 2024-08-23 23:55:19,165 end_time: 17:00:00
+INFO 2024-08-23 23:55:19,165 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:19,169 item: Badminton at Lions
+INFO 2024-08-23 23:55:19,169 item_court: Court 6 (Indoor) of Badminton
+INFO 2024-08-23 23:55:19,173 item_time object: 16:00:00 - 17:00:00 - Court 6
+INFO 2024-08-23 23:55:19,181 order booked: 2024-09-01 - 16:00:00 - 17:00:00 - ABC_ABC - 30 - Closed - Court 6
+INFO 2024-08-23 23:55:19,181 slot ['15:00-16:00', 'Court 6', '2024-09-01', '30']
+INFO 2024-08-23 23:55:19,181 start: 15:00-16:00
+INFO 2024-08-23 23:55:19,181 court: Court 6
+INFO 2024-08-23 23:55:19,181 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:19,181 price: 30
+INFO 2024-08-23 23:55:19,181 start_time: 15:00:00
+INFO 2024-08-23 23:55:19,181 end_time: 16:00:00
+INFO 2024-08-23 23:55:19,181 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:19,181 item: Badminton at Lions
+INFO 2024-08-23 23:55:19,189 item_court: Court 6 (Indoor) of Badminton
+INFO 2024-08-23 23:55:19,189 item_time object: 15:00:00 - 16:00:00 - Court 6
+INFO 2024-08-23 23:55:19,198 order booked: 2024-09-01 - 15:00:00 - 16:00:00 - ABC_ABC - 30 - Closed - Court 6
+INFO 2024-08-23 23:55:19,198 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-23 23:55:19,205 selected date: 2024-09-01
+INFO 2024-08-23 23:55:19,949 "GET /admin-schedule/?date=2024-09-01 HTTP/1.1" 200 98635
+INFO 2024-08-23 23:55:30,433 user: lions_ - lions -  - lions_@dummy.com -  
+INFO 2024-08-23 23:55:30,433 slot ['15:00-16:00', 'Court 7', '2024-09-01', '30']
+INFO 2024-08-23 23:55:30,433 start: 15:00-16:00
+INFO 2024-08-23 23:55:30,433 court: Court 7
+INFO 2024-08-23 23:55:30,433 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:30,433 price: 30
+INFO 2024-08-23 23:55:30,433 start_time: 15:00:00
+INFO 2024-08-23 23:55:30,433 end_time: 16:00:00
+INFO 2024-08-23 23:55:30,436 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:30,439 item: Badminton at Lions
+INFO 2024-08-23 23:55:30,441 item_court: Court 7 (Indoor) of Badminton
+INFO 2024-08-23 23:55:30,441 item_time object: 15:00:00 - 16:00:00 - Court 7
+INFO 2024-08-23 23:55:30,462 order booked: 2024-09-01 - 15:00:00 - 16:00:00 - lions_ - 30 - Closed - Court 7
+INFO 2024-08-23 23:55:30,462 slot ['16:00-17:00', 'Court 7', '2024-09-01', '30']
+INFO 2024-08-23 23:55:30,462 start: 16:00-17:00
+INFO 2024-08-23 23:55:30,462 court: Court 7
+INFO 2024-08-23 23:55:30,462 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:30,462 price: 30
+INFO 2024-08-23 23:55:30,462 start_time: 16:00:00
+INFO 2024-08-23 23:55:30,462 end_time: 17:00:00
+INFO 2024-08-23 23:55:30,462 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:30,462 item: Badminton at Lions
+INFO 2024-08-23 23:55:30,462 item_court: Court 7 (Indoor) of Badminton
+INFO 2024-08-23 23:55:30,468 item_time object: 16:00:00 - 17:00:00 - Court 7
+INFO 2024-08-23 23:55:30,491 order booked: 2024-09-01 - 16:00:00 - 17:00:00 - lions_ - 30 - Closed - Court 7
+INFO 2024-08-23 23:55:30,492 slot ['16:00-17:00', 'Court 8', '2024-09-01', '30']
+INFO 2024-08-23 23:55:30,492 start: 16:00-17:00
+INFO 2024-08-23 23:55:30,492 court: Court 8
+INFO 2024-08-23 23:55:30,492 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:30,492 price: 30
+INFO 2024-08-23 23:55:30,492 start_time: 16:00:00
+INFO 2024-08-23 23:55:30,492 end_time: 17:00:00
+INFO 2024-08-23 23:55:30,492 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:30,493 item: Badminton at Lions
+INFO 2024-08-23 23:55:30,497 item_court: Court 8 (Indoor) of Badminton
+INFO 2024-08-23 23:55:30,498 item_time object: 16:00:00 - 17:00:00 - Court 8
+INFO 2024-08-23 23:55:30,505 order booked: 2024-09-01 - 16:00:00 - 17:00:00 - lions_ - 30 - Closed - Court 8
+INFO 2024-08-23 23:55:30,505 slot ['15:00-16:00', 'Court 8', '2024-09-01', '30']
+INFO 2024-08-23 23:55:30,505 start: 15:00-16:00
+INFO 2024-08-23 23:55:30,505 court: Court 8
+INFO 2024-08-23 23:55:30,505 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:30,505 price: 30
+INFO 2024-08-23 23:55:30,509 start_time: 15:00:00
+INFO 2024-08-23 23:55:30,509 end_time: 16:00:00
+INFO 2024-08-23 23:55:30,509 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:30,509 item: Badminton at Lions
+INFO 2024-08-23 23:55:30,514 item_court: Court 8 (Indoor) of Badminton
+INFO 2024-08-23 23:55:30,514 item_time object: 15:00:00 - 16:00:00 - Court 8
+INFO 2024-08-23 23:55:30,522 order booked: 2024-09-01 - 15:00:00 - 16:00:00 - lions_ - 30 - Closed - Court 8
+INFO 2024-08-23 23:55:30,528 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-23 23:55:30,530 selected date: 2024-09-01
+INFO 2024-08-23 23:55:31,225 "GET /admin-schedule/?date=2024-09-01 HTTP/1.1" 200 98703
+INFO 2024-08-23 23:55:41,885 user: lions_ - lions -  - lions@sdf.cmo -  
+INFO 2024-08-23 23:55:41,888 slot ['14:00-15:00', 'Court 7', '2024-09-01', '30']
+INFO 2024-08-23 23:55:41,890 start: 14:00-15:00
+INFO 2024-08-23 23:55:41,890 court: Court 7
+INFO 2024-08-23 23:55:41,890 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:41,890 price: 30
+INFO 2024-08-23 23:55:41,890 start_time: 14:00:00
+INFO 2024-08-23 23:55:41,890 end_time: 15:00:00
+INFO 2024-08-23 23:55:41,890 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:41,890 item: Badminton at Lions
+INFO 2024-08-23 23:55:41,890 item_court: Court 7 (Indoor) of Badminton
+INFO 2024-08-23 23:55:41,899 item_time object: 14:00:00 - 15:00:00 - Court 7
+INFO 2024-08-23 23:55:41,909 order booked: 2024-09-01 - 14:00:00 - 15:00:00 - lions_ - 30 - Closed - Court 7
+INFO 2024-08-23 23:55:41,909 slot ['13:00-14:00', 'Court 7', '2024-09-01', '30']
+INFO 2024-08-23 23:55:41,909 start: 13:00-14:00
+INFO 2024-08-23 23:55:41,909 court: Court 7
+INFO 2024-08-23 23:55:41,909 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:41,909 price: 30
+INFO 2024-08-23 23:55:41,909 start_time: 13:00:00
+INFO 2024-08-23 23:55:41,909 end_time: 14:00:00
+INFO 2024-08-23 23:55:41,909 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:41,916 item: Badminton at Lions
+INFO 2024-08-23 23:55:41,918 item_court: Court 7 (Indoor) of Badminton
+INFO 2024-08-23 23:55:41,924 item_time object: 13:00:00 - 14:00:00 - Court 7
+INFO 2024-08-23 23:55:41,932 order booked: 2024-09-01 - 13:00:00 - 14:00:00 - lions_ - 30 - Closed - Court 7
+INFO 2024-08-23 23:55:41,932 slot ['12:00-13:00', 'Court 7', '2024-09-01', '30']
+INFO 2024-08-23 23:55:41,932 start: 12:00-13:00
+INFO 2024-08-23 23:55:41,932 court: Court 7
+INFO 2024-08-23 23:55:41,932 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:41,932 price: 30
+INFO 2024-08-23 23:55:41,932 start_time: 12:00:00
+INFO 2024-08-23 23:55:41,932 end_time: 13:00:00
+INFO 2024-08-23 23:55:41,932 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:41,939 item: Badminton at Lions
+INFO 2024-08-23 23:55:41,940 item_court: Court 7 (Indoor) of Badminton
+INFO 2024-08-23 23:55:41,940 item_time object: 12:00:00 - 13:00:00 - Court 7
+INFO 2024-08-23 23:55:41,957 order booked: 2024-09-01 - 12:00:00 - 13:00:00 - lions_ - 30 - Closed - Court 7
+INFO 2024-08-23 23:55:41,957 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-23 23:55:41,959 selected date: 2024-09-01
+INFO 2024-08-23 23:55:42,669 "GET /admin-schedule/?date=2024-09-01 HTTP/1.1" 200 98754
+INFO 2024-08-23 23:55:48,768 user: lions_ - lions -  - lions_@dummy.com -  
+INFO 2024-08-23 23:55:48,768 slot ['13:00-14:00', 'Court 5', '2024-09-01', '30']
+INFO 2024-08-23 23:55:48,768 start: 13:00-14:00
+INFO 2024-08-23 23:55:48,768 court: Court 5
+INFO 2024-08-23 23:55:48,768 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:48,768 price: 30
+INFO 2024-08-23 23:55:48,768 start_time: 13:00:00
+INFO 2024-08-23 23:55:48,768 end_time: 14:00:00
+INFO 2024-08-23 23:55:48,768 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:48,774 item: Badminton at Lions
+INFO 2024-08-23 23:55:48,775 item_court: Court 5 (Indoor) of Badminton
+INFO 2024-08-23 23:55:48,778 item_time object: 13:00:00 - 14:00:00 - Court 5
+INFO 2024-08-23 23:55:48,790 order booked: 2024-09-01 - 13:00:00 - 14:00:00 - lions_ - 30 - Closed - Court 5
+INFO 2024-08-23 23:55:48,790 slot ['14:00-15:00', 'Court 6', '2024-09-01', '30']
+INFO 2024-08-23 23:55:48,790 start: 14:00-15:00
+INFO 2024-08-23 23:55:48,790 court: Court 6
+INFO 2024-08-23 23:55:48,790 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:48,790 price: 30
+INFO 2024-08-23 23:55:48,790 start_time: 14:00:00
+INFO 2024-08-23 23:55:48,790 end_time: 15:00:00
+INFO 2024-08-23 23:55:48,790 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:48,794 item: Badminton at Lions
+INFO 2024-08-23 23:55:48,799 item_court: Court 6 (Indoor) of Badminton
+INFO 2024-08-23 23:55:48,799 item_time object: 14:00:00 - 15:00:00 - Court 6
+INFO 2024-08-23 23:55:48,808 order booked: 2024-09-01 - 14:00:00 - 15:00:00 - lions_ - 30 - Closed - Court 6
+INFO 2024-08-23 23:55:48,808 slot ['14:00-15:00', 'Court 5', '2024-09-01', '30']
+INFO 2024-08-23 23:55:48,808 start: 14:00-15:00
+INFO 2024-08-23 23:55:48,808 court: Court 5
+INFO 2024-08-23 23:55:48,808 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:48,808 price: 30
+INFO 2024-08-23 23:55:48,808 start_time: 14:00:00
+INFO 2024-08-23 23:55:48,808 end_time: 15:00:00
+INFO 2024-08-23 23:55:48,808 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:48,815 item: Badminton at Lions
+INFO 2024-08-23 23:55:48,819 item_court: Court 5 (Indoor) of Badminton
+INFO 2024-08-23 23:55:48,819 item_time object: 14:00:00 - 15:00:00 - Court 5
+INFO 2024-08-23 23:55:48,831 order booked: 2024-09-01 - 14:00:00 - 15:00:00 - lions_ - 30 - Closed - Court 5
+INFO 2024-08-23 23:55:48,831 slot ['13:00-14:00', 'Court 6', '2024-09-01', '30']
+INFO 2024-08-23 23:55:48,831 start: 13:00-14:00
+INFO 2024-08-23 23:55:48,831 court: Court 6
+INFO 2024-08-23 23:55:48,831 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:48,831 price: 30
+INFO 2024-08-23 23:55:48,831 start_time: 13:00:00
+INFO 2024-08-23 23:55:48,831 end_time: 14:00:00
+INFO 2024-08-23 23:55:48,831 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:48,831 item: Badminton at Lions
+INFO 2024-08-23 23:55:48,839 item_court: Court 6 (Indoor) of Badminton
+INFO 2024-08-23 23:55:48,840 item_time object: 13:00:00 - 14:00:00 - Court 6
+INFO 2024-08-23 23:55:48,850 order booked: 2024-09-01 - 13:00:00 - 14:00:00 - lions_ - 30 - Closed - Court 6
+INFO 2024-08-23 23:55:48,850 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-23 23:55:48,856 selected date: 2024-09-01
+INFO 2024-08-23 23:55:49,548 "GET /admin-schedule/?date=2024-09-01 HTTP/1.1" 200 98822
+INFO 2024-08-23 23:55:55,924 user: test_test - test - test - test_test@dummy.com -  
+INFO 2024-08-23 23:55:55,926 slot ['14:00-15:00', 'Court 4', '2024-09-01', '30']
+INFO 2024-08-23 23:55:55,926 start: 14:00-15:00
+INFO 2024-08-23 23:55:55,926 court: Court 4
+INFO 2024-08-23 23:55:55,926 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:55,926 price: 30
+INFO 2024-08-23 23:55:55,926 start_time: 14:00:00
+INFO 2024-08-23 23:55:55,926 end_time: 15:00:00
+INFO 2024-08-23 23:55:55,926 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:55,929 item: Badminton at Lions
+INFO 2024-08-23 23:55:55,932 item_court: Court 4 (Indoor) of Badminton
+INFO 2024-08-23 23:55:55,933 item_time object: 14:00:00 - 15:00:00 - Court 4
+INFO 2024-08-23 23:55:55,944 order booked: 2024-09-01 - 14:00:00 - 15:00:00 - test_test - 30 - Closed - Court 4
+INFO 2024-08-23 23:55:55,944 slot ['13:00-14:00', 'Court 4', '2024-09-01', '30']
+INFO 2024-08-23 23:55:55,944 start: 13:00-14:00
+INFO 2024-08-23 23:55:55,944 court: Court 4
+INFO 2024-08-23 23:55:55,944 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:55,944 price: 30
+INFO 2024-08-23 23:55:55,944 start_time: 13:00:00
+INFO 2024-08-23 23:55:55,944 end_time: 14:00:00
+INFO 2024-08-23 23:55:55,944 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:55,948 item: Badminton at Lions
+INFO 2024-08-23 23:55:55,948 item_court: Court 4 (Indoor) of Badminton
+INFO 2024-08-23 23:55:55,957 item_time object: 13:00:00 - 14:00:00 - Court 4
+INFO 2024-08-23 23:55:55,965 order booked: 2024-09-01 - 13:00:00 - 14:00:00 - test_test - 30 - Closed - Court 4
+INFO 2024-08-23 23:55:55,965 slot ['12:00-13:00', 'Court 4', '2024-09-01', '30']
+INFO 2024-08-23 23:55:55,965 start: 12:00-13:00
+INFO 2024-08-23 23:55:55,965 court: Court 4
+INFO 2024-08-23 23:55:55,965 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:55,965 price: 30
+INFO 2024-08-23 23:55:55,965 start_time: 12:00:00
+INFO 2024-08-23 23:55:55,965 end_time: 13:00:00
+INFO 2024-08-23 23:55:55,965 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:55,968 item: Badminton at Lions
+INFO 2024-08-23 23:55:55,973 item_court: Court 4 (Indoor) of Badminton
+INFO 2024-08-23 23:55:55,973 item_time object: 12:00:00 - 13:00:00 - Court 4
+INFO 2024-08-23 23:55:55,982 order booked: 2024-09-01 - 12:00:00 - 13:00:00 - test_test - 30 - Closed - Court 4
+INFO 2024-08-23 23:55:55,982 slot ['12:00-13:00', 'Court 3', '2024-09-01', '30']
+INFO 2024-08-23 23:55:55,982 start: 12:00-13:00
+INFO 2024-08-23 23:55:55,982 court: Court 3
+INFO 2024-08-23 23:55:55,982 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:55,982 price: 30
+INFO 2024-08-23 23:55:55,982 start_time: 12:00:00
+INFO 2024-08-23 23:55:55,982 end_time: 13:00:00
+INFO 2024-08-23 23:55:55,982 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:55,982 item: Badminton at Lions
+INFO 2024-08-23 23:55:55,990 item_court: Court 3 (Unknown) of Badminton
+INFO 2024-08-23 23:55:55,990 item_time object: 12:00:00 - 13:00:00 - Court 3
+INFO 2024-08-23 23:55:55,998 order booked: 2024-09-01 - 12:00:00 - 13:00:00 - test_test - 30 - Closed - Court 3
+INFO 2024-08-23 23:55:55,998 slot ['13:00-14:00', 'Court 3', '2024-09-01', '30']
+INFO 2024-08-23 23:55:55,998 start: 13:00-14:00
+INFO 2024-08-23 23:55:55,998 court: Court 3
+INFO 2024-08-23 23:55:55,998 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:55,998 price: 30
+INFO 2024-08-23 23:55:55,998 start_time: 13:00:00
+INFO 2024-08-23 23:55:55,998 end_time: 14:00:00
+INFO 2024-08-23 23:55:55,998 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:56,007 item: Badminton at Lions
+INFO 2024-08-23 23:55:56,008 item_court: Court 3 (Unknown) of Badminton
+INFO 2024-08-23 23:55:56,008 item_time object: 13:00:00 - 14:00:00 - Court 3
+INFO 2024-08-23 23:55:56,018 order booked: 2024-09-01 - 13:00:00 - 14:00:00 - test_test - 30 - Closed - Court 3
+INFO 2024-08-23 23:55:56,018 slot ['14:00-15:00', 'Court 3', '2024-09-01', '30']
+INFO 2024-08-23 23:55:56,018 start: 14:00-15:00
+INFO 2024-08-23 23:55:56,018 court: Court 3
+INFO 2024-08-23 23:55:56,023 booking_date: 2024-09-01
+INFO 2024-08-23 23:55:56,023 price: 30
+INFO 2024-08-23 23:55:56,023 start_time: 14:00:00
+INFO 2024-08-23 23:55:56,023 end_time: 15:00:00
+INFO 2024-08-23 23:55:56,023 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:55:56,023 item: Badminton at Lions
+INFO 2024-08-23 23:55:56,023 item_court: Court 3 (Unknown) of Badminton
+INFO 2024-08-23 23:55:56,029 item_time object: 14:00:00 - 15:00:00 - Court 3
+INFO 2024-08-23 23:55:56,040 order booked: 2024-09-01 - 14:00:00 - 15:00:00 - test_test - 30 - Closed - Court 3
+INFO 2024-08-23 23:55:56,040 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-23 23:55:56,040 selected date: 2024-09-01
+INFO 2024-08-23 23:55:56,748 "GET /admin-schedule/?date=2024-09-01 HTTP/1.1" 200 98978
+INFO 2024-08-23 23:56:05,531 user: Test_Test - test - test - test@asd.com -  
+INFO 2024-08-23 23:56:05,531 slot ['15:00-16:00', 'Court 4', '2024-09-01', '30']
+INFO 2024-08-23 23:56:05,531 start: 15:00-16:00
+INFO 2024-08-23 23:56:05,531 court: Court 4
+INFO 2024-08-23 23:56:05,531 booking_date: 2024-09-01
+INFO 2024-08-23 23:56:05,531 price: 30
+INFO 2024-08-23 23:56:05,531 start_time: 15:00:00
+INFO 2024-08-23 23:56:05,531 end_time: 16:00:00
+INFO 2024-08-23 23:56:05,531 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:56:05,538 item: Badminton at Lions
+INFO 2024-08-23 23:56:05,538 item_court: Court 4 (Indoor) of Badminton
+INFO 2024-08-23 23:56:05,546 item_time object: 15:00:00 - 16:00:00 - Court 4
+INFO 2024-08-23 23:56:05,555 order booked: 2024-09-01 - 15:00:00 - 16:00:00 - Test_Test - 30 - Closed - Court 4
+INFO 2024-08-23 23:56:05,555 slot ['15:00-16:00', 'Court 3', '2024-09-01', '30']
+INFO 2024-08-23 23:56:05,555 start: 15:00-16:00
+INFO 2024-08-23 23:56:05,555 court: Court 3
+INFO 2024-08-23 23:56:05,555 booking_date: 2024-09-01
+INFO 2024-08-23 23:56:05,555 price: 30
+INFO 2024-08-23 23:56:05,555 start_time: 15:00:00
+INFO 2024-08-23 23:56:05,557 end_time: 16:00:00
+INFO 2024-08-23 23:56:05,557 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:56:05,558 item: Badminton at Lions
+INFO 2024-08-23 23:56:05,558 item_court: Court 3 (Unknown) of Badminton
+INFO 2024-08-23 23:56:05,565 item_time object: 15:00:00 - 16:00:00 - Court 3
+INFO 2024-08-23 23:56:05,578 order booked: 2024-09-01 - 15:00:00 - 16:00:00 - Test_Test - 30 - Closed - Court 3
+INFO 2024-08-23 23:56:05,578 slot ['16:00-17:00', 'Court 4', '2024-09-01', '30']
+INFO 2024-08-23 23:56:05,578 start: 16:00-17:00
+INFO 2024-08-23 23:56:05,578 court: Court 4
+INFO 2024-08-23 23:56:05,578 booking_date: 2024-09-01
+INFO 2024-08-23 23:56:05,578 price: 30
+INFO 2024-08-23 23:56:05,580 start_time: 16:00:00
+INFO 2024-08-23 23:56:05,580 end_time: 17:00:00
+INFO 2024-08-23 23:56:05,580 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:56:05,580 item: Badminton at Lions
+INFO 2024-08-23 23:56:05,588 item_court: Court 4 (Indoor) of Badminton
+INFO 2024-08-23 23:56:05,588 item_time object: 16:00:00 - 17:00:00 - Court 4
+INFO 2024-08-23 23:56:05,598 order booked: 2024-09-01 - 16:00:00 - 17:00:00 - Test_Test - 30 - Closed - Court 4
+INFO 2024-08-23 23:56:05,598 slot ['16:00-17:00', 'Court 3', '2024-09-01', '30']
+INFO 2024-08-23 23:56:05,598 start: 16:00-17:00
+INFO 2024-08-23 23:56:05,598 court: Court 3
+INFO 2024-08-23 23:56:05,604 booking_date: 2024-09-01
+INFO 2024-08-23 23:56:05,604 price: 30
+INFO 2024-08-23 23:56:05,604 start_time: 16:00:00
+INFO 2024-08-23 23:56:05,604 end_time: 17:00:00
+INFO 2024-08-23 23:56:05,604 booking_date_obj: 2024-09-01
+INFO 2024-08-23 23:56:05,604 item: Badminton at Lions
+INFO 2024-08-23 23:56:05,609 item_court: Court 3 (Unknown) of Badminton
+INFO 2024-08-23 23:56:05,613 item_time object: 16:00:00 - 17:00:00 - Court 3
+INFO 2024-08-23 23:56:05,621 order booked: 2024-09-01 - 16:00:00 - 17:00:00 - Test_Test - 30 - Closed - Court 3
+INFO 2024-08-23 23:56:05,621 "POST /book-slot/ HTTP/1.1" 302 0
+INFO 2024-08-23 23:56:05,628 selected date: 2024-09-01
+INFO 2024-08-23 23:56:06,368 "GET /admin-schedule/?date=2024-09-01 HTTP/1.1" 200 99082
