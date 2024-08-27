@@ -210,7 +210,8 @@ def validate_user(email, first_name, last_name):
     first_name = first_name.lower()
     last_name = last_name.lower()
     try:
-        User.objects.get(email=email, first_name=first_name, last_name=last_name)
+        a = User.objects.get(email=email, first_name=first_name, last_name=last_name)
+        print(f"here{a}")
         return True  # User exists and matches the details
     except ObjectDoesNotExist:
         return False  # No matching user found
@@ -229,17 +230,25 @@ def book_slot(request):
         # if email not entered
         # create dummy email firstname_lastname@dummy.com
         # get the user if it already exists, otherwise create new
+
+
         if not email:
             email = f"{first_name}_{last_name}@dummy.com"
+
+
+        print(first_name)
+        print(last_name)
+        print(email)
 
         valid = True
         if user_exists(email):
             valid = validate_user(email, first_name, last_name)
-
+        print(valid)
         if not valid:
             print("not valid oh")
             # return Error to the front-end
-            return False
+            return JsonResponse({'error': 'Email address already registered with another name.'})
+
         user, created = User.objects.get_or_create(
             email=email,
             defaults={'first_name': first_name, 'last_name': last_name, 'phone': phone,
@@ -298,7 +307,8 @@ def book_slot(request):
         url = reverse('admin_booking_schedule')
         query_params = {'date': booking_date}  # Using the booking_date from the loop above
         url_with_query = f"{url}?{urlencode(query_params)}"
-        return redirect(url_with_query)
+        #return redirect(url_with_query)
+        return JsonResponse({'success': True})
 
     print("got here")
-    return booking_schedule(request)
+    return JsonResponse({'error': 'Invalid request method.'})

@@ -78,6 +78,8 @@ document
     .addEventListener("submit", handleSubmit);
 
 
+
+
 // Fetches a payment intent and captures the client secret
 async function initialize() {
     console.log("initializing...")

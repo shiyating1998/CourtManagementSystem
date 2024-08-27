@@ -76,24 +76,26 @@
         <button type="button" id="bookButton" onclick="openForm()">Book Selected &#129122</button>
 
 
-        <div class="form-popup" id="bookingForm">
-            <form method="post" action="{% url 'book_slot' %}">
-                {% csrf_token %}
-                <h2 id="bookingHeader">Book Courts</h2>
-                <p id="bookingDetails"></p>
-                <label for="first_name">First Name:</label>
-                <input type="text" name="first_name" required><br>
-                <label for="last_name">Last Name:</label>
-                <input type="text" name="last_name" ><br>
-                <label for="email">Email:</label>
-                <input type="email" name="email" ><br>
-                <label for="phone">Cell Phone Number:</label>
-                <input type="text" name="phone"><br>
-                <input type="hidden" name="selected_slots" id="selected_slots" value=""><br>
-                <button type="submit">Book</button>
-                <button type="button" onclick="closeForm()">Cancel</button>
-            </form>
-        </div>
+        <div class="form-popup" id="bookingForm" >
+    <form id="bookingFormId" method="post">
+        {% csrf_token %}
+        <h2 id="bookingHeader">Book Courts</h2>
+        <p id="bookingDetails"></p>
+        <div id="formErrors" style="color: red;"></div> <!-- Error message container -->
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" required><br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name"><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email"><br>
+        <label for="phone">Cell Phone Number:</label>
+        <input type="text" name="phone"><br>
+        <input type="hidden" name="selected_slots" id="selected_slots" value=""><br>
+        <button type="submit">Book</button>
+        <button type="button" onclick="closeForm()">Cancel</button>
+    </form>
+</div>
+
     </div>
 
 </body>
@@ -102,4 +104,45 @@
 <!-- Include your CSS files -->
 <link rel="stylesheet" type="text/css" href="{% static 'css/admin-schedule.css' %}">
 <script src="{% static 'scripts/admin-schedule.js' %}"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('bookingFormId');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(form);
+        const csrfToken = form.querySelector('[name="csrfmiddlewaretoken"]').value;
+
+        fetch('{% url 'book_slot' %}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': csrfToken
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                document.getElementById('formErrors').textContent = data.error;
+            } else {
+                // Handle success (e.g., show a success message or redirect)
+                //document.getElementById('formErrors').textContent = '';
+                //alert('Booking successful!');
+                // Optionally redirect or close the form
+                // Reload the page
+                //closeForm();
+                window.location.reload();
+
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('formErrors').textContent = 'An error occurred. Please try again.';
+        });
+    });
+});
+
+</script>
 </html>

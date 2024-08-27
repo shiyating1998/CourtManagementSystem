@@ -1,5 +1,9 @@
 var selectedCells = [];
 
+const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+
+
 function toggleSelect(cell, slot, court, date, isBooked, price) {
     console.log("clicked")
     var today = new Date().toISOString().split('T')[0];
@@ -47,7 +51,4 @@ function closeForm() {
 function showSchedule(date) {
     window.location.href = "?date=" + date;
 }
-
-const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
 
