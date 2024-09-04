@@ -231,21 +231,13 @@ def book_slot(request):
         # create dummy email firstname_lastname@dummy.com
         # get the user if it already exists, otherwise create new
 
-
         if not email:
             email = f"{first_name}_{last_name}@dummy.com"
-
-
-        print(first_name)
-        print(last_name)
-        print(email)
 
         valid = True
         if user_exists(email):
             valid = validate_user(email, first_name, last_name)
-        print(valid)
         if not valid:
-            print("not valid oh")
             # return Error to the front-end
             return JsonResponse({'error': 'Email address already registered with another name.'})
 
@@ -257,9 +249,6 @@ def book_slot(request):
         logger.info(f"user: {user} ")
 
         booking_details = []
-        print(selected_slots)
-        for slot in selected_slots:
-            print(f"slot {slot}")
         for slot in selected_slots:
             logger.info(f"slot {slot}")
             start_time, court_name, booking_date, price = slot
@@ -309,6 +298,58 @@ def book_slot(request):
         url_with_query = f"{url}?{urlencode(query_params)}"
         #return redirect(url_with_query)
         return JsonResponse({'success': True})
-
-    print("got here")
     return JsonResponse({'error': 'Invalid request method.'})
+
+
+
+@csrf_exempt
+def verify_user_and_slots(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            email = data.get("email")
+            first_name = data.get("first_name")
+            last_name = data.get("last_name")
+            selected_slots = data.get("selected_slots")
+
+            # Step 1: Verify the user details
+            try:
+                user = User.objects.get(email=email)
+                if user.first_name != first_name or user.last_name != last_name:
+                    return JsonResponse({"error": "User details do not match."}, status=400)
+            except User.DoesNotExist:
+                pass  # User does not exist, proceed with creating new user during payment
+
+            # Step 2: Check if the selected slots are available
+            for slot in selected_slots:
+                start_time, court_name, booking_date, _ = slot
+                start_time_obj = datetime.strptime(start_time.split('-')[0], "%H:%M").time()
+                end_time_obj = (datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)).time()
+                booking_date_obj = datetime.strptime(booking_date, "%Y-%m-%d").date()
+                # Check if the slot is already booked
+                item_court = ItemCourt.objects.get(name=court_name)
+                item_time_booked = ItemOrder.objects.filter(
+                    item_time__item_court=item_court,
+                    item_time__start_time=start_time_obj,
+                    item_time__end_time=end_time_obj,
+                    date=booking_date_obj,
+                    status=False # Booked
+                ).exists()
+
+                if item_time_booked:
+                    print(ItemOrder.objects.filter(
+                    item_time__item_court=item_court,
+                    item_time__start_time=start_time_obj,
+                    item_time__end_time=end_time_obj,
+                    date=booking_date_obj,
+                    status=False
+                ))
+                    return JsonResponse(
+                        {"error": f"Slot on {booking_date} at {start_time} for {court_name} is already booked."},
+                        status=400)
+
+            return JsonResponse({"success": True})
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return JsonResponse({"error": "An internal server error occurred."}, status=500)
+

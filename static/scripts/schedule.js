@@ -107,12 +107,10 @@ async function initialize() {
     const paymentElement = elements.create("payment", paymentElementOptions);
     paymentElement.mount("#payment-element");
 }
-
 async function handleSubmit(e) {
     e.preventDefault();
-    //initialize();
 
-     // Collect selected slot data
+    // Collect selected slot data
     var slots = selectedCells.map(c => c.split('_'));
     const firstName = document.getElementById('first_name').value;
     const lastName = document.getElementById('last_name').value;
@@ -120,22 +118,39 @@ async function handleSubmit(e) {
     const phone = document.getElementById('phone').value;
     var total = slots.map(s => parseFloat(s[3])).reduce((sum, value) => sum + value, 0);
 
-
-    console.log("[handleSubmit] selectedSlots: ", slots)
-    console.log("[handleSubmit] firstName: ", firstName)
-    console.log("[handleSubmit] lastName: ", lastName)
-    console.log("[handleSubmit] email: ", email)
-    console.log("[handleSubmit] phone: ", phone)
-    console.log("[handleSubmit] total: ", total)
+    console.log("[handleSubmit] selectedSlots: ", slots);
+    console.log("[handleSubmit] firstName: ", firstName);
+    console.log("[handleSubmit] lastName: ", lastName);
+    console.log("[handleSubmit] email: ", email);
+    console.log("[handleSubmit] phone: ", phone);
+    console.log("[handleSubmit] total: ", total);
 
     setLoading(true);
 
-    // TODO verify if email exists in db
-    // 1) exists: then verify if firstname and lastname match record
-    // if it doens't match, prompts an error msg
-    // 2) not exists: continue
+    // Verify email, user details, and slot availability with backend
+    const verifyResponse = await fetch('/verify_user_and_slots/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        body: JSON.stringify({
+            email: email,
+            first_name: firstName,
+            last_name: lastName,
+            selected_slots: slots
+        })
+    });
 
-    // Update PaymentIntent with metadata
+    const verifyResult = await verifyResponse.json();
+    if (verifyResult.error) {
+        console.error(verifyResult.error);
+        showMessage(verifyResult.error);
+        setLoading(false);
+        return;
+    }
+
+    // Proceed with updating PaymentIntent with metadata
     const updateResponse = await fetch('/update_payment_intent/', {
         method: 'POST',
         headers: {
@@ -143,7 +158,7 @@ async function handleSubmit(e) {
             'X-CSRFToken': csrftoken
         },
         body: JSON.stringify({
-            payment_intent_id: clientSecret.split('_secret')[0], // Extract payment intent ID from client secret
+            payment_intent_id: clientSecret.split('_secret')[0],
             selected_slots: slots,
             first_name: firstName,
             last_name: lastName,
@@ -155,40 +170,30 @@ async function handleSubmit(e) {
 
     const updateResult = await updateResponse.json();
     if (updateResult.error) {
-        console.log("error here in update")
         console.error(updateResult.error);
         showMessage(updateResult.error);
         setLoading(false);
         return;
     }
 
-     const { error } = await stripe.confirmPayment({
+    const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-            return_url: 'http://localhost:8000/payment_success', //TODO
-            // Make sure to change this to your payment completion page
+            return_url: 'http://localhost:8000/payment_success',
             receipt_email: email
-        },
-
+        }
     });
 
-
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
     if (error.type === "card_error" || error.type === "validation_error") {
-        console.log("error here?")
         showMessage(error.message);
     } else {
-        console.log("error here on payment")
         showMessage("An unexpected error occurred.");
     }
 
-
     setLoading(false);
 }
+
+
 
 // Fetches the payment intent status after payment submission
 async function checkStatus() {
