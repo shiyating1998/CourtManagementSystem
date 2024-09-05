@@ -4,40 +4,6 @@ const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
 
 
-function toggleSelect(cell, slot, court, date, isBooked, price) {
-    console.log("clicked")
-    var today = new Date().toISOString().split('T')[0];
-    if (date < today) {
-        console.log("date:", date)
-        console.log("today:", today)
-        return;
-    }
-
-    if (isBooked) {
-        // open a form containing the information from the user
-        // TODO: open a booking details form for booked court
-
-        var cellKey = `${slot}_${court}_${date}_${price}`;
-        var slots = cellKey.split('_');
-        console.log("slots:", slots)
-
-        var details = date + '<br>' + court + ',' + slot + ',$' + price;
-        document.getElementById("bookingDetails").innerHTML = details;
-        document.getElementById("bookingForm").style.display = "block";
-        return;
-    }
-
-    var cellKey = `${slot}_${court}_${date}_${price}`;
-    if (selectedCells.includes(cellKey)) {
-        selectedCells = selectedCells.filter(c => c !== cellKey);
-        cell.classList.remove('selected');
-    } else {
-        selectedCells.push(cellKey);
-        cell.classList.add('selected');
-    }
-
-    console.log(selectedCells)
-}
 
 function openForm() {
     if (selectedCells.length === 0) {

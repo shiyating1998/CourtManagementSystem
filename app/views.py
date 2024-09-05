@@ -301,6 +301,92 @@ def book_slot(request):
     return JsonResponse({'error': 'Invalid request method.'})
 
 
+def get_order_info(request):
+    if request.method == 'POST':
+        # Retrieve data from the form
+        start_time = request.POST.get('start_time')
+        court_name = request.POST.get('court_name')
+        booking_date = request.POST.get('booking_date')
+
+        logger.info(f"start: {start_time}")
+        logger.info(f"court: {court_name}")
+        logger.info(f"booking_date: {booking_date}")
+
+        # Parse start_time and booking_date
+        start_time_obj = datetime.strptime(start_time.split('-')[0], "%H:%M").time()
+        end_time_obj = (datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)).time()
+        booking_date_obj = datetime.strptime(booking_date, "%Y-%m-%d").date()
+
+        # Retrieve Item and ItemCourt
+        item = Item.objects.get(id=1)
+        item_court = ItemCourt.objects.get(name=court_name, item=item)
+
+        # Retrieve ItemTime
+        item_time = ItemTime.objects.get(item_court=item_court, start_time=start_time_obj, end_time=end_time_obj)
+
+        # Retrieve ItemOrder
+        item_order = ItemOrder.objects.get(item_time=item_time, date=booking_date_obj)
+
+        # Extract the user details from the ItemOrder
+        user = item_order.user
+        user_data = {
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'email': user.email,
+            'phone': user.phone
+        }
+
+        # Prepare the response data
+        response_data = {
+            "success": True,
+            "user": user_data,
+            "money": str(item_order.money),
+            "flag": item_order.flag,
+            "status": item_order.status,
+            "booking_date": str(item_order.date),
+        }
+
+        # Log and return the response
+        logger.info(f"Returning order and user details: {response_data}")
+        return JsonResponse(response_data)
+    else:
+        return JsonResponse({"error": "Invalid request method"}, status=405)
+
+def get_order_info2(request):
+    if request.method == 'POST':
+        # Retrieve data from the form
+        start_time = request.POST.get('start_time')
+        court_name = request.POST.get('court_name')
+        booking_date = request.POST.get('booking_date')
+
+        logger.info(f"start: {start_time}")
+        logger.info(f"court: {court_name}")
+        logger.info(f"booking_date: {booking_date}")
+
+
+        start_time_obj = datetime.strptime(start_time.split('-')[0], "%H:%M").time()
+        end_time_obj = (datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)).time()
+        logger.info(f"start_time: {start_time_obj}")
+        logger.info(f"end_time: {end_time_obj}")
+        booking_date_obj = datetime.strptime(booking_date, "%Y-%m-%d").date()
+        logger.info(f"booking_date_obj: {booking_date_obj}")
+
+        item = Item.objects.get(id=1)
+        logger.info(f"item: {item}")
+
+        item_court = ItemCourt.objects.get(name=court_name, item=item)
+        logger.info(f"item_court: {item_court}")
+
+        item_time = ItemTime.objects.get(item_court=item_court, start_time=start_time_obj,
+                                         end_time=end_time_obj)
+        logger.info(f"item_time object: {item_time}")
+
+        item_order = ItemOrder.objects.get(
+            item_time=item_time,
+            date=booking_date_obj,
+        )
+        logger.info(f"order queried: {item_order}")
+        return JsonResponse({"success": True})
 
 @csrf_exempt
 def verify_user_and_slots(request):
