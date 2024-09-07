@@ -91,8 +91,10 @@
                 <label for="phone">Cell Phone Number:</label>
                 <input type="text" name="phone"><br>
                 <input type="hidden" name="selected_slots" id="selected_slots" value=""><br>
+                <input type="hidden" name="info" id="info" value=""> <br>
                 <button type="submit">Book</button>
                 <button type="button" onclick="closeForm()">Cancel</button>
+                <button id="btnCancelBooking" type="button" onclick="cancelBooking()">Cancel Boooking</button>
             </form>
         </div>
 
@@ -107,15 +109,13 @@
 
 <script>
     const form = document.getElementById('bookingFormId');
+    const csrfToken = form.querySelector('[name="csrfmiddlewaretoken"]').value;
     //TODO move to js
     document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('bookingFormId');
-
         form.addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent default form submission
 
             const formData = new FormData(form);
-            const csrfToken = form.querySelector('[name="csrfmiddlewaretoken"]').value;
 
             fetch('{% url 'book_slot' %}', {
                 method: 'POST',
@@ -147,10 +147,47 @@
     });
 
 
+    function cancelBooking() {
+
+        //TODO
+        var formData = new FormData();
+        formData.append('start_time', slot);   // Pass the start_time
+        formData.append('court_name', court);  // Pass the court_name
+        formData.append('booking_date', date); // Pass the booking_date
+        fetch('{% url 'get_order_info' %}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': csrfToken
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Access user information from the response
+                    var userInfo = `
+                            Name: ${data.user.first_name} ${data.user.last_name} <br>
+                            Email: ${data.user.email} <br>
+                            Phone: ${data.user.phone} <br>
+                            Amount Paid: $${data.money} <br>
+                            Booking Date: ${data.booking_date} <br>
+                            Status: ${data.status ? 'Open' : 'Closed'} <br>
+                            Flag: ${data.flag} <br>
+                        `;
+
+                    // Display user and booking details in a div
+                    document.getElementById('bookingDetails').innerHTML = userInfo;
+                } else if (data.error) {
+                    document.getElementById('formErrors').textContent = data.error;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('formErrors').textContent = 'An error occurred. Please try again.';
+            });
+    }
 
     function toggleSelect(cell, slot, court, date, isBooked, price) {
-        const csrfToken = form.querySelector('[name="csrfmiddlewaretoken"]').value;
-        console.log("clicked")
         var today = new Date().toISOString().split('T')[0];
         if (date < today) {
             console.log("date:", date)
@@ -160,8 +197,6 @@
 
         if (isBooked) {
             // open a form containing the information from the user
-            // TODO: open a booking details form for booked court
-
             var cellKey = `${slot}_${court}_${date}_${price}`;
             var slots = cellKey.split('_');
             console.log("slots:", slots);
@@ -170,6 +205,9 @@
             document.getElementById("bookingDetails").innerHTML = details;
             document.getElementById("bookingForm").style.display = "block";
 
+
+            // Show button and add back to layout
+            document.getElementById("btnCancelBooking").style.display = "block";
             // Create a FormData object to send data to the server
             var formData = new FormData();
             formData.append('start_time', slot);   // Pass the start_time
@@ -188,14 +226,14 @@
                     if (data.success) {
                         // Access user information from the response
                         var userInfo = `
-            Name: ${data.user.first_name} ${data.user.last_name} <br>
-            Email: ${data.user.email} <br>
-            Phone: ${data.user.phone} <br>
-            Amount Paid: $${data.money} <br>
-            Booking Date: ${data.booking_date} <br>
-            Status: ${data.status ? 'Open' : 'Closed'} <br>
-            Flag: ${data.flag} <br>
-        `;
+                            Name: ${data.user.first_name} ${data.user.last_name} <br>
+                            Email: ${data.user.email} <br>
+                            Phone: ${data.user.phone} <br>
+                            Amount Paid: $${data.money} <br>
+                            Booking Date: ${data.booking_date} <br>
+                            Status: ${data.status ? 'Open' : 'Closed'} <br>
+                            Flag: ${data.flag} <br>
+                        `;
 
                         // Display user and booking details in a div
                         document.getElementById('bookingDetails').innerHTML = userInfo;
@@ -210,8 +248,6 @@
 
             return;
         }
-
-
 
         var cellKey = `${slot}_${court}_${date}_${price}`;
         if (selectedCells.includes(cellKey)) {

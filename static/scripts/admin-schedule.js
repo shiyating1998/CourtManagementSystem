@@ -22,6 +22,8 @@ function openForm() {
     document.getElementById("selected_slots").value = JSON.stringify(slots);
     document.getElementById("bookingDetails").innerHTML = details;
     document.getElementById("bookingForm").style.display = "block";
+                // Hide button and remove from layout
+document.getElementById("btnCancelBooking").style.display = "none";
     console.log('Selected Slots for Booking:', slots);
 }
 

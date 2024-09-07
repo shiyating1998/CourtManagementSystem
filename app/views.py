@@ -211,7 +211,6 @@ def validate_user(email, first_name, last_name):
     last_name = last_name.lower()
     try:
         a = User.objects.get(email=email, first_name=first_name, last_name=last_name)
-        print(f"here{a}")
         return True  # User exists and matches the details
     except ObjectDoesNotExist:
         return False  # No matching user found
