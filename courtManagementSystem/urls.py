@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import views
-from app.views import StripeIntentView, stripe_webhook, verify_user_and_slots, get_order_info
+from app.views import StripeIntentView, stripe_webhook, verify_user_and_slots, get_order_info, cancel_booking
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,4 +31,5 @@ urlpatterns = [
     path('admin-schedule/', views.admin_booking_schedule, name='admin_booking_schedule'),
     path('verify_user_and_slots/', verify_user_and_slots, name='verify_user_and_slots'),
     path('get_order_info/', get_order_info, name='get_order_info'),
+    path('cancel_booking',cancel_booking,name='cancel_booking')
 ]

@@ -23,7 +23,7 @@ function openForm() {
     document.getElementById("bookingDetails").innerHTML = details;
     document.getElementById("bookingForm").style.display = "block";
                 // Hide button and remove from layout
-document.getElementById("btnCancelBooking").style.display = "none";
+    document.getElementById("btnCancelBooking").style.display = "none";
     console.log('Selected Slots for Booking:', slots);
 }
 

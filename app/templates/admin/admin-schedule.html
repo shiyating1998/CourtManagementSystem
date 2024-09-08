@@ -149,12 +149,28 @@
 
     function cancelBooking() {
 
-        //TODO
+        var info = document.getElementById("info").value;
+        console.log("info: ", info);
+
+        // Assuming the format is "start_time-end_time_court_name_date_price"
+        // We can split the string by underscores and further split by hyphens for the time
+        var parts = info.split('_');
+        var timeRange = parts[0].split('-'); // Splitting "20:00-21:00" to get start and end times
+
+        var start_time = timeRange[0]; // Start time (20:00)
+        var end_time = timeRange[1];   // End time (21:00)
+        var court_name = parts[1];     // Court name (Court 7)
+        var booking_date = parts[2];   // Booking date (2024-09-08)
+        var price = parts[3];          // Price (30)
+
+        // Now create FormData and append the extracted values
         var formData = new FormData();
-        formData.append('start_time', slot);   // Pass the start_time
-        formData.append('court_name', court);  // Pass the court_name
-        formData.append('booking_date', date); // Pass the booking_date
-        fetch('{% url 'get_order_info' %}', {
+        formData.append('start_time', start_time);   // Pass the start_time
+        formData.append('end_time', end_time);       // Optionally pass the end_time if needed
+        formData.append('court_name', court_name);   // Pass the court_name
+        formData.append('booking_date', booking_date); // Pass the booking_date
+        formData.append('price', price);             // Optionally pass the price if needed
+        fetch('{% url 'cancel_booking' %}', {
             method: 'POST',
             body: formData,
             headers: {
@@ -164,19 +180,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Access user information from the response
-                    var userInfo = `
-                            Name: ${data.user.first_name} ${data.user.last_name} <br>
-                            Email: ${data.user.email} <br>
-                            Phone: ${data.user.phone} <br>
-                            Amount Paid: $${data.money} <br>
-                            Booking Date: ${data.booking_date} <br>
-                            Status: ${data.status ? 'Open' : 'Closed'} <br>
-                            Flag: ${data.flag} <br>
-                        `;
-
-                    // Display user and booking details in a div
-                    document.getElementById('bookingDetails').innerHTML = userInfo;
+                    window.location.reload();
                 } else if (data.error) {
                     document.getElementById('formErrors').textContent = data.error;
                 }
@@ -205,6 +209,7 @@
             document.getElementById("bookingDetails").innerHTML = details;
             document.getElementById("bookingForm").style.display = "block";
 
+            document.getElementById("info").value = cellKey;
 
             // Show button and add back to layout
             document.getElementById("btnCancelBooking").style.display = "block";
