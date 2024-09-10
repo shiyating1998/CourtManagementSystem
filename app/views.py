@@ -240,6 +240,7 @@ def book_slot(request):
             # return Error to the front-end
             return JsonResponse({'error': 'Email address already registered with another name.'})
 
+        logger.info(f"phone: {phone}")
         user, created = User.objects.get_or_create(
             email=email,
             defaults={'first_name': first_name, 'last_name': last_name, 'phone': phone,

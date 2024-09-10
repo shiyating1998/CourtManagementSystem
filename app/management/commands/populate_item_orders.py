@@ -8,7 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # DANGER the below code removes all entries from ItemOrder
-        # ItemOrder.objects.all().delete()
+        ItemOrder.objects.all().delete()
 
         # Define time slots and prices
         weekday_prices = [
@@ -26,7 +26,7 @@ class Command(BaseCommand):
 
         # Define date range for the next month
         today = date.today()
-        end_date = today + timedelta(days=30)
+        end_date = today + timedelta(days=365)
         current_date = today
 
         item_courts = ItemCourt.objects.all()

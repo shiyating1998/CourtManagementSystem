@@ -44,7 +44,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(max_length=20,null=True,)
     username = models.CharField(max_length=255)
     password = models.CharField(max_length=255)  # TODO Ensure password is hashed
     creation_time = models.DateTimeField(auto_now_add=True)
