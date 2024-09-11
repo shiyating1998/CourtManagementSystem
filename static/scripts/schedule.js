@@ -186,7 +186,7 @@ async function handleSubmit(e) {
 
     if (error.type === "card_error" || error.type === "validation_error") {
         showMessage(error.message);
-    } else {
+    } else{
         showMessage("An unexpected error occurred.");
     }
 

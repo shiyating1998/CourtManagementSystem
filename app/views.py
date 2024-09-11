@@ -16,6 +16,8 @@ from .models import User, Item, ItemCourt, ItemTime, ItemOrder, ProcessedEvent
 from .tasks import process_event
 from django.views.decorators.csrf import csrf_exempt
 
+from .utils import send_booking_confirmation
+
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 import logging
@@ -291,7 +293,8 @@ def book_slot(request):
                                    f"{end_time_obj}, ${price} ")
 
         booking_details_str = "\n".join(booking_details)
-        # send_booking_confirmation(email, first_name, last_name, booking_details_str)
+        if "@dummy.com" not in email:
+            send_booking_confirmation(email, first_name, last_name, booking_details_str)
 
         url = reverse('admin_booking_schedule')
         query_params = {'date': booking_date}  # Using the booking_date from the loop above
