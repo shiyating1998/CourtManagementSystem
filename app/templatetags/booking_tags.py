@@ -5,6 +5,10 @@ from datetime import datetime, date, timedelta, time
 register = template.Library()
 
 @register.filter
+def compare_times(start_time, current_time):
+    return start_time[:2] <= current_time[11:]
+
+@register.filter
 def split_time_range(time_range):
     start_time, end_time = time_range.split('-')
     return {
