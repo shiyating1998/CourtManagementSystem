@@ -2,12 +2,41 @@ var selectedCells = [];
 
 function toggleSelect(cell, slot, court, date, isBooked, price) {
     console.log("clicked")
-    var today = new Date().toISOString().split('T')[0];
-    if (date < today) {
-        console.log("date:", date)
-        console.log("today:", today)
-        return;
-    }
+//    var today = new Date().toISOString().split('T')[0];
+//    if (date < today) {
+//        console.log("date:", date)
+//        console.log("today:", today)
+//        return;
+//    }
+
+
+
+    // Convert estDateString to a Date object
+let estDate = new Date(new Date().toLocaleString("en-US", { timeZone: "America/New_York" }));  // This will include time
+
+let estDateFormatted = estDate.getFullYear() + "-" +
+                       ("0" + (estDate.getMonth() + 1)).slice(-2) + "-" +
+                       ("0" + estDate.getDate()).slice(-2);
+
+// User shouldn't book a previous date
+if (date < estDateFormatted) {
+    console.log("User shouldn't book a previous date");
+    return;
+}
+//
+//    // Get today's date in EST timezone
+//    var now = new Date();
+//    var estOffset = -5 * 60; // EST is UTC -5 hours
+//    var estDate = new Date(now.getTime() + (now.getTimezoneOffset() + estOffset) * 60000);
+//
+//    var todayEST = estDate.toISOString().split('T')[0]; // Format it as YYYY-MM-DD
+//
+//
+//    if (date < todayEST) {
+//        console.log("date:", date);
+//        console.log("today (EST):", todayEST);
+//        return;
+//    }
 
     if (isBooked) {
         return;
@@ -57,12 +86,8 @@ function showSchedule(date) {
 
 
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-// This is your test publishable API key.
+// TODO: This is your test publishable API key.
 const stripe = Stripe("pk_test_51PfA0tRt3PcgmiF6YXj4ROeapnBMPBd7FqSIGJyGvvMoZrVESulq4n0kTbarADCXxDjQQShUD3GbsaKaustZJut400GUgtILbz");
-
-//TODO
-// The items the customer wants to buy
-const items = [{ id: "xl-tshirt" }];
 
 let elements;
 
@@ -88,8 +113,7 @@ async function initialize() {
         headers: {
             "Content-Type": "application/json",
             'X-CSRFToken': csrftoken
-        },
-        body: JSON.stringify({ items }),
+        }
     });
     //const { clientSecret } = await response.json();
     const data = await response.json();

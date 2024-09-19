@@ -21,7 +21,7 @@ from app.views import StripeIntentView, stripe_webhook, verify_user_and_slots, g
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.booking_schedule, name='booking_schedule'), #TODO
+    path('', views.booking_schedule, name='booking_schedule'),
     path('webhooks/stripe/', stripe_webhook, name='stripe-webhook'),
     path('payment_success/', views.payment_success, name='payment_success'),  # Add a success page view
     path('create-payment-intent/', StripeIntentView.as_view(), name='create-payment-intent'),

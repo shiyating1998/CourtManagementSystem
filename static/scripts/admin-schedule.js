@@ -145,8 +145,6 @@ function toggleSelect(cell, slot, court, date, isBooked, price) {
             }
         });
         selectedCells = [];
-        // TODO: and all cells back to not selected: cell.classList.remove('selected');
-        // open a form containing the information from the user
         var cellKey = `${slot}_${court}_${date}_${price}`;
         var slots = cellKey.split('_');
         console.log("slots:", slots);
@@ -216,5 +214,3 @@ function toggleSelect(cell, slot, court, date, isBooked, price) {
 
     console.log(selectedCells)
 }
-
-//TODO on start script for redis, celery, stripe...server

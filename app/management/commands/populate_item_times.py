@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from datetime import time
 from app.models import ItemCourt, ItemTime
 
+#TODO, create starting script for easy config...
 
 class Command(BaseCommand):
     help = 'Populate ItemTime for each court from 9am to 11pm in hourly intervals'
