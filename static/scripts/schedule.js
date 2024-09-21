@@ -2,41 +2,18 @@ var selectedCells = [];
 
 function toggleSelect(cell, slot, court, date, isBooked, price) {
     console.log("clicked")
-//    var today = new Date().toISOString().split('T')[0];
-//    if (date < today) {
-//        console.log("date:", date)
-//        console.log("today:", today)
-//        return;
-//    }
-
-
-
     // Convert estDateString to a Date object
-let estDate = new Date(new Date().toLocaleString("en-US", { timeZone: "America/New_York" }));  // This will include time
+    let estDate = new Date(new Date().toLocaleString("en-US", { timeZone: "America/New_York" }));  // This will include time
 
-let estDateFormatted = estDate.getFullYear() + "-" +
-                       ("0" + (estDate.getMonth() + 1)).slice(-2) + "-" +
-                       ("0" + estDate.getDate()).slice(-2);
+    let estDateFormatted = estDate.getFullYear() + "-" +
+        ("0" + (estDate.getMonth() + 1)).slice(-2) + "-" +
+        ("0" + estDate.getDate()).slice(-2);
 
-// User shouldn't book a previous date
-if (date < estDateFormatted) {
-    console.log("User shouldn't book a previous date");
-    return;
-}
-//
-//    // Get today's date in EST timezone
-//    var now = new Date();
-//    var estOffset = -5 * 60; // EST is UTC -5 hours
-//    var estDate = new Date(now.getTime() + (now.getTimezoneOffset() + estOffset) * 60000);
-//
-//    var todayEST = estDate.toISOString().split('T')[0]; // Format it as YYYY-MM-DD
-//
-//
-//    if (date < todayEST) {
-//        console.log("date:", date);
-//        console.log("today (EST):", todayEST);
-//        return;
-//    }
+    // User shouldn't book a previous date
+    if (date < estDateFormatted) {
+        console.log("User shouldn't book a previous date");
+        return;
+    }
 
     if (isBooked) {
         return;
@@ -210,14 +187,12 @@ async function handleSubmit(e) {
 
     if (error.type === "card_error" || error.type === "validation_error") {
         showMessage(error.message);
-    } else{
+    } else {
         showMessage("An unexpected error occurred.");
     }
 
     setLoading(false);
 }
-
-
 
 // Fetches the payment intent status after payment submission
 async function checkStatus() {

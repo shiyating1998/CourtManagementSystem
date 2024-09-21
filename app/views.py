@@ -40,48 +40,6 @@ def my_view(request):
 
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
-def booking_schedule2(request):
-    today = datetime.now().date()
-    selected_date = request.GET.get('date', today.strftime('%Y-%m-%d'))
-    logger.info(f"selected date: {selected_date}")
-
-    # TODO make it configuarable
-    dates = [(today + timedelta(days=i)).strftime('%a %Y-%m-%d') for i in range(8)]
-
-    # TODO: filter by venue, and filter by item (badminton), filter by date
-    #   hardcode to venue = lions
-    #   item = badminton
-    #   date = today for now
-
-    # Query all ItemOrder instances where the date matches selected_date
-    item_orders = ItemOrder.objects.filter(date=selected_date)
-
-    # Now item_orders contains all ItemOrder instances with date equal to specific_date
-    # for order in item_orders:
-    # print(order)  # This will print the string representation defined in the __str__ method
-
-    # TODO get courts info from db
-    courts = [f"Court {i}" for i in range(1, 10)]
-    # TODO get time slots from db
-    time_slots = [
-        "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00",
-        "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00",
-        "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00", "22:00-23:00"
-    ]
-
-    context = {
-        "dates": dates,
-        "selected_date": selected_date,
-        "item_orders": item_orders,
-        "today": today.strftime('%a %Y-%m-%d'),
-        "courts": courts,  # TODO
-        "time_slots": time_slots  # TODO
-    }
-
-    return render(request, "booking/schedule.html", context)
-
-
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def booking_schedule(request):
     # Get the current UTC time
     current_time = datetime.now(pytz.utc)
@@ -130,9 +88,60 @@ def booking_schedule(request):
     }
     return render(request, "booking/schedule.html", context)
 
-
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def admin_booking_schedule(request):
+    # Get the current UTC time
+    current_time = datetime.now(pytz.utc)
+
+    # Convert to EST
+    est_timezone = pytz.timezone('US/Eastern')
+    current_time = current_time.astimezone(est_timezone)
+
+    today = datetime.now().date()
+    selected_date = request.GET.get('date', today.strftime('%Y-%m-%d'))
+
+    logger.info(f"selected date: {selected_date}")
+
+    # TODO make it configuarable
+    dates = [(today + timedelta(days=i)).strftime('%a %Y-%m-%d') for i in range(8)]
+
+    # TODO: filter by venue, and filter by item (badminton), filter by date
+    #   hardcode to venue = lions
+    #   item = badminton
+    #   date = today for now
+
+    # Query all ItemOrder instances where the date matches selected_date
+    item_orders = ItemOrder.objects.filter(date=selected_date)
+
+    # Now item_orders contains all ItemOrder instances with date equal to specific_date
+    # for order in item_orders:
+    # print(order)  # This will print the string representation defined in the __str__ method
+
+    # TODO get courts info from db
+    courts = [f"Court {i}" for i in range(1, 10)]
+    # TODO get time slots from db
+    time_slots = [
+        "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00",
+        "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00",
+        "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00", "22:00-23:00"
+    ]
+
+    context = {
+        "dates": dates,
+        "selected_date": selected_date,
+        "item_orders": item_orders,
+        "today": today.strftime('%a %Y-%m-%d'),
+        "courts": courts,  # TODO
+        "time_slots": time_slots,  # TODO
+        'current_time': current_time.strftime('%Y-%m-%d-%H'), # testing
+    }
+    return render(request, "admin/admin-schedule.html", context)
+
+
+
+
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+def admin_booking_schedule2(request):
     today = datetime.now().date()
     selected_date = request.GET.get('date', today.strftime('%Y-%m-%d'))
     logger.info(f"selected date: {selected_date}")
@@ -344,8 +353,11 @@ def book_slot(request):
             )
             logger.info(f"order booked: {item_order}")
 
-            booking_details.append(f"{court_name},  {start_time_obj} - "
-                                   f"{end_time_obj}, ${price} ")
+            # booking_details.append(f"{court_name},  {start_time_obj} - "
+            #                        f"{end_time_obj}, ${price} ")
+            booking_details.append(f"{court_name},  {start_time_obj.strftime('%H:%M')} - "
+                                   f"{end_time_obj.strftime('%H:%M')}, ${price} ")
+
 
         booking_details_str = "\n".join(booking_details)
         if "@dummy.com" not in email:

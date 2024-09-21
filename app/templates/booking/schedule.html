@@ -34,45 +34,47 @@
             </button>
             {% endwith %}
             {% endfor %}
-        </div><table>
-    <tr>
-        <th>Time Slot</th>
-        {% for court in courts %}
-        <th>{{ court }}</th>
-        {% endfor %}
-    </tr>
-    {% for slot in time_slots %}
-    <tr>
-        <td>{{ slot }}</td>
-        {% for court in courts %}
-        {% with time_range=slot|split_time_range %}
-        {% get_order selected_date time_range.start_time time_range.end_time court as orders %}
+        </div>
 
-        <!-- Both conditions must be met: same date and valid time comparison -->
-        {% if current_time|slice:":10" == selected_date and time_range.start_time|compare_times:current_time %}
-            <!-- If both conditions are true, display N/A -->
-            <td class="booked">N/A</td>
-        {% else %}
-            <!-- If conditions are not met, continue with booking logic -->
-            {% for order in orders %}
-            <td class="{% if order.user %} booked {% endif %}"
-                onclick="toggleSelect(this, '{{ slot }}', '{{ court }}', '{{ selected_date }}', {% if order.user %} true {% else %} false {% endif %}, {{ order.money }})">
-                {% if order.user %}
-                Booked
+        <table>
+            <tr>
+                <th>Time Slot</th>
+                {% for court in courts %}
+                <th>{{ court }}</th>
+                {% endfor %}
+            </tr>
+            {% for slot in time_slots %}
+            <tr>
+                <td>{{ slot }}</td>
+                {% for court in courts %}
+                {% with time_range=slot|split_time_range %}
+                {% get_order selected_date time_range.start_time time_range.end_time court as orders %}
+
+                <!-- Both conditions must be met: same date and valid time comparison -->
+                {% if current_time|slice:":10" == selected_date and time_range.start_time|compare_times:current_time %}
+                <!-- If both conditions are true, display N/A -->
+                <td class="booked">N/A</td>
                 {% else %}
-                ${{ order.money }}
+                <!-- If conditions are not met, continue with booking logic -->
+                {% for order in orders %}
+                <td class="{% if order.user %} booked {% endif %}"
+                    onclick="toggleSelect(this, '{{ slot }}', '{{ court }}', '{{ selected_date }}', {% if order.user %} true {% else %} false {% endif %}, {{ order.money }})">
+                    {% if order.user %}
+                    Booked
+                    {% else %}
+                    ${{ order.money }}
+                    {% endif %}
+                </td>
+                {% empty %}
+                <!-- Display N/A if there is no order -->
+                <td class="booked">N/A</td>
+                {% endfor %}
                 {% endif %}
-            </td>
-            {% empty %}
-            <!-- Display N/A if there is no order -->
-            <td class="booked">N/A</td>
+                {% endwith %}
+                {% endfor %}
+            </tr>
             {% endfor %}
-        {% endif %}
-        {% endwith %}
-        {% endfor %}
-    </tr>
-    {% endfor %}
-</table>
+        </table>
 
         <button type="button" id="bookButton" onclick="openForm()">Book Selected &#129122</button>
 
@@ -127,4 +129,5 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
 <script src="https://js.stripe.com/v3/"></script>
 <script src="{% static 'scripts/schedule.js' %}"></script>
+
 </html>

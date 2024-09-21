@@ -128,10 +128,17 @@ function cancelBooking() {
 }
 
 function toggleSelect(cell, slot, court, date, isBooked, price) {
-    var today = new Date().toISOString().split('T')[0];
-    if (date < today) {
-        console.log("date:", date)
-        console.log("today:", today)
+    console.log("clicked")
+    // Convert estDateString to a Date object
+    let estDate = new Date(new Date().toLocaleString("en-US", { timeZone: "America/New_York" }));  // This will include time
+
+    let estDateFormatted = estDate.getFullYear() + "-" +
+        ("0" + (estDate.getMonth() + 1)).slice(-2) + "-" +
+        ("0" + estDate.getDate()).slice(-2);
+
+    // User shouldn't book a previous date
+    if (date < estDateFormatted) {
+        console.log("User shouldn't book a previous date");
         return;
     }
 

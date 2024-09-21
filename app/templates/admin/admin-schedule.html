@@ -49,28 +49,29 @@
                 {% for court in courts %}
                 {% with time_range=slot|split_time_range %}
                 {% get_order selected_date time_range.start_time time_range.end_time court as orders %}
+
+                <!-- Both conditions must be met: same date and valid time comparison -->
+                {% if current_time|slice:":10" == selected_date and time_range.start_time|compare_times:current_time %}
+                <!-- If both conditions are true, display N/A -->
+                <td class="booked">N/A</td>
+                {% else %}
+                <!-- If conditions are not met, continue with booking logic -->
                 {% for order in orders %}
-                <td class="{% if order.user %} booked {% endif %}" data-slot="{{ slot }}" data-court="{{ court }}"
-                    data-date="{{ selected_date }}"
-                    onclick="toggleSelect(this, '{{ slot }}', '{{ court }}', '{{ selected_date }}',  {% if order.user %} true {% else %} false {% endif %}, {{order.money}})">
-                    <!--                    <p>{{ order }}</p>-->
-                    <!--                    Item Time: {{ order.item_time.start_time }} - {{ order.item_time.end_time }}<br>-->
-                    <!--            User: {% if order.user %}{{ order.user.username }}{% else %}N/A{% endif %}<br>-->
+                <td class="{% if order.user %} booked {% endif %}"
+                    onclick="toggleSelect(this, '{{ slot }}', '{{ court }}', '{{ selected_date }}', {% if order.user %} true {% else %} false {% endif %}, {{ order.money }})">
                     {% if order.user %}
                     {{ order.user.first_name|capfirst }} {{ order.user.last_name|capfirst }}
                     {% else %}
                     ${{ order.money }}
                     {% endif %}
-                    <!--            Status: {% if order.status %} "Open" {% else %} "Closed" {% endif %}<br>-->
-                    <!--            Court: {{order.item_time.item_court.name}}<br>-->
-
                 </td>
                 {% empty %}
+                <!-- Display N/A if there is no order -->
                 <td class="booked">N/A</td>
                 {% endfor %}
+                {% endif %}
                 {% endwith %}
                 {% endfor %}
-
             </tr>
             {% endfor %}
         </table>
