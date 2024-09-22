@@ -184,24 +184,29 @@ function toggleSelect(cell, slot, court, date, isBooked, price) {
         })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
-                    // Access user information from the response
-                    var userInfo = `
-                            Name: ${data.user.first_name} ${data.user.last_name} <br>
-                            Email: ${data.user.email} <br>
-                            Phone: ${data.user.phone} <br>
-                            Amount Paid: $${data.money} <br>
-                            Booking Date: ${data.booking_date} <br>
-                            Status: ${data.status ? 'Open' : 'Closed'} <br>
-                            Flag: ${data.flag} <br>
-                        `;
+    if (data.success) {
+        // Function to capitalize the first letter of a string
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+        }
 
-                    // Display user and booking details in a div
-                    document.getElementById('bookingDetails').innerHTML = userInfo;
-                } else if (data.error) {
-                    document.getElementById('formErrors').textContent = data.error;
-                }
-            })
+        // Access user information from the response and capitalize names
+        var userInfo = `
+            Name: ${capitalizeFirstLetter(data.user.first_name)} ${capitalizeFirstLetter(data.user.last_name)} <br>
+            Email: ${data.user.email} <br>
+            Phone: ${data.user.phone} <br>
+            Amount Paid: $${data.money} <br>
+            Booking Date: ${data.booking_date} <br>
+            Status: ${data.status ? 'Open' : 'Closed'} <br>
+            Flag: ${data.flag} <br>
+        `;
+
+        // Display user and booking details in a div
+        document.getElementById('bookingDetails').innerHTML = userInfo;
+    } else if (data.error) {
+        document.getElementById('formErrors').textContent = data.error;
+    }
+})
             .catch(error => {
                 console.error('Error:', error);
                 document.getElementById('formErrors').textContent = 'An error occurred. Please try again.';

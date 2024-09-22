@@ -19,6 +19,9 @@ from django.urls import path
 from app import views
 from app.views import StripeIntentView, stripe_webhook, verify_user_and_slots, get_order_info, cancel_booking
 
+from django.contrib.auth import views as auth_views
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.booking_schedule, name='booking_schedule'),
@@ -31,5 +34,7 @@ urlpatterns = [
     path('admin-schedule/', views.admin_booking_schedule, name='admin_booking_schedule'),
     path('verify_user_and_slots/', verify_user_and_slots, name='verify_user_and_slots'),
     path('get_order_info/', get_order_info, name='get_order_info'),
-    path('cancel_booking',cancel_booking,name='cancel_booking')
+    path('cancel_booking',cancel_booking,name='cancel_booking'),
+# Use Django's built-in login view
+    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
 ]
