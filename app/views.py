@@ -314,7 +314,7 @@ def book_slot(request):
         )
         logger.info(f"user: {user} ")
 
-        booking_details = []
+        booking_details = [selected_slots[0][2]]
         for slot in selected_slots:
             logger.info(f"slot {slot}")
             start_time, court_name, booking_date, price = slot
@@ -353,8 +353,6 @@ def book_slot(request):
             )
             logger.info(f"order booked: {item_order}")
 
-            # booking_details.append(f"{court_name},  {start_time_obj} - "
-            #                        f"{end_time_obj}, ${price} ")
             booking_details.append(f"{court_name},  {start_time_obj.strftime('%H:%M')} - "
                                    f"{end_time_obj.strftime('%H:%M')}, ${price} ")
 

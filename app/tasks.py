@@ -93,9 +93,6 @@ def process_event(event):
                 }
             )
             logger.info(f"order booked: {item_order}" )
-
-            # booking_details.append(f"{court_name},  {start_time_obj} - "
-            #                        f"{end_time_obj}, ${price} ")
             booking_details.append(f"{court_name},  {start_time_obj.strftime('%H:%M')} - "
                                    f"{end_time_obj.strftime('%H:%M')}, ${price} ")
 

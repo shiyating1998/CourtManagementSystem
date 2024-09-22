@@ -2,22 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Successful</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-popup {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        h2 {
+            color: #ffa302;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #ffa302;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ffa302;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .form-popup {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- payment_success.html -->
     <div class="form-popup" id="successPage">
         <h2>Payment Successful</h2>
-        <p>Thank you for your booking! Your payment has been processed successfully.</p>
+        <p>Thank you for your booking! Email will be sent as confirmation.</p>
         <button type="button" onclick="returnToPreviousPage()">Return</button>
     </div>
 
     <script>
-        // TODO UI update
         function returnToPreviousPage() {
             history.back(); // This will navigate to the previous page
         }
     </script>
 </body>
-
-
+</html>
