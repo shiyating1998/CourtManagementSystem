@@ -19,7 +19,7 @@ from .models import User, Item, ItemCourt, ItemTime, ItemOrder, ProcessedEvent
 from .tasks import process_event
 from django.views.decorators.csrf import csrf_exempt
 
-from .utils import send_booking_confirmation
+from .utils import send_booking_confirmation, write_log_file
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -157,6 +157,7 @@ def admin_booking_schedule(request):
 
     today = datetime.now().date()
     selected_date = request.GET.get("date", today.strftime("%Y-%m-%d"))
+
 
     logger.info(f"selected date: {selected_date}")
 
@@ -341,6 +342,9 @@ def book_slot(request):
         logger.info(f"user: {user} ")
 
         booking_details = [selected_slots[0][2]]
+
+        # TODO
+        write_log_file(selected_slots, "Book", first_name + "_" + last_name, True)
         for slot in selected_slots:
             logger.info(f"slot {slot}")
             start_time, court_name, booking_date, price = slot
@@ -464,6 +468,9 @@ def cancel_booking(request):
         end_time = request.POST.get("end_time")
         court_name = request.POST.get("court_name")
         booking_date = request.POST.get("booking_date")
+
+        court_info = f"{start_time}-{end_time}, {court_name}, {booking_date}"
+        write_log_file(court_info, "Cancel", "TODO - USERNAME", True)
 
         logger.info(f"start: {start_time}")
         logger.info(f"court: {court_name}")

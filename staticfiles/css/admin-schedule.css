@@ -1,0 +1,213 @@
+html {
+    font-family: helvetica;
+    color: #1b252f;
+    background-color: #f9fafb;
+}
+
+table {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 5px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0px;
+    box-shadow: 0px 0px 4px 2px #ddd;
+    margin-bottom: 15px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+}
+
+th {
+    background-color: #f2f2f2;
+    border
+}
+
+td:hover {
+    filter: brightness(0.8);
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+h2 {
+    margin: 0px;
+}
+
+.booked {
+    background-color: #ffcccc;  /* Light red */
+}
+
+.selected {
+    background-color: #ccffcc;  /* Light green */
+}
+
+.form-popup {
+    display: none;
+    position: fixed;
+    top: 35%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(0,0,0,0.25);
+    z-index: 9;
+    background-color: white;
+    padding: 20px;
+    min-width: 20%;
+    max-width: 90%; /* Adjust maximum width as needed */
+    max-height: 90%; /* Adjust maximum height as needed */
+    overflow: auto; /* Enable scrolling if content exceeds pop-up size */
+    box-shadow: 0px 0px 4px 2px #ddd;
+}
+
+#header {
+    display: flex;
+}
+
+#bookButton {
+    margin-left: auto;
+    background-color: #ffa302;
+    color: #fff;
+    border: none;
+    padding: 5px 15px;
+    padding-top: 3px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#bookButton:hover {
+    filter: brightness(0.8);
+    cursor: pointer;
+}
+
+#arrow {
+    color: #ffa302;
+    margin-right: 15px;
+
+}
+
+#separator {
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+#dates {
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0px 0px 4px 2px #ddd;
+    margin-bottom: 15px;
+}
+
+#dates button {
+    border: none;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 4px 10px;
+}
+
+#dates button:hover {
+    cursor: pointer;
+    background-color: #ffa302;
+    color: #fff;
+}
+
+#center {
+    max-width: 80vw;
+    margin: 0 auto;
+}
+
+#bookingForm button {
+    background-color: #ffa302;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    float: right;
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+#bookingForm button:hover {
+    cursor: pointer;
+    filter: brightness(0.8);
+}
+
+#inputs {
+    display: grid;
+    margin-bottom: 15px;
+}
+
+#bookingForm input {
+    margin-bottom: 5px;
+}
+
+
+
+button[type="button"] {
+    background-color: #d9534f; /* Cancel button color (Bootstrap danger color) */
+    float: right; /* Align cancel button to the right */
+}
+
+button[type="submit"] {
+    background-color: #5cb85c; /* Book button color (Bootstrap success color) */
+    float: left; /* Align book button to the left */
+}
+
+
+.form-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.form-column {
+    flex: 0 0 48%;
+    box-sizing: border-box;
+    margin-bottom: 1em;
+}
+
+.form-column label,
+.form-column input {
+    display: block;
+    width: 100%;
+}
+
+#payment-element {
+    margin-top: 1em;
+}
+
+#submit {
+    margin-top: 1em;
+}
+
+#bookingHeader {
+    text-align: center;
+    width: 100%;
+}
+
+
+.button-group button {
+    flex: 0 0 48%;
+}
+
+@media (max-width: 768px) {
+    .form-column {
+        flex: 0 0 100%;
+    }
+
+    .button-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button-group button {
+        flex: 0 0 100%;
+        margin-bottom: 1em;
+    }
+}

@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from app import views
@@ -21,6 +22,8 @@ from app.views import StripeIntentView, stripe_webhook, verify_user_and_slots, g
     view_log_file, download_log_file, admin_only_access
 
 from django.contrib.auth import views as auth_views
+
+from courtManagementSystem import settings
 
 
 urlpatterns = [
@@ -41,3 +44,7 @@ urlpatterns = [
     path('download-log/', download_log_file, name='download_log_file'),
     path('admin-access-denied/', admin_only_access, name='admin_access_denied'),
 ]
+
+# TODO
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
