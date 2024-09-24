@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import views
-from app.views import StripeIntentView, stripe_webhook, verify_user_and_slots, get_order_info, cancel_booking
+from app.views import StripeIntentView, stripe_webhook, verify_user_and_slots, get_order_info, cancel_booking, \
+    view_log_file, download_log_file, admin_only_access
 
 from django.contrib.auth import views as auth_views
 
@@ -29,12 +30,14 @@ urlpatterns = [
     path('payment_success/', views.payment_success, name='payment_success'),  # Add a success page view
     path('create-payment-intent/', StripeIntentView.as_view(), name='create-payment-intent'),
     path('update_payment_intent/', views.update_payment_intent, name='update_payment_intent'),
-    path('test/', views.my_view, name='test'),
     path('book-slot/', views.book_slot, name='book_slot'),
     path('admin-schedule/', views.admin_booking_schedule, name='admin_booking_schedule'),
     path('verify_user_and_slots/', verify_user_and_slots, name='verify_user_and_slots'),
     path('get_order_info/', get_order_info, name='get_order_info'),
     path('cancel_booking',cancel_booking,name='cancel_booking'),
-# Use Django's built-in login view
+    # Use Django's built-in login view
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+    path('view-log/', view_log_file, name='view_log_file'),
+    path('download-log/', download_log_file, name='download_log_file'),
+    path('admin-access-denied/', admin_only_access, name='admin_access_denied'),
 ]
