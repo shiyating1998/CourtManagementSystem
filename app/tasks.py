@@ -3,7 +3,7 @@ import logging
 
 from celery import shared_task
 from app.models import ProcessedEvent, User, Item, ItemCourt, ItemTime, ItemOrder
-from .utils import send_booking_confirmation
+from .utils import send_booking_confirmation, write_log_file
 import json
 from decimal import Decimal
 from datetime import datetime, date, timedelta, time
@@ -19,11 +19,6 @@ def process_event(event):
     if event['type'] == 'payment_intent.succeeded':
         session = event['data']['object']
         logger.info("session:", session)
-        output_data_str = json.dumps(session, indent=4)
-        # Open the file in append mode
-        with open('sessionInfo.txt', 'a') as file:
-            # Write the additional data to the file
-            file.write(output_data_str)
         # Fulfill the purchase...
         metadata = session['metadata']
         logger.info(f'J metadata: {metadata}')
@@ -55,6 +50,8 @@ def process_event(event):
 
         booking_details = [selected_slots[0][2]]
 
+        # TODO
+        write_log_file(selected_slots, "Book", first_name + "_" + last_name, False)
 
         for slot in selected_slots:
             logger.info(f"slot {slot}")

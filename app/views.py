@@ -49,7 +49,7 @@ def is_admin(user):
 
 # TODO, path on server?
 # Define the path to your log file
-LOG_FILE_PATH = "C:\\Users\\shiya\\PycharmProjects\\CourtManagementSystem\\info.log"
+LOG_FILE_PATH = "output.txt"
 
 
 @user_passes_test(is_admin)
@@ -469,8 +469,6 @@ def cancel_booking(request):
         court_name = request.POST.get("court_name")
         booking_date = request.POST.get("booking_date")
 
-        court_info = f"{start_time}-{end_time}, {court_name}, {booking_date}"
-        write_log_file(court_info, "Cancel", "TODO - USERNAME", True)
 
         logger.info(f"start: {start_time}")
         logger.info(f"court: {court_name}")
@@ -492,6 +490,9 @@ def cancel_booking(request):
 
         # Retrieve ItemOrder
         item_order = ItemOrder.objects.get(item_time=item_time, date=booking_date_obj)
+        username = item_order.user.username
+        court_info = f"{start_time}-{end_time}, {court_name}, {booking_date}"
+        write_log_file(court_info, "Cancel", username, True)
 
         # Assuming the same item_time and booking_date_obj are passed in as when booking
         item_order, created = ItemOrder.objects.update_or_create(
