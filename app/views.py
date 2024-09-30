@@ -83,7 +83,8 @@ def download_log_file(request):
     except FileNotFoundError:
         return HttpResponse("Log file not found", status=404)
 
-
+courts = settings.COURTS
+time_slots = settings.TIME_SLOTS
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def booking_schedule(request):
     # Get the current UTC time
@@ -112,26 +113,9 @@ def booking_schedule(request):
     # Now item_orders contains all ItemOrder instances with date equal to specific_date
     # for order in item_orders:
     # print(order)  # This will print the string representation defined in the __str__ method
-
-    # TODO get courts info from db
-    courts = [f"Court {i}" for i in range(1, 10)]
-    # TODO get time slots from db
-    time_slots = [
-        "09:00-10:00",
-        "10:00-11:00",
-        "11:00-12:00",
-        "12:00-13:00",
-        "13:00-14:00",
-        "14:00-15:00",
-        "15:00-16:00",
-        "16:00-17:00",
-        "17:00-18:00",
-        "18:00-19:00",
-        "19:00-20:00",
-        "20:00-21:00",
-        "21:00-22:00",
-        "22:00-23:00",
-    ]
+    # TODO remove
+    # courts = settings.COURTS
+    # time_slots = settings.TIME_SLOTS
 
     context = {
         "dates": dates,
@@ -177,24 +161,24 @@ def admin_booking_schedule(request):
     # print(order)  # This will print the string representation defined in the __str__ method
 
     # TODO get courts info from db
-    courts = [f"Court {i}" for i in range(1, 10)]
+    #courts = [f"Court {i}" for i in range(1, 10)]
     # TODO get time slots from db
-    time_slots = [
-        "09:00-10:00",
-        "10:00-11:00",
-        "11:00-12:00",
-        "12:00-13:00",
-        "13:00-14:00",
-        "14:00-15:00",
-        "15:00-16:00",
-        "16:00-17:00",
-        "17:00-18:00",
-        "18:00-19:00",
-        "19:00-20:00",
-        "20:00-21:00",
-        "21:00-22:00",
-        "22:00-23:00",
-    ]
+    # time_slots = [
+    #     "09:00-10:00",
+    #     "10:00-11:00",
+    #     "11:00-12:00",
+    #     "12:00-13:00",
+    #     "13:00-14:00",
+    #     "14:00-15:00",
+    #     "15:00-16:00",
+    #     "16:00-17:00",
+    #     "17:00-18:00",
+    #     "18:00-19:00",
+    #     "19:00-20:00",
+    #     "20:00-21:00",
+    #     "21:00-22:00",
+    #     "22:00-23:00",
+    # ]
 
     context = {
         "dates": dates,
@@ -341,10 +325,12 @@ def book_slot(request):
         )
         logger.info(f"user: {user} ")
 
-        booking_details = [selected_slots[0][2]]
+        booking_date = selected_slots[0][2]
+        booking_details = [booking_date]
 
+        print(selected_slots)
         # TODO
-        write_log_file(selected_slots, "Book", first_name + "_" + last_name, True)
+        write_log_file(booking_date, selected_slots, "Book", first_name + "_" + last_name, True)
         for slot in selected_slots:
             logger.info(f"slot {slot}")
             start_time, court_name, booking_date, price = slot
@@ -491,8 +477,8 @@ def cancel_booking(request):
         # Retrieve ItemOrder
         item_order = ItemOrder.objects.get(item_time=item_time, date=booking_date_obj)
         username = item_order.user.username
-        court_info = f"{start_time}-{end_time}, {court_name}, {booking_date}"
-        write_log_file(court_info, "Cancel", username, True)
+        court_info = f"{start_time}-{end_time}, {court_name}"
+        write_log_file(booking_date, court_info, "Cancel", username, True)
 
         # Assuming the same item_time and booking_date_obj are passed in as when booking
         item_order, created = ItemOrder.objects.update_or_create(

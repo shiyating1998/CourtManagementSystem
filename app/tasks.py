@@ -48,10 +48,10 @@ def process_event(event):
         )
         logger.info(f"user: {user}")
 
-        booking_details = [selected_slots[0][2]]
+        booking_date = selected_slots[0][2]
+        booking_details = [booking_date]
 
-        # TODO
-        write_log_file(selected_slots, "Book", first_name + "_" + last_name, False)
+        write_log_file(booking_details, selected_slots, "Book", first_name + "_" + last_name, False)
 
         for slot in selected_slots:
             logger.info(f"slot {slot}")

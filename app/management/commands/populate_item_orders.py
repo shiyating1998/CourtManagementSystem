@@ -1,7 +1,11 @@
+import holidays
 from django.core.management.base import BaseCommand
 from app.models import ItemCourt, ItemTime, ItemOrder, User
 from decimal import Decimal
 from datetime import datetime, time, date, timedelta
+
+from courtManagementSystem import settings
+
 
 class Command(BaseCommand):
     help = 'Populate ItemOrder with predefined prices based on time slots'
@@ -10,19 +14,10 @@ class Command(BaseCommand):
         # DANGER the below code removes all entries from ItemOrder
         ItemOrder.objects.all().delete()
 
-        # Define time slots and prices
-        weekday_prices = [
-            (time(15, 0), time(18, 0), Decimal('26.75')),
-            (time(18, 0), time(22, 0), Decimal('30.00')),
-            (time(22, 0), time(23, 0), Decimal('28.00')),
-        ]
-
-        weekend_prices = [
-            (time(7, 0), time(9, 0), Decimal('28.00')),
-            (time(9, 0), time(23, 0), Decimal('30.00')),
-        ]
-
-        holiday_price = Decimal('30.25')
+        # Load prices from Django settings
+        weekday_prices = getattr(settings, 'WEEKDAY_PRICES', [])
+        weekend_prices = getattr(settings, 'WEEKEND_PRICES', [])
+        holiday_price = getattr(settings, 'HOLIDAY_PRICE', Decimal('30.25'))
 
         # Define date range for the next month
         today = date.today()
@@ -74,6 +69,7 @@ class Command(BaseCommand):
         return item_orders
 
     def is_holiday(self, check_date):
-        # Implement logic to check if the given date is a holiday
-        # For now, let's assume it's a placeholder that returns False
-        return False
+        # Get Canadian holidays for Ontario
+        ontario_holidays = holidays.Canada(prov="ON")
+        # Check if the given date is a holiday
+        return check_date in ontario_holidays
