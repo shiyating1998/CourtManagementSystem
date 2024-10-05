@@ -3,49 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Log File</title>
+    <title>Booking List</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 18px;
+            text-align: left;
         }
-        h1 {
-            text-align: center;
-            color: #333;
+        th, td {
+            padding: 12px;
+            border: 1px solid #dddddd;
         }
-        .log-container {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            margin: 20px auto;
-            overflow-x: auto;
-        }
-        pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-size: 14px;
-            color: #2c3e50;
-            background-color: #f0f0f0;
-            padding: 15px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-        .log-entry {
-            margin-bottom: 10px;
-            padding: 10px;
-            border-left: 5px solid #2980b9;
-            background-color: #ecf0f1;
+        th {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
 <body>
-    <h1>Log File Content</h1>
-    <div class="log-container">
-        <pre>{{ log_content }}</pre>
-    </div>
+    <h2>Booking List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Court</th>
+                <th>Action</th>
+                <th>User</th>
+                <th>User Role</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.date }}</td>
+                <td>{{ booking.time }}</td>
+                <td>{{ booking.court }}</td>
+                <td>{{ booking.action }}</td>
+                <td>{{ booking.user }}</td>
+                <td>{{ booking.user_role }}</td>
+                <td>{{ booking.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

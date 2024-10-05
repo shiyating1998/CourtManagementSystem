@@ -40,7 +40,7 @@ urlpatterns = [
     path('cancel_booking',cancel_booking,name='cancel_booking'),
     # Use Django's built-in login view
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
-    path('view-log/', view_log_file, name='view_log_file'),
+    path('view-log/', views.booking_list, name='view_log_file'),
     path('download-log/', download_log_file, name='download_log_file'),
     path('admin-access-denied/', admin_only_access, name='admin_access_denied'),
 ]

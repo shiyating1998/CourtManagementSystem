@@ -76,6 +76,17 @@ class ItemOrder(models.Model):
                 f" {self.user.username if self.user else 'N/A'} - {self.money} -"
                 f" {status_str} - {self.item_time.item_court.name}")
 
+class Booking(models.Model):
+    date = models.DateField()
+    time = models.CharField(max_length=20)  # To store time range (e.g., "21:00-22:00")
+    court = models.CharField(max_length=10)  # To store court number (e.g., "Court 4")
+    action = models.CharField(max_length=10)
+    user = models.CharField(max_length=50)
+    user_role = models.CharField(max_length=50)
+    timestamp = models.DateTimeField()
+
+    def __str__(self):
+        return f"{self.date} - {self.time} - {self.court} - {self.user} ({self.action})"
 
 # for processing payments (celery)
 class ProcessedEvent(models.Model):
@@ -84,3 +95,4 @@ class ProcessedEvent(models.Model):
 
     def __str__(self):
         return self.event_id
+

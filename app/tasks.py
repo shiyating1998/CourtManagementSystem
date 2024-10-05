@@ -51,7 +51,7 @@ def process_event(event):
         booking_date = selected_slots[0][2]
         booking_details = [booking_date]
 
-        write_log_file(booking_details, selected_slots, "Book", first_name + "_" + last_name, False)
+        write_log_file(booking_date, selected_slots, "Book", first_name + "_" + last_name, False)
 
         for slot in selected_slots:
             logger.info(f"slot {slot}")

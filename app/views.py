@@ -15,11 +15,11 @@ from django.views import View
 from django.views.decorators.cache import cache_control
 from django.views.generic import TemplateView
 from courtManagementSystem import settings
-from .models import User, Item, ItemCourt, ItemTime, ItemOrder, ProcessedEvent
+from .models import User, Item, ItemCourt, ItemTime, ItemOrder, ProcessedEvent, Booking
 from .tasks import process_event
 from django.views.decorators.csrf import csrf_exempt
 
-from .utils import send_booking_confirmation, write_log_file
+from .utils import send_booking_confirmation, write_log_file, format_bookings
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -34,7 +34,13 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Get an instance of a logger
 logger = logging.getLogger("django")
+# TODO, path on server?
+# Define the path to your log file
+LOG_FILE_PATH = "output.txt"
+LOG_FILE_PATH = "booking_data.txt"
 
+courts = settings.COURTS
+time_slots = settings.TIME_SLOTS
 
 def admin_only_access(request):
     messages.error(request, "Only admin users can access this page.")
@@ -42,15 +48,12 @@ def admin_only_access(request):
         request, "error_page.html"
     )  # You can create a template called 'error_page.html'
 
-
 def is_admin(user):
     return user.is_staff  # Or you could use user.is_superuser if needed
 
-
-# TODO, path on server?
-# Define the path to your log file
-LOG_FILE_PATH = "output.txt"
-
+def booking_list(request):
+    bookings = Booking.objects.all().order_by('date', 'time')  # Fetch all bookings
+    return render(request, 'admin/view_log.html', {'bookings': bookings})
 
 @user_passes_test(is_admin)
 def view_log_file(request):
@@ -58,6 +61,7 @@ def view_log_file(request):
     if not request.user.is_staff:
         return HttpResponse("Unauthorized", status=401)
 
+    format_bookings()
     try:
         with open(LOG_FILE_PATH, "r") as file:
             log_content = file.read()
@@ -83,8 +87,7 @@ def download_log_file(request):
     except FileNotFoundError:
         return HttpResponse("Log file not found", status=404)
 
-courts = settings.COURTS
-time_slots = settings.TIME_SLOTS
+
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def booking_schedule(request):
     # Get the current UTC time
@@ -477,7 +480,7 @@ def cancel_booking(request):
         # Retrieve ItemOrder
         item_order = ItemOrder.objects.get(item_time=item_time, date=booking_date_obj)
         username = item_order.user.username
-        court_info = f"{start_time}-{end_time}, {court_name}"
+        court_info = f"{start_time}-{end_time} {court_name}"
         write_log_file(booking_date, court_info, "Cancel", username, True)
 
         # Assuming the same item_time and booking_date_obj are passed in as when booking
