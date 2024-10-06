@@ -10,3 +10,8 @@
 2024-10-20, 15:00-16:00 Court 4; 15:00-16:00 Court 5; 14:00-15:00 Court 5; 14:00-15:00 Court 4, Book, Kevinn_C, Admin, 2024-10-04 21:28:31
 2024-10-20, 14:00-15:00 Court 7; 12:00-13:00 Court 7; 13:00-14:00 Court 7, Book, MM_Dj, Admin, 2024-10-04 21:28:39
 2024-10-20, 14:00-15:00 Court 5, Cancel, Kevinn_C, Admin, 2024-10-04 21:28:41
+2024-10-05, 22:00-23:00 Court 6; 22:00-23:00 Court 5, Book, JENNIFER_SHI, Regular User, 2024-10-05 21:34:00
+2024-10-08, 18:00-19:00 Court 3; 17:00-18:00 Court 3, Book, JENNIFER_SHI, Regular User, 2024-10-05 21:35:17
+2024-10-09, 17:00-18:00 Court 5; 16:00-17:00 Court 5; 16:00-17:00 Court 6; 17:00-18:00 Court 6, Book, Cecilia _Jin, Admin, 2024-10-05 21:35:44
+2024-10-09, 16:00-17:00 Court 3; 17:00-18:00 Court 3; 18:00-19:00 Court 3, Book, Group A_, Admin, 2024-10-05 21:35:52
+2024-10-09, 18:00-19:00 Court 4, Cancel, CC_JJ, Admin, 2024-10-05 21:36:07

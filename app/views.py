@@ -1,3 +1,4 @@
+import csv
 import json
 from decimal import Decimal
 from datetime import datetime, date, timedelta, time
@@ -51,42 +52,29 @@ def admin_only_access(request):
 def is_admin(user):
     return user.is_staff  # Or you could use user.is_superuser if needed
 
+@user_passes_test(is_admin)
 def booking_list(request):
     bookings = Booking.objects.all().order_by('date', 'time')  # Fetch all bookings
     return render(request, 'admin/view_log.html', {'bookings': bookings})
 
 @user_passes_test(is_admin)
-def view_log_file(request):
-    # Ensure only admin users can access the log
-    if not request.user.is_staff:
-        return HttpResponse("Unauthorized", status=401)
+def download_bookings_csv(request):
+    # Create the HttpResponse object with the correct CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="booking_log.csv"'
 
-    format_bookings()
-    try:
-        with open(LOG_FILE_PATH, "r") as file:
-            log_content = file.read()
+    # Create a CSV writer object.
+    writer = csv.writer(response)
 
-        # Send the log content to the template for display
-        return render(request, "admin/view_log.html", {"log_content": log_content})
+    # Write the header row for the CSV file.
+    writer.writerow(['Date', 'Time', 'Court', 'Action', 'User', 'User Role', 'Timestamp'])
 
-    except FileNotFoundError:
-        return HttpResponse("Log file not found", status=404)
+    # Query the bookings and write each row to the CSV.
+    bookings = Booking.objects.all().order_by('date', 'time')
+    for booking in bookings:
+        writer.writerow([booking.date, booking.time, booking.court, booking.action, booking.user, booking.user_role, booking.timestamp])
 
-
-@user_passes_test(is_admin)
-def download_log_file(request):
-    # Ensure only admin users can download the log
-    if not request.user.is_staff:
-        return HttpResponse("Unauthorized", status=401)
-
-    try:
-        # Send the log file as a download response
-        return FileResponse(
-            open(LOG_FILE_PATH, "rb"), as_attachment=True, filename="info.log"
-        )
-    except FileNotFoundError:
-        return HttpResponse("Log file not found", status=404)
-
+    return response
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def booking_schedule(request):

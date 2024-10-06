@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from app import views
 from app.views import StripeIntentView, stripe_webhook, verify_user_and_slots, get_order_info, cancel_booking, \
-    view_log_file, download_log_file, admin_only_access
+ admin_only_access
 
 from django.contrib.auth import views as auth_views
 
@@ -41,8 +41,8 @@ urlpatterns = [
     # Use Django's built-in login view
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('view-log/', views.booking_list, name='view_log_file'),
-    path('download-log/', download_log_file, name='download_log_file'),
     path('admin-access-denied/', admin_only_access, name='admin_access_denied'),
+    path('download_bookings/', views.download_bookings_csv, name='download_bookings'),
 ]
 
 # TODO
