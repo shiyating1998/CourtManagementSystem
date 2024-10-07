@@ -78,7 +78,6 @@
 
         <button type="button" id="bookButton" onclick="openForm()">Book Selected &#129122</button>
 
-
         <div class="form-popup" id="bookingForm">
             <form id="payment-form">
                 <h2 id="bookingHeader">Book Courts</h2>
@@ -100,13 +99,14 @@
                             <div id="payment-element">
                                 <!-- Stripe.js injects the Payment Element -->
                             </div>
-                            <div class="button-group">
-                                <button id="submit">
-                                    <div class="spinner hidden" id="spinner"></div>
+                                <button id="cancel" type="button" onclick="closeForm()"><span>Cancel</span></button>
+
+                               <button id="submit">
                                     <span id="button-text">Pay now</span>
+                                    <div class="spinner " id="spinner"></div>
                                 </button>
-                                <button type="button" onclick="closeForm()"><span>Cancel</span></button>
-                            </div>
+
+
                             <div id="payment-message" class="hidden"></div>
                         </section>
 

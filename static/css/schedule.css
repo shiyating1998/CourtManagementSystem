@@ -182,6 +182,10 @@ button[type="submit"] {
     margin-top: 1em;
 }
 
+#cancel {
+    margin-top: 1em;
+}
+
 #submit {
     margin-top: 1em;
 }
@@ -210,4 +214,28 @@ button[type="submit"] {
         flex: 0 0 100%;
         margin-bottom: 1em;
     }
+}
+
+
+/* Spinner styles */
+.spinner {
+  width: 10px;
+  height: 10px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+  display: inline-block;
+}
+
+/* Hidden by default, you can add this class initially */
+.hidden {
+  display: none;
+}
+
+/* Add spinning animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
