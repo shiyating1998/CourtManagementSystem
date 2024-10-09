@@ -79,42 +79,47 @@
         <button type="button" id="bookButton" onclick="openForm()">Book Selected &#129122</button>
 
         <div class="form-popup" id="bookingForm">
-            <form id="payment-form">
-                <h2 id="bookingHeader">Book Courts</h2>
-                <div class="form-wrapper">
-                    <div class="form-column">
-                        <p id="bookingDetails"></p>
-                        <label for="first_name">First Name:</label>
-                        <input type="text" id="first_name" name="first_name" required><br>
-                        <label for="last_name">Last Name:</label>
-                        <input type="text" id="last_name" name="last_name" required><br>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required><br>
-                        <label for="phone">Cell Phone Number:</label>
-                        <input type="text" name="phone" required id="phone"><br>
-                        <input type="hidden" name="selected_slots" id="selected_slots" value=""><br>
-                    </div>
-                    <div class="form-column">
-                        <section>
-                            <div id="payment-element">
-                                <!-- Stripe.js injects the Payment Element -->
-                            </div>
-                                <button id="cancel" type="button" onclick="closeForm()"><span>Cancel</span></button>
+  <form id="payment-form">
+    <h2 id="bookingHeader">Book Courts</h2>
+    <div class="form-wrapper">
+      <div class="form-column">
+        <p id="bookingDetails"></p>
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required><br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <label for="phone">Cell Phone Number:</label>
+        <input type="text" name="phone" required id="phone"><br>
+        <input type="hidden" name="selected_slots" id="selected_slots" value=""><br>
+      </div>
+      <div class="form-column">
+        <section>
+          <div id="payment-element">
+            <!-- Stripe.js injects the Payment Element -->
+          </div>
+          <button id="cancel" type="button" onclick="closeForm()">
+            <span>Cancel</span>
+          </button>
 
-                               <button id="submit">
-                                    <span id="button-text">Pay now</span>
-                                    <div class="spinner " id="spinner"></div>
-                                </button>
+          <button id="submit">
+            <span id="button-text">Pay now</span>
+          </button>
 
-
-                            <div id="payment-message" class="hidden"></div>
-                        </section>
-
-                    </div>
-                </div>
-            </form>
-        </div>
+          <div id="payment-message" class="hidden"></div>
+        </section>
+      </div>
     </div>
+
+    <!-- Centralized Spinner -->
+    <div class="central-spinner hidden" id="spinner">
+      <div class="spinner"></div>
+    </div>
+  </form>
+</div>
+
+        </div>
 
     <!-- Store the URL in a data attribute -->
     <div id="payment-intent-url" data-url="{% url 'create-payment-intent' %}"></div>
