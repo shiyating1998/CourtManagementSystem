@@ -241,11 +241,13 @@ function showMessage(messageText) {
 function setLoading(isLoading) {
     if (isLoading) {
         // Disable the button and show a spinner
-        document.querySelector("#submit").disabled = true;
+        document.querySelector("#submit").classList.add("hidden");
+        document.querySelector("#cancel").classList.add("hidden");
         document.querySelector("#spinner").classList.remove("hidden");
         document.querySelector("#button-text").classList.add("hidden");
     } else {
-        document.querySelector("#submit").disabled = false;
+        document.querySelector("#cancel").classList.remove("hidden");
+        document.querySelector("#submit").classList.remove("hidden");
         document.querySelector("#spinner").classList.add("hidden");
         document.querySelector("#button-text").classList.remove("hidden");
     }

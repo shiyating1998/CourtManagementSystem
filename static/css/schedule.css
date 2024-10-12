@@ -177,14 +177,17 @@ button[type="button"] {
     margin-top: 1em;
 }
 
-
-
 #bookingHeader {
     text-align: center;
     width: 100%;
 }
 
-/* Spinner styles */
+#submit:disabled {
+    background-color: #ddd;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
 /* Spinner styles */
 .spinner {
     width: 40px;
@@ -201,22 +204,18 @@ button[type="button"] {
     }
 }
 
-/* Centralized Spinner Styles */
+/* Spinner container positioned in the top-left */
 .central-spinner {
-    position: fixed;
+    position: fixed; /* Position relative to the viewport */
+    top: 50%; /* Align to the top */
+    left: 50%; /* Align to the left */
+    z-index: 999; /* Ensure it's on top of other elements */
+   transform: translate(-50%, -50%);
 
-    z-index: 999;
-    /* Ensure it's on top of other elements */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.7);
-    /* Transparent background to highlight form below */
-    width: 100vw;
-    /* Cover full viewport */
-    height: 100vh;
-    /* Cover full viewport */
+    background-color: rgba(255, 255, 255, 0.7); /* Transparent background */
+    padding: 20px; /* Add padding to adjust the spinner slightly away from the edges */
 }
+
 
 /* Hidden class for spinner */
 .hidden {
@@ -225,8 +224,3 @@ button[type="button"] {
 
 
 
-#submit:disabled {
-    background-color: #ddd;
-    color: #aaa;
-    cursor: not-allowed;
-}
