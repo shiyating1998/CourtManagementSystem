@@ -182,12 +182,6 @@ button[type="button"] {
     width: 100%;
 }
 
-#submit:disabled {
-    background-color: #ddd;
-    color: #aaa;
-    cursor: not-allowed;
-}
-
 /* Spinner styles */
 .spinner {
     width: 40px;
@@ -206,21 +200,22 @@ button[type="button"] {
 
 /* Spinner container positioned in the top-left */
 .central-spinner {
-    position: fixed; /* Position relative to the viewport */
-    top: 50%; /* Align to the top */
-    left: 50%; /* Align to the left */
-    z-index: 999; /* Ensure it's on top of other elements */
-   transform: translate(-50%, -50%);
-
-    background-color: rgba(255, 255, 255, 0.7); /* Transparent background */
-    padding: 20px; /* Add padding to adjust the spinner slightly away from the edges */
+    position: fixed;
+    /* Position relative to the viewport */
+    top: 50%;
+    /* Align to the top */
+    left: 50%;
+    /* Align to the left */
+    z-index: 999;
+    /* Ensure it's on top of other elements */
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    /* Transparent background */
+    padding: 20px;
+    /* Add padding to adjust the spinner slightly away from the edges */
 }
-
 
 /* Hidden class for spinner */
 .hidden {
     display: none;
 }
-
-
-

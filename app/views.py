@@ -15,7 +15,7 @@ from django.utils.timezone import now
 from django.views import View
 from django.views.decorators.cache import cache_control
 from django.views.generic import TemplateView
-from courtManagementSystem import settings
+from courtManagementSystem import settings,proj_settings
 from .models import User, Item, ItemCourt, ItemTime, ItemOrder, ProcessedEvent, Booking
 from .tasks import process_event
 from django.views.decorators.csrf import csrf_exempt
@@ -40,8 +40,8 @@ logger = logging.getLogger("django")
 LOG_FILE_PATH = "output.txt"
 LOG_FILE_PATH = "booking_data.txt"
 
-courts = settings.COURTS
-time_slots = settings.TIME_SLOTS
+courts = proj_settings.COURTS
+time_slots = proj_settings.TIME_SLOTS
 
 def admin_only_access(request):
     messages.error(request, "Only admin users can access this page.")

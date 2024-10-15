@@ -4,7 +4,7 @@ from app.models import ItemCourt, ItemTime, ItemOrder, User
 from decimal import Decimal
 from datetime import datetime, time, date, timedelta
 
-from courtManagementSystem import settings
+from courtManagementSystem import proj_settings
 
 
 class Command(BaseCommand):
@@ -15,9 +15,9 @@ class Command(BaseCommand):
         ItemOrder.objects.all().delete()
 
         # Load prices from Django settings
-        weekday_prices = getattr(settings, 'WEEKDAY_PRICES', [])
-        weekend_prices = getattr(settings, 'WEEKEND_PRICES', [])
-        holiday_price = getattr(settings, 'HOLIDAY_PRICE', Decimal('30.25'))
+        weekday_prices = getattr(proj_settings, 'WEEKDAY_PRICES', [])
+        weekend_prices = getattr(proj_settings, 'WEEKEND_PRICES', [])
+        holiday_price = getattr(proj_settings, 'HOLIDAY_PRICE', Decimal('30.25'))
 
         # Define date range for the next month
         today = date.today()

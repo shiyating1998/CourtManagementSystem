@@ -1,6 +1,8 @@
 from django.core.management.base import BaseCommand
 from datetime import time
 from app.models import ItemCourt, ItemTime
+from courtManagementSystem import settings, proj_settings
+
 
 #TODO, create starting script for easy config...
 
@@ -9,8 +11,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         ItemTime.objects.all().delete()
-        start_hour = 7
-        end_hour = 23
+        start_hour = proj_settings.start_hour
+        end_hour = proj_settings.end_hour
         courts = ItemCourt.objects.all()
         item_times = []
 
