@@ -16,7 +16,7 @@ from django.views.decorators.cache import cache_control
 from courtManagementSystem import settings, proj_settings
 from .models import User, Item, ItemCourt, ItemTime, ItemOrder, ProcessedEvent, Booking
 from .tasks import process_event
-from .utils import send_booking_confirmation, write_log_file
+from .utils import send_booking_confirmation
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -281,35 +281,22 @@ def book_slot(request):
         booking_date = selected_slots[0][2]
         booking_details = [booking_date]
 
-        print(selected_slots)
-        # write_log_file(booking_date, selected_slots, "Book", first_name + "_" + last_name, True)
         for slot in selected_slots:
-            logger.info(f"slot {slot}")
             start_time, court_name, booking_date, price = slot
-            logger.info(f"start: {start_time}")
-            logger.info(f"court: {court_name}")
-            logger.info(f"booking_date: {booking_date}")
-            logger.info(f"price: {price}")
+
 
             start_time_obj = datetime.strptime(start_time.split("-")[0], "%H:%M").time()
             end_time_obj = (
                     datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)
             ).time()
-            logger.info(f"start_time: {start_time_obj}")
-            logger.info(f"end_time: {end_time_obj}")
             booking_date_obj = datetime.strptime(booking_date, "%Y-%m-%d").date()
-            logger.info(f"booking_date_obj: {booking_date_obj}")
-
             item = Item.objects.get(id=1)
-            logger.info(f"item: {item}")
 
             item_court = ItemCourt.objects.get(name=court_name, item=item)
-            logger.info(f"item_court: {item_court}")
 
             item_time = ItemTime.objects.get(
                 item_court=item_court, start_time=start_time_obj, end_time=end_time_obj
             )
-            logger.info(f"item_time object: {item_time}")
 
             item_order, created = ItemOrder.objects.update_or_create(
                 item_time=item_time,
@@ -336,7 +323,7 @@ def book_slot(request):
                 court=court_name,  # Storing the court part
                 action='Book',
                 user=user.first_name.capitalize() + user.last_name.capitalize(),
-                user_role='Admin',
+                user_role= request.user.username,
                 timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             )
             booking.save()
@@ -361,10 +348,6 @@ def get_order_info(request):
         start_time = request.POST.get("start_time")
         court_name = request.POST.get("court_name")
         booking_date = request.POST.get("booking_date")
-
-        logger.info(f"start: {start_time}")
-        logger.info(f"court: {court_name}")
-        logger.info(f"booking_date: {booking_date}")
 
         # Parse start_time and booking_date
         start_time_obj = datetime.strptime(start_time.split("-")[0], "%H:%M").time()
@@ -403,9 +386,6 @@ def get_order_info(request):
             "status": item_order.status,
             "booking_date": str(item_order.date),
         }
-
-        # Log and return the response
-        logger.info(f"Returning order and user details: {response_data}")
         return JsonResponse(response_data)
     else:
         return JsonResponse({"error": "Invalid request method"}, status=405)
@@ -418,10 +398,6 @@ def cancel_booking(request):
         end_time = request.POST.get("end_time")
         court_name = request.POST.get("court_name")
         booking_date = request.POST.get("booking_date")
-
-        logger.info(f"start: {start_time}")
-        logger.info(f"court: {court_name}")
-        logger.info(f"booking_date: {booking_date}")
 
         # Parse start_time and booking_date
         start_time_obj = datetime.strptime(start_time, "%H:%M").time()
@@ -448,7 +424,7 @@ def cancel_booking(request):
             court=court_name,  # Storing the court part
             action='Cancel',
             user=username.capitalize(),
-            user_role='Admin',
+            user_role= request.user.username,
             timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         )
         booking.save()

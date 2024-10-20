@@ -1,13 +1,14 @@
 # myapp/tasks.py
+import json
 import logging
+from datetime import datetime, date, timedelta
+from decimal import Decimal
 
 from celery import shared_task
-from app.models import ProcessedEvent, User, Item, ItemCourt, ItemTime, ItemOrder, Booking
-from .utils import send_booking_confirmation, write_log_file
-import json
-from decimal import Decimal
-from datetime import datetime, date, timedelta, time
 from django.utils import timezone
+
+from app.models import User, Item, ItemCourt, ItemTime, ItemOrder, Booking
+from .utils import send_booking_confirmation
 
 # Get an instance of a logger
 logger = logging.getLogger('django')
@@ -18,21 +19,10 @@ def process_event(event):
     # Handle the event
     if event['type'] == 'payment_intent.succeeded':
         session = event['data']['object']
-        logger.info("session:", session)
-        # Fulfill the purchase...
-        metadata = session['metadata']
-        logger.info(f'J metadata: {metadata}')
         logger.info(f'Payment for {session["amount"]} succeeded!')
-
         metadata = session['metadata']
-
-        selected_slots_json = metadata['selected_slots']
-        logger.info(f"Type of selected_slots_json: {type(selected_slots_json)}")  # Should be <class 'str'>
-        logger.info(f'selected_slots_json: {selected_slots_json}')
 
         selected_slots = json.loads(metadata['selected_slots'])
-        logger.info(f"Type of selected_slots: {type(selected_slots)}")
-        logger.info(f'selected_slots: {selected_slots}')
 
         first_name = metadata['first_name']
         last_name = metadata['last_name']
@@ -56,27 +46,17 @@ def process_event(event):
         for slot in selected_slots:
             logger.info(f"slot {slot}")
             start_time, court_name, booking_date, price = slot
-            logger.info(f"start: {start_time}" )
-            logger.info(f"court: {court_name}" )
-            logger.info(f"booking_date: {booking_date}" )
-            logger.info(f"price: {price}" )
 
             start_time_obj = datetime.strptime(start_time.split('-')[0], "%H:%M").time()
             end_time_obj = (datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)).time()
-            logger.info(f"start_time: {start_time_obj}" )
-            logger.info(f"end_time: {end_time_obj}" )
             booking_date_obj = datetime.strptime(booking_date, "%Y-%m-%d").date()
-            logger.info(f"booking_date_obj: {booking_date_obj}")
 
             item = Item.objects.get(id=1)
-            logger.info(f"item: {item}" )
 
             item_court = ItemCourt.objects.get(name=court_name, item=item)
-            logger.info(f"item_court: {item_court}")
 
             item_time = ItemTime.objects.get(item_court=item_court, start_time=start_time_obj,
                                              end_time=end_time_obj)
-            logger.info(f"item_time object: {item_time}" )
 
             item_order, created = ItemOrder.objects.update_or_create(
                 item_time=item_time,
