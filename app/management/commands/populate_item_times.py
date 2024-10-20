@@ -4,8 +4,6 @@ from app.models import ItemCourt, ItemTime
 from courtManagementSystem import settings, proj_settings
 
 
-#TODO, create starting script for easy config...
-
 class Command(BaseCommand):
     help = 'Populate ItemTime for each court from 7am to 11pm in hourly intervals'
 

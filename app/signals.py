@@ -1,11 +1,22 @@
+from decimal import Decimal
+import holidays
+from django.core.management import call_command
 from django.db.models.signals import post_migrate
 from django.dispatch import receiver
-from .models import Venue, Item, ItemCourt, ItemTime
+from .models import Venue, Item, ItemCourt, ItemTime, ItemOrder
 from datetime import datetime, time, date, timedelta
 from courtManagementSystem import proj_settings
 
+# Flag to prevent re-running the command during post_migrate
+already_ran = False
+
 @receiver(post_migrate)
 def create_initial_data(sender, **kwargs):
+    global already_ran
+
+    if already_ran:
+        return  # Avoid running again
+
     # Create the venue if it doesn't exist
     venue, created = Venue.objects.get_or_create(name=proj_settings.VENUE_NAME, status=proj_settings.VENUE_STATUS)
 
@@ -20,10 +31,20 @@ def create_initial_data(sender, **kwargs):
     # Now handle the creation of ItemTime for each ItemCourt
     create_item_times()
 
+    # Set the flag to avoid re-running the command
+    already_ran = True
+
+    # Now create item orders for 365 days by calling the management command
+    try:
+        call_command('populate_item_orders')  # Programmatically run the management command
+        print("Successfully ran the populate_item_orders command")
+    except Exception as e:
+        print(f"Error running populate_item_orders command: {e}")
+
 def create_item_times():
     # Retrieve start and end hours from settings
-    start_hour = getattr(proj_settings, 'START_HOUR', 7)  # Default to 7am if not set
-    end_hour = getattr(proj_settings, 'END_HOUR', 23)  # Default to 11pm if not set
+    start_hour = proj_settings.START_HOUR  # Default to 7am if not set
+    end_hour = proj_settings.END_HOUR  # Default to 11pm if not set
 
     courts = ItemCourt.objects.all()
     item_times = []

@@ -2,7 +2,7 @@
 import logging
 
 from celery import shared_task
-from app.models import ProcessedEvent, User, Item, ItemCourt, ItemTime, ItemOrder
+from app.models import ProcessedEvent, User, Item, ItemCourt, ItemTime, ItemOrder, Booking
 from .utils import send_booking_confirmation, write_log_file
 import json
 from decimal import Decimal
@@ -51,7 +51,7 @@ def process_event(event):
         booking_date = selected_slots[0][2]
         booking_details = [booking_date]
 
-        write_log_file(booking_date, selected_slots, "Book", first_name + "_" + last_name, False)
+        # write_log_file(booking_date, selected_slots, "Book", first_name + "_" + last_name, False)
 
         for slot in selected_slots:
             logger.info(f"slot {slot}")
@@ -93,6 +93,17 @@ def process_event(event):
             booking_details.append(f"{court_name},  {start_time_obj.strftime('%H:%M')} - "
                                    f"{end_time_obj.strftime('%H:%M')}, ${price} ")
 
+            # Save the booking information
+            booking = Booking(
+                date=booking_date_obj,
+                time=start_time,  # Storing the time part
+                court=court_name,  # Storing the court part
+                action='Book',
+                user=user.first_name.capitalize() + " " + user.last_name.capitalize(),
+                user_role=user.first_name.capitalize() + " " + user.last_name.capitalize(),
+                timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            )
+            booking.save()
             #total = total + float(price)
         booking_details_str = "\n".join(booking_details)
         booking_details_str = booking_details_str + '\nTotal: $' + str(total)

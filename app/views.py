@@ -1,47 +1,39 @@
 import csv
 import json
+from datetime import datetime, date, timedelta
 from decimal import Decimal
-from datetime import datetime, date, timedelta, time
 
 import pytz
 import stripe
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse, HttpResponse
-from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.http import urlencode
-from django.utils.timezone import now
 from django.views import View
 from django.views.decorators.cache import cache_control
-from django.views.generic import TemplateView
-from courtManagementSystem import settings,proj_settings
+
+from courtManagementSystem import settings, proj_settings
 from .models import User, Item, ItemCourt, ItemTime, ItemOrder, ProcessedEvent, Booking
 from .tasks import process_event
-from django.views.decorators.csrf import csrf_exempt
-
-from .utils import send_booking_confirmation, write_log_file, format_bookings
+from .utils import send_booking_confirmation, write_log_file
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 import logging
-from django.http import FileResponse
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 
 from django.views.decorators.csrf import csrf_exempt
 
 # Get an instance of a logger
 logger = logging.getLogger("django")
-# TODO, path on server?
-# Define the path to your log file
-LOG_FILE_PATH = "output.txt"
-LOG_FILE_PATH = "booking_data.txt"
+
 
 courts = proj_settings.COURTS
 time_slots = proj_settings.TIME_SLOTS
+
 
 def admin_only_access(request):
     messages.error(request, "Only admin users can access this page.")
@@ -49,13 +41,16 @@ def admin_only_access(request):
         request, "error_page.html"
     )  # You can create a template called 'error_page.html'
 
+
 def is_admin(user):
     return user.is_staff  # Or you could use user.is_superuser if needed
+
 
 @user_passes_test(is_admin)
 def booking_list(request):
     bookings = Booking.objects.all().order_by('date', 'time')  # Fetch all bookings
     return render(request, 'admin/view_log.html', {'bookings': bookings})
+
 
 @user_passes_test(is_admin)
 def download_bookings_csv(request):
@@ -72,9 +67,11 @@ def download_bookings_csv(request):
     # Query the bookings and write each row to the CSV.
     bookings = Booking.objects.all().order_by('date', 'time')
     for booking in bookings:
-        writer.writerow([booking.date, booking.time, booking.court, booking.action, booking.user, booking.user_role, booking.timestamp])
+        writer.writerow([booking.date, booking.time, booking.court, booking.action, booking.user, booking.user_role,
+                         booking.timestamp])
 
     return response
+
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def booking_schedule(request):
@@ -84,11 +81,8 @@ def booking_schedule(request):
     # Convert to EST
     est_timezone = pytz.timezone("US/Eastern")
     current_time = current_time.astimezone(est_timezone)
-
     today = datetime.now().date()
     selected_date = request.GET.get("date", today.strftime("%Y-%m-%d"))
-
-    logger.info(f"selected date: {selected_date}")
 
     # TODO make it configuarable
     dates = [(today + timedelta(days=i)).strftime("%a %Y-%m-%d") for i in range(8)]
@@ -101,20 +95,13 @@ def booking_schedule(request):
     # Query all ItemOrder instances where the date matches selected_date
     item_orders = ItemOrder.objects.filter(date=selected_date)
 
-    # Now item_orders contains all ItemOrder instances with date equal to specific_date
-    # for order in item_orders:
-    # print(order)  # This will print the string representation defined in the __str__ method
-    # TODO remove
-    # courts = settings.COURTS
-    # time_slots = settings.TIME_SLOTS
-
     context = {
         "dates": dates,
         "selected_date": selected_date,
         "item_orders": item_orders,
         "today": today.strftime("%a %Y-%m-%d"),
-        "courts": courts,  # TODO
-        "time_slots": time_slots,  # TODO
+        "courts": courts,
+        "time_slots": time_slots,
         "current_time": current_time.strftime("%Y-%m-%d-%H"),  # testing
     }
     return render(request, "booking/schedule.html", context)
@@ -133,9 +120,6 @@ def admin_booking_schedule(request):
     today = datetime.now().date()
     selected_date = request.GET.get("date", today.strftime("%Y-%m-%d"))
 
-
-    logger.info(f"selected date: {selected_date}")
-
     # TODO make it configuarable
     dates = [(today + timedelta(days=i)).strftime("%a %Y-%m-%d") for i in range(-7, 22)]
 
@@ -147,37 +131,13 @@ def admin_booking_schedule(request):
     # Query all ItemOrder instances where the date matches selected_date
     item_orders = ItemOrder.objects.filter(date=selected_date)
 
-    # Now item_orders contains all ItemOrder instances with date equal to specific_date
-    # for order in item_orders:
-    # print(order)  # This will print the string representation defined in the __str__ method
-
-    # TODO get courts info from db
-    #courts = [f"Court {i}" for i in range(1, 10)]
-    # TODO get time slots from db
-    # time_slots = [
-    #     "09:00-10:00",
-    #     "10:00-11:00",
-    #     "11:00-12:00",
-    #     "12:00-13:00",
-    #     "13:00-14:00",
-    #     "14:00-15:00",
-    #     "15:00-16:00",
-    #     "16:00-17:00",
-    #     "17:00-18:00",
-    #     "18:00-19:00",
-    #     "19:00-20:00",
-    #     "20:00-21:00",
-    #     "21:00-22:00",
-    #     "22:00-23:00",
-    # ]
-
     context = {
         "dates": dates,
         "selected_date": selected_date,
         "item_orders": item_orders,
         "today": today.strftime("%a %Y-%m-%d"),
-        "courts": courts,  # TODO
-        "time_slots": time_slots,  # TODO
+        "courts": courts,
+        "time_slots": time_slots,
         "current_time": current_time.strftime("%Y-%m-%d-%H"),  # testing
     }
     return render(request, "admin/admin-schedule.html", context)
@@ -270,6 +230,8 @@ def validate_user(email, first_name, last_name):
     # Convert first_name and last_name to lowercase for comparison
     first_name = first_name.lower()
     last_name = last_name.lower()
+    print(f"first: {first_name}")
+    print(f"last: {last_name}")
     try:
         a = User.objects.get(email=email, first_name=first_name, last_name=last_name)
         return True  # User exists and matches the details
@@ -320,8 +282,7 @@ def book_slot(request):
         booking_details = [booking_date]
 
         print(selected_slots)
-        # TODO
-        write_log_file(booking_date, selected_slots, "Book", first_name + "_" + last_name, True)
+        # write_log_file(booking_date, selected_slots, "Book", first_name + "_" + last_name, True)
         for slot in selected_slots:
             logger.info(f"slot {slot}")
             start_time, court_name, booking_date, price = slot
@@ -332,7 +293,7 @@ def book_slot(request):
 
             start_time_obj = datetime.strptime(start_time.split("-")[0], "%H:%M").time()
             end_time_obj = (
-                datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)
+                    datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)
             ).time()
             logger.info(f"start_time: {start_time_obj}")
             logger.info(f"end_time: {end_time_obj}")
@@ -368,6 +329,18 @@ def book_slot(request):
                 f"{end_time_obj.strftime('%H:%M')}, ${price} "
             )
 
+            # Save the booking information
+            booking = Booking(
+                date=booking_date_obj,
+                time=start_time,  # Storing the time part
+                court=court_name,  # Storing the court part
+                action='Book',
+                user=user.first_name.capitalize() + user.last_name.capitalize(),
+                user_role='Admin',
+                timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            )
+            booking.save()
+
         booking_details_str = "\n".join(booking_details)
         if "@dummy.com" not in email:
             send_booking_confirmation(email, first_name, last_name, booking_details_str)
@@ -396,7 +369,7 @@ def get_order_info(request):
         # Parse start_time and booking_date
         start_time_obj = datetime.strptime(start_time.split("-")[0], "%H:%M").time()
         end_time_obj = (
-            datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)
+                datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)
         ).time()
         booking_date_obj = datetime.strptime(booking_date, "%Y-%m-%d").date()
 
@@ -446,7 +419,6 @@ def cancel_booking(request):
         court_name = request.POST.get("court_name")
         booking_date = request.POST.get("booking_date")
 
-
         logger.info(f"start: {start_time}")
         logger.info(f"court: {court_name}")
         logger.info(f"booking_date: {booking_date}")
@@ -469,7 +441,17 @@ def cancel_booking(request):
         item_order = ItemOrder.objects.get(item_time=item_time, date=booking_date_obj)
         username = item_order.user.username
         court_info = f"{start_time}-{end_time} {court_name}"
-        write_log_file(booking_date, court_info, "Cancel", username, True)
+        # write_log_file(booking_date, court_info, "Cancel", username, True)
+        booking = Booking(
+            date=booking_date_obj,
+            time=f'{start_time}-{end_time}',  # Storing the time part
+            court=court_name,  # Storing the court part
+            action='Cancel',
+            user=username.capitalize(),
+            user_role='Admin',
+            timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        )
+        booking.save()
 
         # Assuming the same item_time and booking_date_obj are passed in as when booking
         item_order, created = ItemOrder.objects.update_or_create(
@@ -502,14 +484,14 @@ def verify_user_and_slots(request):
             selected_slots = data.get("selected_slots")
 
             # Step 1: Verify the user details
-            try:
-                user = User.objects.get(email=email)
-                if user.first_name != first_name or user.last_name != last_name:
-                    return JsonResponse(
-                        {"error": "User details do not match."}, status=400
-                    )
-            except User.DoesNotExist:
-                pass  # User does not exist, proceed with creating new user during payment
+            valid = True
+            if user_exists(email):
+                valid = validate_user(email, first_name, last_name)
+            if not valid:
+                # return Error to the front-end
+                return JsonResponse(
+                    {"error": "Email address already registered with another name."}
+                )
 
             # Step 2: Check if the selected slots are available
             for slot in selected_slots:
@@ -518,7 +500,7 @@ def verify_user_and_slots(request):
                     start_time.split("-")[0], "%H:%M"
                 ).time()
                 end_time_obj = (
-                    datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)
+                        datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)
                 ).time()
                 booking_date_obj = datetime.strptime(booking_date, "%Y-%m-%d").date()
                 # Check if the slot is already booked

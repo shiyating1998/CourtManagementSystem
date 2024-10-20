@@ -222,3 +222,7 @@ STRIPE_WEBHOOK_SECRET = 'whsec_69fda7e9e929aa89ada8ba49b4020c1f3932effef277fca14
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
+
+# Django Secret key
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-2i2v5yx+iv_b6f4_8wa=8wbc3anwj3x7mhuc0grvp4z-k%ei50'
