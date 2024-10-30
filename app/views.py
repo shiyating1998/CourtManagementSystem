@@ -30,7 +30,6 @@ from django.views.decorators.csrf import csrf_exempt
 # Get an instance of a logger
 logger = logging.getLogger("django")
 
-
 courts = proj_settings.COURTS
 time_slots = proj_settings.TIME_SLOTS
 
@@ -284,7 +283,6 @@ def book_slot(request):
         for slot in selected_slots:
             start_time, court_name, booking_date, price = slot
 
-
             start_time_obj = datetime.strptime(start_time.split("-")[0], "%H:%M").time()
             end_time_obj = (
                     datetime.combine(date.today(), start_time_obj) + timedelta(hours=1)
@@ -322,8 +320,8 @@ def book_slot(request):
                 time=start_time,  # Storing the time part
                 court=court_name,  # Storing the court part
                 action='Book',
-                user=user.first_name.capitalize() + user.last_name.capitalize(),
-                user_role= request.user.username,
+                user=user.first_name.capitalize() + " " + user.last_name.capitalize(),
+                user_role=request.user.username,
                 timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             )
             booking.save()
@@ -415,16 +413,18 @@ def cancel_booking(request):
 
         # Retrieve ItemOrder
         item_order = ItemOrder.objects.get(item_time=item_time, date=booking_date_obj)
-        username = item_order.user.username
-        court_info = f"{start_time}-{end_time} {court_name}"
+        user = item_order.user
+        username = user.first_name.capitalize() + " " + user.last_name.capitalize()
+        print("username: ", username)
+        # court_info = f"{start_time}-{end_time} {court_name}"
         # write_log_file(booking_date, court_info, "Cancel", username, True)
         booking = Booking(
             date=booking_date_obj,
             time=f'{start_time}-{end_time}',  # Storing the time part
             court=court_name,  # Storing the court part
             action='Cancel',
-            user=username.capitalize(),
-            user_role= request.user.username,
+            user=username,
+            user_role=request.user.username,
             timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         )
         booking.save()

@@ -33,6 +33,11 @@ function toggleSelect(cell, slot, court, date, isBooked, price) {
 }
 
 function openForm() {
+    // Get the form element by ID
+    const form = document.getElementById("payment-form");
+    // Reset the form fields
+    form.reset();
+
     if (selectedCells.length === 0) {
         alert("Please select at least one slot.");
         return;
