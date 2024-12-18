@@ -99,6 +99,8 @@ WSGI_APPLICATION = 'courtManagementSystem.wsgi.application'
 #     }
 # }
 
+
+# localhost
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -109,6 +111,19 @@ DATABASES = {
         'PORT': '3306',        # Default port for MySQL
     }
 }
+
+# docker
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'court_management_system',
+        'USER': 'user',
+        'PASSWORD': 'password',
+        'HOST': 'db',  # Name of the MySQL service in docker-compose
+        'PORT': '3306',
+    }
+}
+
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.35', 'driven-moderately-gator.ngrok-free.app']
 
