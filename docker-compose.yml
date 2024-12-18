@@ -32,5 +32,27 @@ services:
       DATABASE_USER: user
       DATABASE_PASSWORD: password
 
+  redis:
+    image: redis:6.0
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: .
+    container_name: celery_worker
+    command: >
+      sh -c "
+      celery -A courtManagementSystem worker -l info -P eventlet
+      "
+    depends_on:
+      - web
+      - redis
+    environment:
+      DATABASE_HOST: db
+      DATABASE_NAME: court_management_system
+      DATABASE_USER: user
+      DATABASE_PASSWORD: password
+
 volumes:
   db_data:
