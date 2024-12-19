@@ -22,6 +22,40 @@ A comprehensive Django-based system for managing court bookings, schedules, and 
 
 ## Installation
 
+### Using Docker (Recommended)
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd CourtManagementSystem
+   ```
+
+2. Create a `.env` file in the root directory with the following variables:
+   ```
+   DEBUG=True
+   SECRET_KEY=your_secret_key
+   STRIPE_SECRET_KEY=your_stripe_secret_key
+   STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+   ```
+
+3. Build and run the containers:
+   ```bash
+   docker-compose up --build
+   ```
+
+   This will start:
+   - Django web application
+   - MySQL database
+   - Redis server
+   - Celery worker
+   - Stripe CLI for webhook testing
+
+4. The application will be available at:
+   - Web interface: http://localhost:8000
+   - Admin panel: http://localhost:8000/admin
+
+### Manual Installation (Alternative)
+
 1. Clone the repository:
    ```bash
    git clone <repository-url>

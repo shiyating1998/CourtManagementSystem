@@ -24,8 +24,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True #TODO
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -125,7 +123,7 @@ DATABASES = {
 }
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.35', 'driven-moderately-gator.ngrok-free.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.35', 'driven-moderately-gator.ngrok-free.app', 'web']
 
 
 # Password validation
@@ -223,6 +221,24 @@ LOGGING = {
         },
     },
 }
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+# }
 
 
 

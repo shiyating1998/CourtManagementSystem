@@ -31,6 +31,7 @@ services:
       DATABASE_NAME: court_management_system
       DATABASE_USER: user
       DATABASE_PASSWORD: password
+      DEBUG: True
 
   redis:
     image: redis:6.0
@@ -53,6 +54,14 @@ services:
       DATABASE_NAME: court_management_system
       DATABASE_USER: user
       DATABASE_PASSWORD: password
+
+  stripe-cli:
+    image: stripe/stripe-cli
+    container_name: stripe_cli
+    environment:
+      - STRIPE_API_KEY=sk_test_51PfA0tRt3PcgmiF6E8mEDNQrL0UmX8hDNGesoT1xXQ9MWwOrjIibcL2DhQMCjzrAEfLJrCB8AbbQSdrUdLrqdjQS00GcZ8ptR4
+      - STRIPE_DEVICE_NAME=docker-container
+    command: "listen --forward-to web:8000/webhooks/stripe/"
 
 volumes:
   db_data:

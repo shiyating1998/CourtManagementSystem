@@ -9,22 +9,23 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     default-libmysqlclient-dev \
     pkg-config \
+    curl \
     && apt-get clean
 
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app/
+
 # Install Python dependencies
-COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the application code
-COPY . .
-
-# Expose the port
+# Expose the necessary port (Django default is 8000)
 EXPOSE 8000
-
-# # Run the application
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 COPY wait-for-mysql.sh /wait-for-mysql.sh
 RUN chmod +x /wait-for-mysql.sh
 
-CMD ["/wait-for-mysql.sh", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Run the application
+CMD ["sh", "-c", "python manage.py runserver 0.0.0.0:8000"]
