@@ -2,6 +2,24 @@
 
 A comprehensive Django-based system for managing court bookings, schedules, and resources.
 
+## Branches
+
+The project has two main branches:
+
+### 1. SQLite Branch (main-sqlite)
+- Uses SQLite as the database
+- Simplified Docker setup
+- Ideal for development and testing
+- Easier to get started
+- All services run in a single container
+
+### 2. MySQL Branch (main-mysql)
+- Uses MySQL as the database
+- Production-ready setup
+- Separate containers for each service
+- More complex but more scalable
+- Better for production deployment
+
 ## Features
 
 - Court booking and reservation management
@@ -15,14 +33,12 @@ A comprehensive Django-based system for managing court bookings, schedules, and 
 
 ## Prerequisites
 
-- Python 3.12+
-- MySQL
-- Redis (for Celery)
-- Virtual environment (recommended)
+- Docker and Docker Compose
+- Git
+- Redis (for Celery task queue)
+- Stripe CLI (for webhook testing)
 
 ## Installation
-
-### Using Docker (Recommended)
 
 1. Clone the repository:
    ```bash
@@ -30,7 +46,19 @@ A comprehensive Django-based system for managing court bookings, schedules, and 
    cd CourtManagementSystem
    ```
 
-2. Create a `.env` file in the root directory with the following variables:
+2. Choose your branch:
+
+   For SQLite (simpler setup):
+   ```bash
+   git checkout main-sqlite
+   ```
+
+   For MySQL (production setup):
+   ```bash
+   git checkout main-mysql
+   ```
+
+3. Create a `.env` file in the root directory with the following variables:
    ```
    DEBUG=True
    SECRET_KEY=your_secret_key
@@ -38,11 +66,21 @@ A comprehensive Django-based system for managing court bookings, schedules, and 
    STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
    ```
 
-3. Build and run the containers:
+4. Build and run the containers:
+
+   For SQLite branch:
    ```bash
    docker-compose up --build
    ```
+   This will start:
+   - Combined Django web application and Celery worker
+   - Redis server
+   - Stripe CLI for webhook testing
 
+   For MySQL branch:
+   ```bash
+   docker-compose up --build
+   ```
    This will start:
    - Django web application
    - MySQL database
@@ -50,55 +88,9 @@ A comprehensive Django-based system for managing court bookings, schedules, and 
    - Celery worker
    - Stripe CLI for webhook testing
 
-4. The application will be available at:
+5. The application will be available at:
    - Web interface: http://localhost:8000
    - Admin panel: http://localhost:8000/admin
-
-### Manual Installation (Alternative)
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd CourtManagementSystem
-   ```
-
-2. Create and activate a virtual environment:
-   ```bash
-   python -m venv .venv
-   .venv\Scripts\activate  # On Windows
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Set up environment variables:
-   Create a `.env` file in the root directory with the following variables:
-   ```
-   DEBUG=True
-   SECRET_KEY=your_secret_key
-   DATABASE_URL=mysql://user:password@localhost:3306/court_management
-   STRIPE_SECRET_KEY=your_stripe_secret_key
-   STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
-   ```
-
-5. Run migrations:
-   ```bash
-   python manage.py migrate
-   ```
-
-6. Start Redis server (required for Celery)
-
-7. Start Celery worker:
-   ```bash
-   celery -A app worker -l info -P eventlet
-   ```
-
-8. Run the development server:
-   ```bash
-   python manage.py runserver
-   ```
 
 ## Project Structure
 
@@ -115,8 +107,48 @@ CourtManagementSystem/
 │   └── utils.py          # Utility functions
 ├── static/                # Static files (CSS, JS, images)
 ├── courtManagementSystem/ # Project settings
-└── manage.py             # Django management script
+├── docker/               # Docker configuration files
+├── requirements.txt      # Python dependencies
+├── docker-compose.yml    # Docker services configuration
+├── Dockerfile           # Docker build instructions
+└── manage.py            # Django management script
 ```
+
+## Configuration
+
+### SQLite Branch
+- Database: SQLite (file-based)
+- Configuration is minimal
+- Database file is stored in the container
+- Redis for Celery task queue
+- Stripe CLI for payment webhook testing
+
+### MySQL Branch
+- Database: MySQL
+- Requires additional environment variables for database configuration
+- Separate database container
+- Persistent volume for database data
+- Redis for Celery task queue
+- Stripe CLI for payment webhook testing
+
+## Development vs Production
+
+### Development (SQLite Branch)
+- Quick to set up
+- No database configuration needed
+- Single container deployment
+- Ideal for development and testing
+
+### Production (MySQL Branch)
+- Scalable architecture
+- Better performance for concurrent users
+- Separate services for better resource management
+- Proper service isolation
+- Data persistence with volumes
+
+## Manual Installation
+
+If you prefer to run the application without Docker, please refer to our [Manual Installation Guide](docs/manual-installation.md).
 
 ## Development
 
@@ -131,6 +163,10 @@ Run the test suite:
 python manage.py test
 ```
 
+## Contributing
+
+Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting pull requests.
+
 ## License
 
-[Your License Here]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
