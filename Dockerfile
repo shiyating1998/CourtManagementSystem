@@ -1,8 +1,12 @@
 # Use a Python base image
 FROM python:3.10-slim
 
-# Set working directory
-WORKDIR /app
+# Set the environment variable for Django
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Set the working directory in the container
+WORKDIR /djangoApp
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -10,22 +14,22 @@ RUN apt-get update && apt-get install -y \
     default-libmysqlclient-dev \
     pkg-config \
     curl \
-    && apt-get clean
+    default-mysql-client \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# Set the working directory to /app
-WORKDIR /app
-
-# Copy the current directory contents into the container at /app
-COPY . /app/
-
-# Install Python dependencies
+# Copy requirements first to leverage Docker cache
+COPY requirements.txt /djangoApp/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the necessary port (Django default is 8000)
+# Copy the project
+COPY . /djangoApp/
+
+# Copy and set up entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Expose the port
 EXPOSE 8000
 
-COPY wait-for-mysql.sh /wait-for-mysql.sh
-RUN chmod +x /wait-for-mysql.sh
-
-# Run the application
-CMD ["sh", "-c", "python manage.py runserver 0.0.0.0:8000"]
+ENTRYPOINT ["/entrypoint.sh"]

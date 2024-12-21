@@ -28,10 +28,11 @@ services:
       - .:/app
     environment:
       DATABASE_HOST: db
-      DATABASE_NAME: court_management_system
+      DATABASE_NAME: court_mnagement_system
       DATABASE_USER: user
       DATABASE_PASSWORD: password
       DEBUG: True
+      RUN_MIGRATIONS: true
 
   redis:
     image: redis:6.0
@@ -54,6 +55,7 @@ services:
       DATABASE_NAME: court_management_system
       DATABASE_USER: user
       DATABASE_PASSWORD: password
+      RUN_MIGRATIONS: false
 
   stripe-cli:
     image: stripe/stripe-cli
