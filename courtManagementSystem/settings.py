@@ -122,6 +122,15 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        'OPTIONS': {
+            'timeout': 20,  # Increase timeout to 20 seconds
+        },
+    }
+}
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.35', 'driven-moderately-gator.ngrok-free.app', 'web']
 
@@ -251,10 +260,13 @@ STRIPE_WEBHOOK_SECRET = 'whsec_69fda7e9e929aa89ada8ba49b4020c1f3932effef277fca14
 
 # Celery Configuration
 
-# CELERY_BROKER_URL = 'redis://localhost:6379/0' #local
+#CELERY_BROKER_URL = 'redis://localhost:6379/0' #local
 CELERY_BROKER_URL = 'redis://redis:6379/0'
-CELERY_RESULT_BACKEND = 'django-db'
+#CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_BACKEND = None
 CELERY_CACHE_BACKEND = 'django-cache'
+
+
 
 # Django Secret key
 # SECURITY WARNING: keep the secret key used in production secret!

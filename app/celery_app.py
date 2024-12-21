@@ -14,6 +14,6 @@ app.conf.update(
     task_serializer='json',
     accept_content=['json'],  # Ignore other content
     result_serializer='json',
-    timezone='UTC',
+    timezone='UTC', #TODO
     enable_utc=True,
 )

@@ -1,61 +1,23 @@
 version: '3.9'
-
 services:
-  db:
-    image: mysql:8.0  # Use a specific MySQL version
-    container_name: mysql_db
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword  # Root password
-      MYSQL_DATABASE: court_management_system  # Database to auto-create
-      MYSQL_USER: user  # Custom MySQL user
-      MYSQL_PASSWORD: password  # Password for the user
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql  # Persistent data storage
-      - ./mysql-init:/docker-entrypoint-initdb.d  # Run custom scripts at startup
-
   web:
     build: .
     container_name: django_app
-    depends_on:
-      - db
-    command: python manage.py runserver 0.0.0.0:8000
+    command: "python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
-    volumes:
-      - .:/app
     environment:
-      DATABASE_HOST: db
-      DATABASE_NAME: court_mnagement_system
-      DATABASE_USER: user
-      DATABASE_PASSWORD: password
-      DEBUG: True
-      RUN_MIGRATIONS: true
-
+      - RUN_MIGRATIONS=true
+      - DJANGO_SUPERUSER_USERNAME=admin
+      - DJANGO_SUPERUSER_EMAIL=admin@example.com
+      - DJANGO_SUPERUSER_PASSWORD=your_secure_password
+      - DATABASE_URL=sqlite:///data/db.sqlite3
+  
   redis:
     image: redis:6.0
     container_name: redis
     ports:
       - "6379:6379"
-
-  celery:
-    build: .
-    container_name: celery_worker
-    command: >
-      sh -c "
-      celery -A courtManagementSystem worker -l info -P eventlet
-      "
-    depends_on:
-      - web
-      - redis
-    environment:
-      DATABASE_HOST: db
-      DATABASE_NAME: court_management_system
-      DATABASE_USER: user
-      DATABASE_PASSWORD: password
-      RUN_MIGRATIONS: false
 
   stripe-cli:
     image: stripe/stripe-cli
@@ -64,6 +26,3 @@ services:
       - STRIPE_API_KEY=sk_test_51PfA0tRt3PcgmiF6E8mEDNQrL0UmX8hDNGesoT1xXQ9MWwOrjIibcL2DhQMCjzrAEfLJrCB8AbbQSdrUdLrqdjQS00GcZ8ptR4
       - STRIPE_DEVICE_NAME=docker-container
     command: "listen --forward-to web:8000/webhooks/stripe/"
-
-volumes:
-  db_data:
