@@ -3,7 +3,6 @@ services:
   web:
     build: .
     container_name: django_app
-    command: "python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
     environment:
@@ -13,12 +12,6 @@ services:
       - DJANGO_SUPERUSER_PASSWORD=your_secure_password
       - DATABASE_URL=sqlite:///data/db.sqlite3
   
-  redis:
-    image: redis:6.0
-    container_name: redis
-    ports:
-      - "6379:6379"
-
   stripe-cli:
     image: stripe/stripe-cli
     container_name: stripe_cli

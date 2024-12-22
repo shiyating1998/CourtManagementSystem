@@ -18,6 +18,10 @@ fi
 
 # Start the main application
 echo "Starting application..."
+
+# Start Redis server in the background
+redis-server &
+
 # Run Django app in the background
 python manage.py runserver 0.0.0.0:8000 &
 # Run Celery worker
