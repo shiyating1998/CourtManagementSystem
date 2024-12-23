@@ -14,9 +14,10 @@
 #   web: gunicorn courtManagementSystem.wsgi:application --bind 0.0.0.0:$PORT
 #   worker: celery -A courtManagementSystem worker -l INFO -P eventlet --concurrency=1
 
-# heroku.yml
-build:
+  build:
   docker:
     web: Dockerfile
+    worker: Dockerfile
 run:
   web: gunicorn courtManagementSystem.wsgi:application --bind 0.0.0.0:$PORT
+  worker: celery -A courtManagementSystem -l INFO
