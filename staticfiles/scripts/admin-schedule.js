@@ -159,13 +159,8 @@ function toggleSelect(cell, slot, court, date, isBooked, price) {
         var details = date + '<br>' + court + ',' + slot + ',$' + price;
         document.getElementById("bookingDetails").innerHTML = details;
         document.getElementById("bookingForm").style.display = "block";
-
         document.getElementById("info").value = cellKey;
-
-
         document.getElementById("divInput").style.display = "none";
-
-
         // Show button and add back to layout
         document.getElementById("btnCancelBooking").style.display = "block";
         document.getElementById("btnBook").style.display = "none";

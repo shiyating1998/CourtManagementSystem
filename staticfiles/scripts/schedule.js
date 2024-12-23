@@ -33,6 +33,11 @@ function toggleSelect(cell, slot, court, date, isBooked, price) {
 }
 
 function openForm() {
+    // Get the form element by ID
+    const form = document.getElementById("payment-form");
+    // Reset the form fields
+    form.reset();
+
     if (selectedCells.length === 0) {
         alert("Please select at least one slot.");
         return;
@@ -242,11 +247,13 @@ function showMessage(messageText) {
 function setLoading(isLoading) {
     if (isLoading) {
         // Disable the button and show a spinner
-        document.querySelector("#submit").disabled = true;
+        document.querySelector("#submit").classList.add("hidden");
+        document.querySelector("#cancel").classList.add("hidden");
         document.querySelector("#spinner").classList.remove("hidden");
         document.querySelector("#button-text").classList.add("hidden");
     } else {
-        document.querySelector("#submit").disabled = false;
+        document.querySelector("#cancel").classList.remove("hidden");
+        document.querySelector("#submit").classList.remove("hidden");
         document.querySelector("#spinner").classList.add("hidden");
         document.querySelector("#button-text").classList.remove("hidden");
     }
