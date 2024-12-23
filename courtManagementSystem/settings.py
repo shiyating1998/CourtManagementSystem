@@ -291,14 +291,26 @@ STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', 'whsec_69fda7e9e929aa
 #CELERY_RESULT_BACKEND = None
 #CELERY_CACHE_BACKEND = 'django-cache'
 
-# Redis and Celery settings
-REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
-CELERY_BROKER_URL = REDIS_URL
-CELERY_RESULT_BACKEND = REDIS_URL
 # CELERY_ACCEPT_CONTENT = ['json']
 # CELERY_TASK_SERIALIZER = 'json'
 # CELERY_RESULT_SERIALIZER = 'json'
 # CELERY_TIMEZONE = 'UTC'
+
+import ssl
+
+REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
+
+CELERY_BROKER_URL = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
+
+# If using SSL with Redis (rediss://), configure the SSL options
+if REDIS_URL.startswith("rediss://"):
+    CELERY_BROKER_TRANSPORT_OPTIONS = {
+        "ssl": {
+            "ssl_cert_reqs": ssl.CERT_NONE  # Change to ssl.CERT_REQUIRED or ssl.CERT_OPTIONAL for stricter validation
+        }
+    }
+
 
 # Django Secret key
 # SECURITY WARNING: keep the secret key used in production secret!
