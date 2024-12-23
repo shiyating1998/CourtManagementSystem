@@ -16,15 +16,12 @@ set -e
 #     fi
 # fi
 
-# Start the main application
-echo "Starting application..."
-
 #!/bin/bash
 
+# Remove the CMD check and make it simpler
 if [ "$DYNO" = "worker" ]
 then
-    celery -A courtManagementSystem worker -l INFO -P eventlet --concurrency=1
+    celery -A court_management_system worker -l INFO
 else
-    CMD gunicorn courtManagementSystem.wsgi:application --bind 0.0.0.0:$PORT
+    exec "$@"
 fi
-
