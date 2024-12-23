@@ -306,3 +306,6 @@ CELERY_RESULT_BACKEND = REDIS_URL + '?ssl_cert_reqs=CERT_NONE'
 # Django Secret key
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'x$oadbs5b2%ow-p@kb7q^pmz1)sw&q8*lg0rmiwk349s#b^gvb')
+
+
+SEND_FILE_MAX_AGE_DEFAULT = 0
