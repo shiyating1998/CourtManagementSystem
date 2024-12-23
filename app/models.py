@@ -95,3 +95,5 @@ class ProcessedEvent(models.Model):
     def __str__(self):
         return self.event_id
 
+class Greeting(models.Model):
+    when = models.DateTimeField("date created", auto_now_add=True)

@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import logging
 from pathlib import Path
+import os
+import dj_database_url
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,7 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True #TODO
-
+# Ensure DEBUG is False in production
+DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 
 # Application definition
 
@@ -132,7 +136,19 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.35', 'driven-moderately-gator.ngrok-free.app', 'web']
+# Database configuration heroku
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///db.sqlite3")
+DATABASES = {
+    "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
+}
+
+
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.35', 'driven-moderately-gator.ngrok-free.app', 'web']
+# Update allowed hosts
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+
+
+
 
 
 # Password validation
@@ -252,21 +268,27 @@ LOGGING = {
 
 
 
-# Stripe config
-STRIPE_PUBLIC_KEY = "pk_test_51PfA0tRt3PcgmiF6YXj4ROeapnBMPBd7FqSIGJyGvvMoZrVESulq4n0kTbarADCXxDjQQShUD3GbsaKaustZJut400GUgtILbz"
-STRIPE_SECRET_KEY = "sk_test_51PfA0tRt3PcgmiF6E8mEDNQrL0UmX8hDNGesoT1xXQ9MWwOrjIibcL2DhQMCjzrAEfLJrCB8AbbQSdrUdLrqdjQS00GcZ8ptR4"
-STRIPE_WEBHOOK_SECRET = 'whsec_69fda7e9e929aa89ada8ba49b4020c1f3932effef277fca147d5e8f877a13f31'
-
+# Stripe settings
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', 'pk_test_51PfA0tRt3PcgmiF6YXj4ROeapnBMPBd7FqSIGJyGvvMoZrVESulq4n0kTbarADCXxDjQQShUD3GbsaKaustZJut400GUgtILbz')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_test_51PfA0tRt3PcgmiF6E8mEDNQrL0UmX8hDNGesoT1xXQ9MWwOrjIibcL2DhQMCjzrAEfLJrCB8AbbQSdrUdLrqdjQS00GcZ8ptR4')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', 'whsec_69fda7e9e929aa89ada8ba49b4020c1f3932effef277fca147d5e8f877a13f31')
 
 # Celery Configuration
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0' #local
+#CELERY_BROKER_URL = 'redis://localhost:6379/0' #local
 #CELERY_BROKER_URL = 'redis://redis:6379/0'
 #CELERY_RESULT_BACKEND = 'django-db'
-CELERY_RESULT_BACKEND = None
-CELERY_CACHE_BACKEND = 'django-cache'
+#CELERY_RESULT_BACKEND = None
+#CELERY_CACHE_BACKEND = 'django-cache'
 
-
+# Redis and Celery settings
+REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
+CELERY_BROKER_URL = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TIMEZONE = 'UTC'
 
 # Django Secret key
 # SECURITY WARNING: keep the secret key used in production secret!

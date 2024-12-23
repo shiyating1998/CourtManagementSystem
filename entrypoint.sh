@@ -19,10 +19,11 @@ fi
 # Start the main application
 echo "Starting application..."
 
-# Start Redis server in the background
-redis-server &
+#!/bin/bash
 
-# Run Django app in the background
-python manage.py runserver 0.0.0.0:8000 &
-# Run Celery worker
-celery -A courtManagementSystem worker -l info -P eventlet --concurrency=1
+if [ "$DYNO" = "worker" ]
+then
+    celery -A courtManagementSystem worker -l INFO -P eventlet --concurrency=1
+else
+    gunicorn courtManagementSystem.wsgi:application --bind 0.0.0.0:8000
+fi

@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     pkg-config \
     curl \
     default-mysql-client \
-    redis-server \
+    gcc \ 
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -27,11 +27,14 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the project
 COPY . /djangoApp/
 
+# Collect static files
+RUN python manage.py collectstatic --noinput
+
 # Copy and set up entrypoint script
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # Expose the port
-EXPOSE 8000
+# EXPOSE 8000
 
 ENTRYPOINT ["/entrypoint.sh"]
