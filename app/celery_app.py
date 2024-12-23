@@ -4,6 +4,7 @@ from __future__ import absolute_import, unicode_literals
 import os
 from celery import Celery
 import eventlet
+impot ssl 
 eventlet.monkey_patch()
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'courtManagementSystem.settings')
@@ -22,7 +23,7 @@ if REDIS_URL.startswith("rediss://"):
             "ssl_cert_reqs": ssl.CERT_NONE  # or ssl.CERT_OPTIONAL or ssl.CERT_REQUIRED
         }
     }
-    
+
 app = Celery('courtManagementSystem')
 #app = Celery('courtManagementSystem', broker='redis://localhost:6379/0', backend='redis://localhost:6379/0')
 app.config_from_object('django.conf:settings', namespace='CELERY')
