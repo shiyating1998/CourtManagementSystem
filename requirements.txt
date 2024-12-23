@@ -12,13 +12,11 @@ eventlet>=0.33.3
 holidays>=0.0.6
 django-cors-headers==4.4.0
 stripe>=5.4.0
-# mysqlclient>=2.2.0
+# mysqlclient>=2.2.0 # For MySQL
 pytz>=2023.3
 
+# Heroku: Add to requirements.txt
 psycopg2-binary==2.9.9
 gunicorn==21.2.0
 dj-database-url==2.1.0
-# psycopg[c]; sys_platform == "linux"
-# psycopg[binary]; sys_platform != "linux"
-# Add to requirements.txt
 whitenoise==6.6.0
