@@ -292,4 +292,4 @@ CELERY_RESULT_BACKEND = REDIS_URL
 
 # Django Secret key
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2i2v5yx+iv_b6f4_8wa=8wbc3anwj3x7mhuc0grvp4z-k%ei50'
+SECRET_KEY = os.getenv('SECRET_KEY', 'x$oadbs5b2%ow-p@kb7q^pmz1)sw&q8*lg0rmiwk349s#b^gvb')
