@@ -21,7 +21,7 @@ set -e
 # Remove the CMD check and make it simpler
 if [ "$DYNO" = "worker" ]
 then
-    celery -A court_management_system worker -l INFO
+    celery -A courtManagementSystem worker -l info -P eventlet
 else
     exec "$@"
 fi
