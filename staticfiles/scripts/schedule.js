@@ -180,7 +180,8 @@ async function handleSubmit(e) {
     const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-            return_url: '${window.location.origin}/payment_success',
+            //TODO: change this to your payment completion URL
+            return_url: 'https://court-management-system-04e27c40ce1a.herokuapp.com/payment_success/',
             receipt_email: email
         }
     });
