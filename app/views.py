@@ -144,12 +144,13 @@ def admin_booking_schedule(request):
 
 @csrf_exempt  # TODO
 def payment_success(request):
+    logger.info("payment_success...")
     return render(request, "booking/payment_success.html")
 
 
 @csrf_exempt
 def stripe_webhook(request):
-    print("stripe_webhook...")
+    logger.info("stripe_webhook...")
     payload = request.body
     sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
     endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
@@ -158,9 +159,11 @@ def stripe_webhook(request):
         event = stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
     except ValueError:
         # Invalid payload
+        logger.info("invalid payload...")
         return JsonResponse({"success": False}, status=400)
     except stripe.error.SignatureVerificationError:
         # Invalid signature
+        logger.info("invalid signature...")
         return JsonResponse({"success": False}, status=400)
 
     event_id = event["id"]
