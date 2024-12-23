@@ -186,7 +186,7 @@ async function handleSubmit(e) {
         elements,
         confirmParams: {
             //TODO: change this to your payment completion URL
-            return_url: 'https://court-management-system-04e27c40ce1a.herokuapp.com/payment_success/',
+            return_url: 'https://court-management-system-d86c9641bda9.herokuapp.com//payment_success/',
             receipt_email: email
         }
     });
