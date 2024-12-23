@@ -1,40 +1,10 @@
-# Use a Python base image
-FROM python:3.10-slim
+FROM python:3.11-slim
 
-# Set the environment variable for Django
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+WORKDIR /app
 
-# Set the working directory in the container
-WORKDIR /djangoApp
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    default-libmysqlclient-dev \
-    pkg-config \
-    curl \
-    default-mysql-client \
-    gcc \ 
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-
-# Copy requirements first to leverage Docker cache
-COPY requirements.txt /djangoApp/
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the project
-COPY . /djangoApp/
+COPY . .
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
-
-# Copy and set up entrypoint script
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-# Expose the port
-# EXPOSE 8000
-
-ENTRYPOINT ["/entrypoint.sh"]
+CMD gunicorn courtManagementSystem.wsgi:application --bind 0.0.0.0:$PORT

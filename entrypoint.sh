@@ -25,5 +25,5 @@ if [ "$DYNO" = "worker" ]
 then
     celery -A courtManagementSystem worker -l INFO -P eventlet --concurrency=1
 else
-    gunicorn courtManagementSystem.wsgi:application --bind 0.0.0.0:8000
+    gunicorn courtManagementSystem.wsgi:application --bind 0.0.0.0:$PORT
 fi
