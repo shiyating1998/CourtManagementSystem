@@ -185,7 +185,7 @@ async function handleSubmit(e) {
     const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-            return_url: 'http://localhost:8000/payment_success',
+            return_url: '${window.location.origin}/payment_success',
             receipt_email: email
         }
     });
