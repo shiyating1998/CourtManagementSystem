@@ -19,7 +19,7 @@ class Command(BaseCommand):
 
         # Define date range for the next year
         today = date.today()
-        end_date = today + timedelta(days=365)
+        end_date = today + timedelta(days=30) # T0D0 make it configurable
         current_date = today
 
         item_courts = ItemCourt.objects.all()
