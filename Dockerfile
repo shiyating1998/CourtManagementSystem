@@ -11,10 +11,8 @@ WORKDIR /djangoApp
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
-    default-libmysqlclient-dev \
     pkg-config \
     curl \
-    default-mysql-client \
     redis-server \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -32,6 +30,6 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # Expose the port
-EXPOSE 8000
+# EXPOSE 8000
 
 ENTRYPOINT ["/entrypoint.sh"]

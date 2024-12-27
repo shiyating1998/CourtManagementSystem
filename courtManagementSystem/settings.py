@@ -132,7 +132,16 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.35', 'driven-moderately-gator.ngrok-free.app', 'web']
+# Database configuration heroku
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///db.sqlite3")
+DATABASES = {
+    "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
+}
+
+
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.35', 'driven-moderately-gator.ngrok-free.app', 'web']
+# Update allowed hosts
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 
 # Password validation
@@ -170,10 +179,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Enable compression and caching
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Additional locations of static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 
 
 # Default primary key field type
@@ -252,22 +268,31 @@ LOGGING = {
 
 
 
-# Stripe config
-STRIPE_PUBLIC_KEY = "pk_test_51PfA0tRt3PcgmiF6YXj4ROeapnBMPBd7FqSIGJyGvvMoZrVESulq4n0kTbarADCXxDjQQShUD3GbsaKaustZJut400GUgtILbz"
-STRIPE_SECRET_KEY = "sk_test_51PfA0tRt3PcgmiF6E8mEDNQrL0UmX8hDNGesoT1xXQ9MWwOrjIibcL2DhQMCjzrAEfLJrCB8AbbQSdrUdLrqdjQS00GcZ8ptR4"
-STRIPE_WEBHOOK_SECRET = 'whsec_69fda7e9e929aa89ada8ba49b4020c1f3932effef277fca147d5e8f877a13f31'
+# Stripe settings
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', 'pk_test_51PfA0tRt3PcgmiF6YXj4ROeapnBMPBd7FqSIGJyGvvMoZrVESulq4n0kTbarADCXxDjQQShUD3GbsaKaustZJut400GUgtILbz')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_test_51PfA0tRt3PcgmiF6E8mEDNQrL0UmX8hDNGesoT1xXQ9MWwOrjIibcL2DhQMCjzrAEfLJrCB8AbbQSdrUdLrqdjQS00GcZ8ptR4')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', 'whsec_69fda7e9e929aa89ada8ba49b4020c1f3932effef277fca147d5e8f877a13f31')
 
 
 # Celery Configuration
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0' #local
-#CELERY_BROKER_URL = 'redis://redis:6379/0'
-#CELERY_RESULT_BACKEND = 'django-db'
-CELERY_RESULT_BACKEND = None
-CELERY_CACHE_BACKEND = 'django-cache'
+# CELERY_BROKER_URL = 'redis://localhost:6379/0' #local
+# #CELERY_BROKER_URL = 'redis://redis:6379/0'
+# #CELERY_RESULT_BACKEND = 'django-db'
+# CELERY_RESULT_BACKEND = None
+# CELERY_CACHE_BACKEND = 'django-cache'
 
 
+import ssl
+
+REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
+
+CELERY_BROKER_URL = REDIS_URL + '?ssl_cert_reqs=CERT_NONE'
+CELERY_RESULT_BACKEND = REDIS_URL + '?ssl_cert_reqs=CERT_NONE'
 
 # Django Secret key
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2i2v5yx+iv_b6f4_8wa=8wbc3anwj3x7mhuc0grvp4z-k%ei50'
+SECRET_KEY = os.getenv('SECRET_KEY', 'x$oadbs5b2%ow-p@kb7q^pmz1)sw&q8*lg0rmiwk349s#b^gvb')
+
+
+SEND_FILE_MAX_AGE_DEFAULT = 0

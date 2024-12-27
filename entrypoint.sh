@@ -1,28 +1,14 @@
 #!/bin/bash
 set -e
 
-if [ "$RUN_MIGRATIONS" = "true" ]; then
-    # Apply database migrations
-    echo "Applying database migrations..."
-    python manage.py makemigrations
-    python manage.py migrate
-
-    # Create superuser if environment variables are set
-    if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_EMAIL" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ]; then
-        echo "Creating superuser..."
-        python manage.py createsuperuser --noinput \
-            --username $DJANGO_SUPERUSER_USERNAME \
-            --email $DJANGO_SUPERUSER_EMAIL
-    fi
-fi
-
-# Start the main application
-echo "Starting application..."
-
-# Start Redis server in the background
+# Start Redis server (optional: ensure Redis is ready before continuing)
+echo "Starting Redis..."
 redis-server &
 
-# Run Django app in the background
-python manage.py runserver 0.0.0.0:8000 &
-# Run Celery worker
-celery -A courtManagementSystem worker -l info -P eventlet --concurrency=1
+# Start the Celery worker in the background
+echo "Starting Celery worker..."
+celery -A courtManagementSystem worker -l info -P eventlet --concurrency=1 &
+
+# Run the Django app using exec to make it the main process
+echo "Starting Django app with Gunicorn..."
+exec "$@"

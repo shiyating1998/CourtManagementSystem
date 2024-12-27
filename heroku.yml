@@ -1,0 +1,7 @@
+build:
+  docker:
+    web: Dockerfile
+    worker: Dockerfile
+run:
+  web: gunicorn courtManagementSystem.wsgi:application --bind 0.0.0.0:$PORT --no-sendfile
+  worker: celery -A courtManagementSystem worker -l info -P eventlet

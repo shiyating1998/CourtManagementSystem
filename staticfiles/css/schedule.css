@@ -6,7 +6,7 @@ html {
 
 table {
     width: 100%;
-    border: 1px solid rgba(0,0,0,0.25);
+    border: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     overflow: hidden;
     border-collapse: separate;
@@ -15,7 +15,8 @@ table {
     margin-bottom: 15px;
 }
 
-th, td {
+th,
+td {
     padding: 10px;
     text-align: center;
     background-color: #fff;
@@ -40,28 +41,13 @@ h2 {
 }
 
 .booked {
-    background-color: #ffcccc;  /* Light red */
+    background-color: #ffcccc;
+    /* Light red */
 }
 
 .selected {
-    background-color: #ccffcc;  /* Light green */
-}
-
-.form-popup {
-    display: none;
-    position: fixed;
-    top: 35%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%);
-    border: 1px solid rgba(0,0,0,0.25);
-    z-index: 9;
-    background-color: white;
-    padding: 20px;
-    min-width: 20%;
-    max-width: 90%; /* Adjust maximum width as needed */
-    max-height: 90%; /* Adjust maximum height as needed */
-    overflow: auto; /* Enable scrolling if content exceeds pop-up size */
-    box-shadow: 0px 0px 4px 2px #ddd;
+    background-color: #ccffcc;
+    /* Light green */
 }
 
 #header {
@@ -76,7 +62,9 @@ h2 {
     padding: 5px 15px;
     padding-top: 3px;
     font-weight: bold;
-    font-size: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
 }
 
 #bookButton:hover {
@@ -87,17 +75,16 @@ h2 {
 #arrow {
     color: #ffa302;
     margin-right: 15px;
-
 }
 
 #separator {
-    border-bottom: 1px solid rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
     margin-top: 5px;
     margin-bottom: 15px;
 }
 
 #dates {
-    border: 1px solid rgba(0,0,0,0.25);
+    border: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     background-color: #fff;
     padding: 10px;
@@ -123,6 +110,30 @@ h2 {
     margin: 0 auto;
 }
 
+
+
+.form-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    /* Center vertically */
+    left: 50%;
+    /* Center horizontally */
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    z-index: 9;
+    background-color: white;
+    padding: 20px;
+    min-width: 20%;
+    max-width: 90%;
+    /* Adjust maximum width as needed */
+    max-height: 90%;
+    /* Adjust maximum height as needed */
+    overflow: auto;
+    /* Enable scrolling if content exceeds pop-up size */
+    box-shadow: 0px 0px 4px 2px #ddd;
+}
+
 #bookingForm button {
     background-color: #ffa302;
     color: #fff;
@@ -131,6 +142,8 @@ h2 {
     float: right;
     margin-right: 5px;
     font-size: 15px;
+    border-radius: 5px;
+    margin-top: 1em;
 }
 
 #bookingForm button:hover {
@@ -138,27 +151,10 @@ h2 {
     filter: brightness(0.8);
 }
 
-#inputs {
-    display: grid;
-    margin-bottom: 15px;
-}
-
-#bookingForm input {
-    margin-bottom: 5px;
-}
-
-
-
 button[type="button"] {
-    background-color: #d9534f; /* Cancel button color (Bootstrap danger color) */
-    float: right; /* Align cancel button to the right */
+    float: right;
+    /* Align cancel button to the right */
 }
-
-button[type="submit"] {
-    background-color: #5cb85c; /* Book button color (Bootstrap success color) */
-    float: left; /* Align book button to the left */
-}
-
 
 .form-wrapper {
     display: flex;
@@ -175,39 +171,73 @@ button[type="submit"] {
 .form-column label,
 .form-column input {
     display: block;
-    width: 100%;
+
 }
 
-#payment-element {
-    margin-top: 1em;
-}
 
-#submit {
-    margin-top: 1em;
-}
 
 #bookingHeader {
     text-align: center;
     width: 100%;
 }
 
-
-.button-group button {
-    flex: 0 0 48%;
+/* Spinner styles */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
 }
 
-@media (max-width: 768px) {
-    .form-column {
-        flex: 0 0 100%;
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
+}
 
-    .button-group {
-        flex-direction: column;
-        align-items: center;
-    }
+/* Spinner container positioned in the top-left */
+.central-spinner {
+    position: fixed;
+    /* Position relative to the viewport */
+    top: 50%;
+    /* Align to the top */
+    left: 50%;
+    /* Align to the left */
+    z-index: 999;
+    /* Ensure it's on top of other elements */
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    /* Transparent background */
+    padding: 20px;
+    /* Add padding to adjust the spinner slightly away from the edges */
+}
 
-    .button-group button {
-        flex: 0 0 100%;
-        margin-bottom: 1em;
-    }
+/* Hidden class for spinner */
+.hidden {
+    display: none;
+}
+
+#bookingDetails {
+  width: 50%; /* Adjust width as needed */
+  margin: 0 auto;
+  text-align: center;
+}
+
+.Input, .p-FauxInput {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: background 0.15s ease, border 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(0, 0, 0, 0.02);
+}
+
+
+.Label {
+    margin-bottom: 0.25rem;
+    font-size:  0.93rem;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
