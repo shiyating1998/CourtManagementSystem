@@ -1,20 +1,49 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll("#dates button");
+    const datesContainer = document.getElementById('dates');
+    const buttons = datesContainer.querySelectorAll("button");
+    const separatorStyle = datesContainer.dataset.separatorStyle || 'line'; // 'line' or 'pipe'
 
-    buttons.forEach(button => {
+    // Get the selected date from URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedDate = urlParams.get('date');
+
+    buttons.forEach((button, index) => {
         const dateStr = button.getAttribute("data-date");
-
         const dateParts = dateStr.split(" "); // Split into ["Sun", "2024-12-29"]
-        
-        // Parse the second part (YYYY-MM-DD) into a Date object
         const date = new Date(dateParts[1]);
+        
+        // Get day of week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+        const dayOfWeek = date.getDay();
+
+        // Add separator before Sunday, but not for the first button
+        if (dayOfWeek === 0 && index > 0) {
+            if (separatorStyle === 'pipe') {
+                const pipe = document.createElement('span');
+                pipe.className = 'week-pipe';
+                pipe.textContent = ' | ';
+                button.parentNode.insertBefore(pipe, button);
+            } else {
+                const separator = document.createElement('div');
+                separator.className = 'week-separator';
+                button.parentNode.insertBefore(separator, button);
+            }
+        }
 
         // Check if the day is Saturday (5) or Sunday (6)
-        if (date.getDay() === 5 || date.getDay() === 6) {
+        if (dayOfWeek === 5 || dayOfWeek === 6) {
             button.classList.add("weekend");
         }
+
+        // Check if this is the selected date (after weekend class)
+        if (selectedDate && dateParts[1] === selectedDate) {
+            button.classList.add("selected");
+        }
+
+        // Debug log to see the dates and their days
+        console.log(`Date: ${dateParts[1]}, Day: ${dayOfWeek} (${['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][dayOfWeek]})`);
     });
 });
+
 var selectedCells = [];
 
 const form = document.getElementById('bookingFormId');
@@ -60,6 +89,17 @@ function closeForm() {
 }
 
 function showSchedule(date) {
+    // Remove selected class from all buttons
+    const buttons = document.querySelectorAll("#dates button");
+    buttons.forEach(btn => btn.classList.remove("selected"));
+    
+    // Add selected class to clicked button
+    const selectedButton = document.getElementById("dateButton_" + date);
+    if (selectedButton) {
+        selectedButton.classList.add("selected");
+    }
+    
+    // Redirect to the new date
     window.location.href = "?date=" + date;
 }
 
@@ -68,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const csrfToken = form.querySelector('[name=csrfmiddlewaretoken]').value;
     console.log("DOMContentLoaded: ", csrfToken)
     form.addEventListener('submit', function (event) {
-
 
         event.preventDefault(); // Prevent default form submission
         const formData = new FormData(form);
@@ -196,29 +235,29 @@ function toggleSelect(cell, slot, court, date, isBooked, price) {
         })
             .then(response => response.json())
             .then(data => {
-    if (data.success) {
-        // Function to capitalize the first letter of a string
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-        }
+                if (data.success) {
+                    // Function to capitalize the first letter of a string
+                    function capitalizeFirstLetter(string) {
+                        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+                    }
 
-        // Access user information from the response and capitalize names
-        var userInfo = `
-            Name: ${capitalizeFirstLetter(data.user.first_name)} ${capitalizeFirstLetter(data.user.last_name)} <br>
-            Email: ${data.user.email} <br>
-            Phone: ${data.user.phone} <br>
-            Amount Paid: $${data.money} <br>
-            Booking Date: ${data.booking_date} <br>
-            Status: ${data.status ? 'Open' : 'Closed'} <br>
-            Flag: ${data.flag} <br>
-        `;
+                    // Access user information from the response and capitalize names
+                    var userInfo = `
+                        Name: ${capitalizeFirstLetter(data.user.first_name)} ${capitalizeFirstLetter(data.user.last_name)} <br>
+                        Email: ${data.user.email} <br>
+                        Phone: ${data.user.phone} <br>
+                        Amount Paid: $${data.money} <br>
+                        Booking Date: ${data.booking_date} <br>
+                        Status: ${data.status ? 'Open' : 'Closed'} <br>
+                        Flag: ${data.flag} <br>
+                    `;
 
-        // Display user and booking details in a div
-        document.getElementById('bookingDetails').innerHTML = userInfo;
-    } else if (data.error) {
-        document.getElementById('formErrors').textContent = data.error;
-    }
-})
+                    // Display user and booking details in a div
+                    document.getElementById('bookingDetails').innerHTML = userInfo;
+                } else if (data.error) {
+                    document.getElementById('formErrors').textContent = data.error;
+                }
+            })
             .catch(error => {
                 console.error('Error:', error);
                 document.getElementById('formErrors').textContent = 'An error occurred. Please try again.';
