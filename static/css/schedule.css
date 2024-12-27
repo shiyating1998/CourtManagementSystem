@@ -105,12 +105,19 @@ h2 {
     color: #fff;
 }
 
+#dates button.weekend {
+    background-color: #ff6347; /* Highlight color for weekends */
+    color: #fff;
+}
+
+#dates button.weekend:hover {
+    background-color: #ff4500; /* Darker highlight on hover */
+}
+
 #center {
     max-width: 80vw;
     margin: 0 auto;
 }
-
-
 
 .form-popup {
     display: none;

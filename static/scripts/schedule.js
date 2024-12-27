@@ -1,5 +1,24 @@
 var selectedCells = [];
 
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll("#dates button");
+
+    buttons.forEach(button => {
+        const dateStr = button.getAttribute("data-date");
+
+        const dateParts = dateStr.split(" "); // Split into ["Sun", "2024-12-29"]
+        
+        // Parse the second part (YYYY-MM-DD) into a Date object
+        const date = new Date(dateParts[1]);
+
+        // Check if the day is Saturday (6) or Sunday (0)
+        if (date.getDay() === 0 || date.getDay() === 6) {
+            button.classList.add("weekend");
+        }
+    });
+});
+
+
 function toggleSelect(cell, slot, court, date, isBooked, price) {
     console.log("clicked")
     // Convert estDateString to a Date object
