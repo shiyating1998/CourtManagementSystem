@@ -11,7 +11,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import logging
 from pathlib import Path
+import os
+import dj_database_url
 
+if "DYNO" in os.environ:  # Running on Heroku
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SECURE_SSL_REDIRECT = True  # Enforce HTTPS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #TODO
+# Ensure DEBUG is False in production TODO
+DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 
 
 # Application definition
@@ -48,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this after SecurityMiddleware
 ]
 
 CORS_ALLOWED_ORIGINS = [
