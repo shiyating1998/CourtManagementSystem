@@ -80,6 +80,8 @@ def process_event(event):
                 court=court_name,  # Storing the court part
                 action='Book',
                 user=user.first_name.capitalize() + " " + user.last_name.capitalize(),
+                user_email=user.email,  # Add email
+                user_phone=user.phone,  # Add phone
                 user_role=user.first_name.capitalize() + " " + user.last_name.capitalize(),
                 timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             )

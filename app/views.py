@@ -48,30 +48,6 @@ def is_admin(user):
 @user_passes_test(is_admin)
 def booking_list(request):
     bookings = Booking.objects.all().order_by('date', 'time')
-    
-    # Enhance bookings with user details
-    for booking in bookings:
-        # Extract first and last name from the stored username
-        names = booking.user.split()
-        if len(names) >= 2:
-            first_name = names[0]
-            last_name = ' '.join(names[1:])  # Join all remaining parts as last name
-            
-            # Try to find the user in the database
-            try:
-                user = User.objects.get(
-                    first_name__iexact=first_name,
-                    last_name__iexact=last_name
-                )
-                booking.user_email = user.email
-                booking.user_phone = user.phone
-            except User.DoesNotExist:
-                booking.user_email = "N/A"
-                booking.user_phone = "N/A"
-        else:
-            booking.user_email = "N/A"
-            booking.user_phone = "N/A"
-    
     return render(request, 'admin/view_log.html', {'bookings': bookings})
 
 
