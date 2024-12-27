@@ -455,14 +455,15 @@ def cancel_booking(request):
         # Prepare booking details for email
         booking_details = f"Date: {booking_date}\nTime: {start_time}-{end_time}\nCourt: {court_name}"
         
-        # Send cancellation confirmation email
+        # Send cancellation confirmation email only if not a dummy email
         from .utils import send_cancellation_confirmation
-        send_cancellation_confirmation(
-            user.email,
-            user.first_name,
-            user.last_name,
-            booking_details
-        )
+        if not user.email.endswith("@dummy.com"):
+            send_cancellation_confirmation(
+                user.email,
+                user.first_name,
+                user.last_name,
+                booking_details
+            )
         
         print("username: ", username)
         booking = Booking(

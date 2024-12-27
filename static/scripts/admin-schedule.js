@@ -1,3 +1,17 @@
+// Add these functions at the start of the file
+function showSpinner() {
+    document.getElementById('spinnerOverlay').style.display = 'flex';
+    document.getElementById('dates').classList.add('processing');
+}
+
+function hideSpinner() {
+    document.getElementById('spinnerOverlay').style.display = 'none';
+    document.getElementById('dates').classList.remove('processing');
+}
+
+// Add this variable to track if a request is in progress
+let isProcessing = false;
+
 document.addEventListener("DOMContentLoaded", () => {
     const datesContainer = document.getElementById('dates');
     const buttons = datesContainer.querySelectorAll("button");
@@ -139,8 +153,84 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+function bookCourt() {
+    if (isProcessing) {
+        console.log('Request already in progress');
+        return;
+    }
+
+    var info = document.getElementById("info").value;
+    console.log("info: ", info);
+
+    // Split the info string into its components
+    var parts = info.split(',');
+    var start_time = parts[0];     // Start time (09:00)
+    var end_time = parts[1];       // End time (10:00)
+    var booking_date = parts[2];   // Booking date (2024-09-08)
+    var price = parts[3];          // Price (30)
+
+    var first_name = document.getElementById("first_name").value;
+    var last_name = document.getElementById("last_name").value;
+    var email = document.getElementById("email").value;
+    var phone = document.getElementById("phone").value;
+    var court_name = document.getElementById("court_name").value;
+
+    if (!first_name || !last_name || !phone) {
+        document.getElementById('formErrors').textContent = 'Please fill in all required fields.';
+        return;
+    }
+
+    isProcessing = true;
+    showSpinner();
+
+    // Now create FormData and append the extracted values
+    var formData = new FormData();
+    formData.append('first_name', first_name);
+    formData.append('last_name', last_name);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('start_time', start_time);   // Pass the start_time
+    formData.append('end_time', end_time);       // Pass the end_time
+    formData.append('court_name', court_name);   // Pass the court_name
+    formData.append('booking_date', booking_date); // Pass the booking_date
+    formData.append('money', price);             // Pass the price
+
+    // Get the CSRF token from the form
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    // Make the fetch request
+    fetch('/book_slot/', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrfToken
+        },
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.reload();
+            } else if (data.error) {
+                document.getElementById('formErrors').textContent = data.error;
+                hideSpinner();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('formErrors').textContent = 'An error occurred. Please try again.';
+            hideSpinner();
+        })
+        .finally(() => {
+            isProcessing = false;
+        });
+}
 
 function cancelBooking() {
+    if (isProcessing) {
+        console.log('Request already in progress');
+        return;
+    }
+
     var info = document.getElementById("info").value;
     console.log("info: ", info);
 
@@ -154,6 +244,9 @@ function cancelBooking() {
     var court_name = parts[1];     // Court name (Court 7)
     var booking_date = parts[2];   // Booking date (2024-09-08)
     var price = parts[3];          // Price (30)
+
+    isProcessing = true;
+    showSpinner();
 
     // Now create FormData and append the extracted values
     var formData = new FormData();
@@ -175,11 +268,16 @@ function cancelBooking() {
                 window.location.reload();
             } else if (data.error) {
                 document.getElementById('formErrors').textContent = data.error;
+                hideSpinner();
             }
         })
         .catch(error => {
             console.error('Error:', error);
             document.getElementById('formErrors').textContent = 'An error occurred. Please try again.';
+            hideSpinner();
+        })
+        .finally(() => {
+            isProcessing = false;
         });
 }
 
