@@ -1,5 +1,3 @@
-var selectedCells = [];
-
 document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll("#dates button");
 
@@ -11,13 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // Parse the second part (YYYY-MM-DD) into a Date object
         const date = new Date(dateParts[1]);
 
-        // Check if the day is Saturday (6) or Sunday (0)
-        if (date.getDay() === 0 || date.getDay() === 6) {
+        // Check if the day is Saturday (5) or Sunday (6)
+        if (date.getDay() === 5 || date.getDay() === 6) {
             button.classList.add("weekend");
         }
     });
 });
 
+var selectedCells = [];
 
 function toggleSelect(cell, slot, court, date, isBooked, price) {
     console.log("clicked")

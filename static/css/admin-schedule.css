@@ -119,6 +119,20 @@ h2 {
     color: #fff;
 }
 
+#dates button.weekend {
+    background-color: #fde8e8; /* Light rose pink */
+    background-color: #e3f2fd; /* Gentle sky blue */
+    background-color: #e0f8e9; /* Soft mint green */
+    background-color: #e6e6fa; /* Soft lavender color */
+    color: #000; /* Keep text black for contrast */
+}
+
+#dates button.weekend:hover {
+    cursor: pointer;
+    background-color: #ffa302;
+    color: #fff;
+}
+
 #center {
     max-width: 80vw;
     margin: 0 auto;
