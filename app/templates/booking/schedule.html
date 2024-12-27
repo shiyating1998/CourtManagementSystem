@@ -20,7 +20,7 @@
         </div>
         <div id="separator"></div>
         <!-- Display date buttons -->
-        <div id="dates">
+        <div id="dates" data-separator-style="pipe">
             {% for date in dates %}
             {# Extract the date part (YYYY-MM-DD) for the id attribute #}
             {% with date|slice:"4:14" as date_id %}

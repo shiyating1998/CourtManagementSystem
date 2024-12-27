@@ -21,20 +21,20 @@
         </div>
         <div id="separator"></div>
         <!-- Display date buttons -->
-        <div id="dates">
+        <div id="dates" data-separator-style="line">
             {% for date in dates %}
-            {# Extract the date part (YYYY-MM-DD) for the id attribute #}
-            {% with date|slice:"4:14" as date_id %}
-            <button id="dateButton_{{ date_id }}" onclick="showSchedule('{{ date_id }}')" data-date="{{ date }}">
-                {% if date == today %}
-                Today
-                {% else %}
-                {{ date }}
-                {% endif %}
-            </button>
-            {% endwith %}
+                {% with date|slice:"4:14" as date_id %}
+                <button id="dateButton_{{ date_id }}" onclick="showSchedule('{{ date_id }}')" data-date="{{ date }}">
+                    {% if date == today %}
+                    Today
+                    {% else %}
+                    {{ date }}
+                    {% endif %}
+                </button>
+                {% endwith %}
             {% endfor %}
         </div>
+        
 
         <table>
             <tr>
@@ -84,7 +84,6 @@
                 <h2 id="bookingHeader">Book Courts</h2>
                 <p id="bookingDetails"></p>
                 <div id="formErrors" style="color: red;"></div> <!-- Error message container -->
-
                 <div id="divInput">
                     <label for="first_name">First Name:</label>
                     <input type="text" name="first_name" required><br>
