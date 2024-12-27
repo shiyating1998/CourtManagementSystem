@@ -294,8 +294,8 @@ import ssl
 
 REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
 
-CELERY_BROKER_URL = REDIS_URL + '?ssl_cert_reqs=CERT_NONE'
-CELERY_RESULT_BACKEND = REDIS_URL + '?ssl_cert_reqs=CERT_NONE'
+CELERY_BROKER_URL = REDIS_URL #+ '?ssl_cert_reqs=CERT_NONE'
+CELERY_RESULT_BACKEND = REDIS_URL# + '?ssl_cert_reqs=CERT_NONE'
 
 # Django Secret key
 # SECURITY WARNING: keep the secret key used in production secret!
