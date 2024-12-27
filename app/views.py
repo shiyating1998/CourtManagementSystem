@@ -16,7 +16,7 @@ from django.views.decorators.cache import cache_control
 from courtManagementSystem import settings, proj_settings
 from .models import User, Item, ItemCourt, ItemTime, ItemOrder, ProcessedEvent, Booking
 from .tasks import process_event
-from .utils import send_booking_confirmation
+from .utils import send_booking_confirmation, send_cancellation_confirmation
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -416,9 +416,19 @@ def cancel_booking(request):
         item_order = ItemOrder.objects.get(item_time=item_time, date=booking_date_obj)
         user = item_order.user
         username = user.first_name.capitalize() + " " + user.last_name.capitalize()
+        
+        # Prepare booking details for email
+        booking_details = f"Date: {booking_date}\nTime: {start_time}-{end_time}\nCourt: {court_name}"
+
+        # Send cancellation confirmation email
+        send_cancellation_confirmation(
+            user.email,
+            user.first_name,
+            user.last_name,
+            booking_details
+        )
+
         print("username: ", username)
-        # court_info = f"{start_time}-{end_time} {court_name}"
-        # write_log_file(booking_date, court_info, "Cancel", username, True)
         booking = Booking(
             date=booking_date_obj,
             time=f'{start_time}-{end_time}',  # Storing the time part
