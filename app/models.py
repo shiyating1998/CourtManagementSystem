@@ -81,11 +81,13 @@ class Booking(models.Model):
     court = models.CharField(max_length=10)  # To store court number (e.g., "Court 4")
     action = models.CharField(max_length=10)
     user = models.CharField(max_length=50)
+    user_email = models.EmailField(max_length=254, null=True, blank=True)
+    user_phone = models.CharField(max_length=20, null=True, blank=True)
     user_role = models.CharField(max_length=50)
     timestamp = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.date} - {self.time} - {self.court} - {self.user} ({self.action})"
+        return f"{self.date} {self.time} {self.court} {self.action} by {self.user}"
 
 # for processing payments (celery)
 class ProcessedEvent(models.Model):
@@ -94,4 +96,3 @@ class ProcessedEvent(models.Model):
 
     def __str__(self):
         return self.event_id
-
