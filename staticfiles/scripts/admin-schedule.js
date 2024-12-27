@@ -1,3 +1,21 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll("#dates button");
+
+    buttons.forEach(button => {
+        const dateStr = button.getAttribute("data-date");
+
+        const dateParts = dateStr.split(" "); // Split into ["Sun", "2024-12-29"]
+        
+        // Parse the second part (YYYY-MM-DD) into a Date object
+        const date = new Date(dateParts[1]);
+
+        // Check if the day is Saturday (5) or Sunday (6)
+        if (date.getDay() === 5 || date.getDay() === 6) {
+            button.classList.add("weekend");
+        }
+    });
+});
+
 var selectedCells = [];
 
 const form = document.getElementById('bookingFormId');
@@ -159,13 +177,8 @@ function toggleSelect(cell, slot, court, date, isBooked, price) {
         var details = date + '<br>' + court + ',' + slot + ',$' + price;
         document.getElementById("bookingDetails").innerHTML = details;
         document.getElementById("bookingForm").style.display = "block";
-
         document.getElementById("info").value = cellKey;
-
-
         document.getElementById("divInput").style.display = "none";
-
-
         // Show button and add back to layout
         document.getElementById("btnCancelBooking").style.display = "block";
         document.getElementById("btnBook").style.display = "none";

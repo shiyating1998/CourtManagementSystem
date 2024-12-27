@@ -24,7 +24,7 @@
             {% for date in dates %}
             {# Extract the date part (YYYY-MM-DD) for the id attribute #}
             {% with date|slice:"4:14" as date_id %}
-            <button id="dateButton_{{ date_id }}" onclick="showSchedule('{{ date_id }}')">
+            <button id="dateButton_{{ date_id }}" onclick="showSchedule('{{ date_id }}')" data-date="{{ date }}">
                 {% if date == today %}
                 Today
                 {% else %}
