@@ -1,7 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll("#dates button");
+    const datesContainer = document.getElementById('dates');
+    const buttons = datesContainer.querySelectorAll("button");
+    const separatorStyle = datesContainer.dataset.separatorStyle || 'line'; // 'line' or 'pipe'
 
-    buttons.forEach(button => {
+    // Get the selected date from URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedDate = urlParams.get('date');
+
+    buttons.forEach((button, index) => {
         const dateStr = button.getAttribute("data-date");
 
         const dateParts = dateStr.split(" "); // Split into ["Sun", "2024-12-29"]
@@ -9,10 +15,33 @@ document.addEventListener("DOMContentLoaded", () => {
         // Parse the second part (YYYY-MM-DD) into a Date object
         const date = new Date(dateParts[1]);
 
+        // Get day of week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+        const dayOfWeek = date.getDay();
+
+        // Add separator before Sunday, but not for the first button
+        if (dayOfWeek === 0 && index > 0) {
+            if (separatorStyle === 'pipe') {
+                const pipe = document.createElement('span');
+                pipe.className = 'week-pipe';
+                pipe.textContent = ' | ';
+                button.parentNode.insertBefore(pipe, button);
+            } else {
+                const separator = document.createElement('div');
+                separator.className = 'week-separator';
+                button.parentNode.insertBefore(separator, button);
+            }
+        }
+
         // Check if the day is Saturday (5) or Sunday (6)
         if (date.getDay() === 5 || date.getDay() === 6) {
             button.classList.add("weekend");
         }
+
+        // Check if this is the selected date
+        if (selectedDate && dateParts[1] === selectedDate) {
+            button.classList.add("selected");
+        }
+
     });
 });
 
@@ -80,10 +109,19 @@ function closeForm() {
 }
 
 function showSchedule(date) {
+    // Remove selected class from all buttons
+    const buttons = document.querySelectorAll("#dates button");
+    buttons.forEach(btn => btn.classList.remove("selected"));
+    
+    // Add selected class to clicked button
+    const selectedButton = document.getElementById("dateButton_" + date);
+    if (selectedButton) {
+        selectedButton.classList.add("selected");
+    }
+    
+    // Redirect to the new date
     window.location.href = "?date=" + date;
 }
-
-
 
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 // TODO: This is your test publishable API key.
@@ -101,9 +139,6 @@ checkStatus();
 document
     .querySelector("#payment-form")
     .addEventListener("submit", handleSubmit);
-
-
-
 
 // Fetches a payment intent and captures the client secret
 async function initialize() {
@@ -131,6 +166,7 @@ async function initialize() {
     const paymentElement = elements.create("payment", paymentElementOptions);
     paymentElement.mount("#payment-element");
 }
+
 async function handleSubmit(e) {
     e.preventDefault();
 
