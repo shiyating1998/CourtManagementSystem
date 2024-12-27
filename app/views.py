@@ -47,7 +47,31 @@ def is_admin(user):
 
 @user_passes_test(is_admin)
 def booking_list(request):
-    bookings = Booking.objects.all().order_by('date', 'time')  # Fetch all bookings
+    bookings = Booking.objects.all().order_by('date', 'time')
+    
+    # Enhance bookings with user details
+    for booking in bookings:
+        # Extract first and last name from the stored username
+        names = booking.user.split()
+        if len(names) >= 2:
+            first_name = names[0]
+            last_name = ' '.join(names[1:])  # Join all remaining parts as last name
+            
+            # Try to find the user in the database
+            try:
+                user = User.objects.get(
+                    first_name__iexact=first_name,
+                    last_name__iexact=last_name
+                )
+                booking.user_email = user.email
+                booking.user_phone = user.phone
+            except User.DoesNotExist:
+                booking.user_email = "N/A"
+                booking.user_phone = "N/A"
+        else:
+            booking.user_email = "N/A"
+            booking.user_phone = "N/A"
+    
     return render(request, 'admin/view_log.html', {'bookings': bookings})
 
 
@@ -61,13 +85,22 @@ def download_bookings_csv(request):
     writer = csv.writer(response)
 
     # Write the header row for the CSV file.
-    writer.writerow(['Date', 'Time', 'Court', 'Action', 'User', 'User Role', 'Timestamp'])
+    writer.writerow(['Date', 'Time', 'Court', 'Action', 'User', 'Email', 'Phone', 'User Role', 'Timestamp'])
 
     # Query the bookings and write each row to the CSV.
     bookings = Booking.objects.all().order_by('date', 'time')
     for booking in bookings:
-        writer.writerow([booking.date, booking.time, booking.court, booking.action, booking.user, booking.user_role,
-                         booking.timestamp])
+        writer.writerow([
+            booking.date, 
+            booking.time, 
+            booking.court, 
+            booking.action, 
+            booking.user, 
+            booking.user_email, 
+            booking.user_phone, 
+            booking.user_role,
+            booking.timestamp
+        ])
 
     return response
 
@@ -322,6 +355,8 @@ def book_slot(request):
                 court=court_name,  # Storing the court part
                 action='Book',
                 user=user.first_name.capitalize() + " " + user.last_name.capitalize(),
+                user_email=user.email,
+                user_phone=user.phone,
                 user_role=request.user.username,
                 timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             )
@@ -419,15 +454,16 @@ def cancel_booking(request):
         
         # Prepare booking details for email
         booking_details = f"Date: {booking_date}\nTime: {start_time}-{end_time}\nCourt: {court_name}"
-
+        
         # Send cancellation confirmation email
+        from .utils import send_cancellation_confirmation
         send_cancellation_confirmation(
             user.email,
             user.first_name,
             user.last_name,
             booking_details
         )
-
+        
         print("username: ", username)
         booking = Booking(
             date=booking_date_obj,
@@ -435,6 +471,8 @@ def cancel_booking(request):
             court=court_name,  # Storing the court part
             action='Cancel',
             user=username,
+            user_email=user.email,  # Add email
+            user_phone=user.phone,  # Add phone
             user_role=request.user.username,
             timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         )
