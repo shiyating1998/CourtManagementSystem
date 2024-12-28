@@ -13,6 +13,7 @@ function hideSpinner() {
 let isProcessing = false;
 
 document.addEventListener("DOMContentLoaded", () => {
+    const today = new Date().toISOString().split('T')[0];
     const datesContainer = document.getElementById('dates');
     const buttons = datesContainer.querySelectorAll("button");
     const separatorStyle = datesContainer.dataset.separatorStyle || 'line'; // 'line' or 'pipe'
@@ -50,6 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Check if this is the selected date (after weekend class)
         if (selectedDate && dateParts[1] === selectedDate) {
+            button.classList.add("selected");
+        } else if (!selectedDate && dateParts[1] === today) {
             button.classList.add("selected");
         }
 

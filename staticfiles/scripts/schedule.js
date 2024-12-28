@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const today = new Date().toISOString().split('T')[0];
     const datesContainer = document.getElementById('dates');
     const buttons = datesContainer.querySelectorAll("button");
     const separatorStyle = datesContainer.dataset.separatorStyle || 'line'; // 'line' or 'pipe'
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const dateStr = button.getAttribute("data-date");
 
         const dateParts = dateStr.split(" "); // Split into ["Sun", "2024-12-29"]
-        
+
         // Parse the second part (YYYY-MM-DD) into a Date object
         const date = new Date(dateParts[1]);
 
@@ -39,6 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Check if this is the selected date
         if (selectedDate && dateParts[1] === selectedDate) {
+            button.classList.add("selected");
+        } else if (!selectedDate && dateParts[1] === today) {
             button.classList.add("selected");
         }
 
@@ -112,13 +115,13 @@ function showSchedule(date) {
     // Remove selected class from all buttons
     const buttons = document.querySelectorAll("#dates button");
     buttons.forEach(btn => btn.classList.remove("selected"));
-    
+
     // Add selected class to clicked button
     const selectedButton = document.getElementById("dateButton_" + date);
     if (selectedButton) {
         selectedButton.classList.add("selected");
     }
-    
+
     // Redirect to the new date
     window.location.href = "?date=" + date;
 }
