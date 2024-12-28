@@ -106,38 +106,38 @@ WSGI_APPLICATION = 'courtManagementSystem.wsgi.application'
 
 
 # localhost
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'court-management-system',
-        'USER': 'root',
-        'PASSWORD': '1234',
-        'HOST': '127.0.0.1',   # Set to '127.0.0.1' if using localhost
-        'PORT': '3306',        # Default port for MySQL
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'court-management-system',
+#         'USER': 'root',
+#         'PASSWORD': '1234',
+#         'HOST': '127.0.0.1',   # Set to '127.0.0.1' if using localhost
+#         'PORT': '3306',        # Default port for MySQL
+#     }
+# }
 
-# docker
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'court_management_system',
-        'USER': 'user',
-        'PASSWORD': 'password',
-        'HOST': 'db',  # Name of the MySQL service in docker-compose
-        'PORT': '3306',
-    }
-}
+# # docker
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'court_management_system',
+#         'USER': 'user',
+#         'PASSWORD': 'password',
+#         'HOST': 'db',  # Name of the MySQL service in docker-compose
+#         'PORT': '3306',
+#     }
+# }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'OPTIONS': {
-            'timeout': 20,  # Increase timeout to 20 seconds
-        },
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'OPTIONS': {
+#             'timeout': 20,  # Increase timeout to 20 seconds
+#         },
+#     }
+# }
 
 # Database configuration heroku
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///db.sqlite3")
@@ -210,8 +210,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com' # Replace with your SMTP server
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'jlxxily@gmail.com'
-EMAIL_HOST_PASSWORD = 'trpb yqxp dlvk gurv'
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", 'jlxxily@gmail.com' )
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", 'trpb yqxp dlvk gurv')
 
 LOGGING = {
     'version': 1,
