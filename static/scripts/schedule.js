@@ -242,7 +242,7 @@ async function handleSubmit(e) {
     const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-            return_url: 'http://https://court-management-system2-a9f15be125f7.herokuapp.com/payment_success',
+            return_url: `${window.location.origin}/payment_success`,
             receipt_email: email
         }
     });
